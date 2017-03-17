@@ -23,6 +23,12 @@ static int		ft_parse_data(char **data, char **line)
 		{
 			*line = ft_strsub((char const*)*data, 0, tmp - *data);
 			ft_memmove(*data, tmp + 1, ft_strlen(tmp));
+			return (1);
 		}
 	}
+	return (0);
 }
+
+
+
+
