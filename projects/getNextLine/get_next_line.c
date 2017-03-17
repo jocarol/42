@@ -29,6 +29,49 @@ static int		ft_parse_data(char **data, char **line)
 	return (0);
 }
 
+static	int		ft_fd_to_data(int fd, char **data, char **line)
+{
+	char	buffer[BUFF_SIZE + 1];
+	char	*tmp;
+	int		ret;
+
+	while ((ret = read(fd, buffer, BUFF_SIZE)))
+	{
+		if (ret == -1)
+			return (-1);
+		buffer[ret] = '\0';
+		tmp = *data;
+		if (*data)
+		{
+			*data = ft_strjoin((char const*)tmp, (char const*)buffer);
+			free(tmp);
+		}
+		else
+			*data = ft_strdup((const char*)buffer);
+		if (ft_parse_data(data, line))
+			return (1);
+	}
+	return (0);
+}
+
+int					get_next_line(int const fd, char **line)
+{
+	int				res;
+	static char		*ret[FD_VALUE];
+
+	if (fd < 0 || !line)
+		return (-1);
+	if (ret[fd] && ft_parse_data(&ret[fd], line))
+		return (1);
+	result = ft_fd_to_data(fd, &ret[fd], line);
+	if (result != 0)
+		return (result);
+	if (ret[fd] == NULL || ret[fd][0] == '\0')
+		return (0);
+	*line = ret[fd];
+	ret[fd] = NULL;
+	return (1);
+}
 
 
 
