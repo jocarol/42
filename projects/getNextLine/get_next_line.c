@@ -6,11 +6,13 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 05:10:19 by jocarol           #+#    #+#             */
-/*   Updated: 2017/03/03 05:33:23 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/03/21 07:14:27 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <fcntl.h>
+#include <stdio.h>
 
 static int		ft_parse_data(char **data, char **line)
 {
@@ -43,7 +45,7 @@ static	int		ft_fd_to_data(int fd, char **data, char **line)
 		tmp = *data;
 		if (*data)
 		{
-			*data = ft_strjoin((char const*)tmp, (char const*)buffer);
+			*data = ft_strjoin(tmp, buffer);
 			free(tmp);
 		}
 		else
@@ -63,9 +65,9 @@ int					get_next_line(int const fd, char **line)
 		return (-1);
 	if (ret[fd] && ft_parse_data(&ret[fd], line))
 		return (1);
-	result = ft_fd_to_data(fd, &ret[fd], line);
-	if (result != 0)
-		return (result);
+	res = ft_fd_to_data(fd, &ret[fd], line);
+	if (res != 0)
+		return (res);
 	if (ret[fd] == NULL || ret[fd][0] == '\0')
 		return (0);
 	*line = ret[fd];
@@ -73,5 +75,15 @@ int					get_next_line(int const fd, char **line)
 	return (1);
 }
 
-
-
+/*int main(int ac, char **av)
+{
+	char *line;
+	int fd1;
+	fd1 = open(av[1], O_RDONLY);
+	while (get_next_line(fd1, &line))
+	{
+		ft_putendl(line);
+		free(line);
+	}
+	return(0);
+}*/
