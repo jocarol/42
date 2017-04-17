@@ -9,11 +9,11 @@
 
 typedef struct		s_flag
 {
-	bool			list;
-	bool			recursive;
-	bool			all;
-	bool			reverseSort;
-	bool			timeSort;
+	bool			all : 1;
+	bool			list: 1;
+	bool			rec : 1;
+	bool			rev :1;
+	bool			time : 1;
 }					t_flag;
 
 typedef struct		s_element
@@ -26,6 +26,8 @@ typedef struct		s_element
 	char			*Name;
 }					t_element;
 
-t_flag				*ft_parse_args(int ac, char **av);
+static void			ft_usage();
+static int			ft_checkflag(int c, char **av);
+t_flag				*ft_parse_flags(char **av);
 
 #endif
