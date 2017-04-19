@@ -27,7 +27,9 @@ typedef struct			s_element
 	char				*Name;
 }						t_element;
 
-static void				ft_usage();
 t_flag					*ft_parseflags(int ac, char **av);
+static void				ft_usage();
+static void				ft_fail(t_flag flag);
+
 
 #endif
