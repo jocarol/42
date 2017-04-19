@@ -53,7 +53,7 @@ all: $(NAME)
 
 $(NAME):
 					@gcc -c $(CFLAGS) $(SRCS)
-					@ar rc 	$(NAME) $(OBJ)
+					@ar rc $(NAME) $(OBJ)
 					@ranlib $(NAME)
 
 clean:
