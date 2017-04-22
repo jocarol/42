@@ -16,31 +16,28 @@ static void			ft_usage()
 
 t_flag				*ft_parseflags(int ac, char **av)
 {
-	int				i;
-	int				j;
-	int				argSize;
+	char			**avPtr;
 	t_flag			*flag;
 
-	i = 0;
+	avPtr = av;
 	if (!(flag = ft_memalloc(sizeof(*flag))))
 		return (NULL);
-	while (++i < ac && av[i][0] == '-')
+	while ((++avPtr) - av < ac)
 	{
-		j = 0;
-		argSize = ft_strlen(av[i]);
-		while (++j < argSize)
-			if (av[i][j] == 'a')
-				flag->all = TRUE;
-			else if (av[i][j] == 'l')
-				flag->list = TRUE;
-			else if (av[i][j] == 'R')
-				flag->rec = TRUE;
-			else if (av[i][j] == 'r')
-				flag->rev = TRUE;
-			else if (av[i][j] == 't')
-				flag->time = TRUE;
-			else
-				return (ft_fail(flag));
+		if (**avPtr != '-')
+			return (NULL);
+		if (*(*avPtr + 1) == 'a')
+			flag->all = TRUE;
+		else if (*(*avPtr + 1) == 'l')
+			flag->list = TRUE;
+		else if (*(*avPtr + 1) == 'R')
+			flag->rec = TRUE;
+		else if (*(*avPtr + 1) == 'r')
+			flag->rev = TRUE;
+		else if (*(*avPtr + 1) == 't')
+			flag->time = TRUE;
+		else
+			return (ft_fail(flag));
 	}
 	return (flag);
 }

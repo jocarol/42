@@ -2,6 +2,7 @@
 # define FT_LS_H
 
 #include "libft/libft.h"
+#include "dirent.h"
 
 #define bool int
 #define TRUE 1
@@ -9,7 +10,6 @@
 
 typedef struct			s_flag
 {
-	bool				check;
 	bool				all;
 	bool				list;
 	bool				rec;
@@ -29,7 +29,8 @@ typedef struct			s_element
 
 t_flag					*ft_parseflags(int ac, char **av);
 static void				ft_usage();
-static void				ft_fail(t_flag flag);
+static t_flag			*ft_fail(t_flag *flag);
+
 
 
 #endif
