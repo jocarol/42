@@ -40,25 +40,13 @@ t_flag				*ft_parseflags(int ac, char **av)
 	while (++i < ac)
 	{
 		if (av[i][0] != '-')
-		{
-			printf("-a : %d\n", flag->all);
-			printf("-l : %d\n", flag->list);
-			printf("-R : %d\n", flag->rec);
-			printf("-r : %d\n", flag->rev);
-			printf("-t : %d\n", flag->time);
 			return (flag);
-		}
 		j = 0;
 		sizeOfArg = ft_strlen(av[i]);
 		while (++j < sizeOfArg)
 			if (ft_flag2struct(flag, av, i, j))
 				return (NULL);
 	}
-	printf("-a : %d\n", flag->all);
-	printf("-l : %d\n", flag->list);
-	printf("-R : %d\n", flag->rec);
-	printf("-r : %d\n", flag->rev);
-	printf("-t : %d\n", flag->time);
 	return (flag);
 }
 

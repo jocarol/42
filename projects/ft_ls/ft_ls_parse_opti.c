@@ -39,6 +39,7 @@ t_flag				*ft_parseflags(int ac, char **av)
 		else
 			return (ft_fail(flag));
 	}
+	printf("%d", flag->all);
 	return (flag);
 }
 
