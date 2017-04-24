@@ -27,7 +27,7 @@ static int			ft_flag2struct(t_flag *flag, char **av, int i, int j)
 	return (0);
 }
 
-t_flag				*ft_parseflags(int ac, char **av)
+static t_flag		*ft_parseflags(int ac, char **av)
 {
 	int				i;
 	int				j;
@@ -64,5 +64,8 @@ t_flag				*ft_parseflags(int ac, char **av)
 
 int					main(int ac, char **av)
 {
-	ft_parseflags(ac, av);
+	if (ft_parseflags(ac, av))
+		return (0);
+	else
+		return (1);
 }

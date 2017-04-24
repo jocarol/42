@@ -1,5 +1,4 @@
 #include "ft_ls.h"
-#include "stdio.h"
 
 static void			ft_usage()
 {
@@ -48,9 +47,4 @@ t_flag				*ft_parseflags(int ac, char **av)
 				return (NULL);
 	}
 	return (flag);
-}
-
-int					main(int ac, char **av)
-{
-	ft_parseflags(ac, av);
 }
