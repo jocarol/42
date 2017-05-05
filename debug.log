@@ -1,4 +1,0 @@
-2017-05-05 16:21:49.855 ruby[51778:798759] 16:21:49.855 WARNING:  140: This application, or a library it uses, is using the deprecated Carbon Component Manager for hosting Audio Units. Support for this will be removed in a future release. Also, this makes the host incompatible with version 3 audio units. Please transition to the API's in AudioComponent.h.
-Warning: Xing stream size off by more than 1%, fuzzy seeking may be even more fuzzy than by design!
-997 #51778] DEBUG -- : DownloadThread start
-D, [2017-05-05T16:22:00.459933 #51778] DEBUG -- : DownloadThread response: 200
