@@ -21,7 +21,7 @@ int		ft_ls(char *str)
 		return (0);
 	while ((dirStream = readdir(dir)))
 	{
-		ft_putstr(dirStream->d_name);
+		ft_putstr(dirStream-é>d_name);
 		ft_putstr("\n");
 	}
 	return (0);

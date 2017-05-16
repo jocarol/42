@@ -1,4 +1,5 @@
 #include "ft_ls.h"
+#include "stdio.h"
 
 static void			ft_usage()
 {
@@ -26,12 +27,16 @@ static int			ft_flag2struct(t_flag *flag, char **av, int i, int j)
 	return (0);
 }
 
-t_flag				*ft_parseflags(int ac, char **av)
+static int			ft_item2struct(t_item item, char **av, int i)
 {
-	int				i;
-	int				j;
+	if (!t_item)
+}
+
+t_flag				*ft_parse(int ac, char **av, int i, int j)
+{
 	int				sizeOfArg;
 	t_flag			*flag;
+	t_element		*item;
 
 	i = 0;
 	if (!(flag = ft_memalloc(sizeof(*flag))))
@@ -39,12 +44,17 @@ t_flag				*ft_parseflags(int ac, char **av)
 	while (++i < ac)
 	{
 		if (av[i][0] != '-')
-			return (flag);
+			ft_item2struct(item, av, 0)
 		j = 0;
 		sizeOfArg = ft_strlen(av[i]);
 		while (++j < sizeOfArg)
 			if (ft_flag2struct(flag, av, i, j))
 				return (NULL);
 	}
+	/*printf("Flag -a : %d\n", flag->all);
+	printf("Flag -l : %d\n", flag->list);
+	printf("Flag -R : %d\n", flag->rec);
+	printf("Flag -r : %d\n", flag->rev);
+	printf("Flag -t : %d\n", flag->time);*/
 	return (flag);
 }
