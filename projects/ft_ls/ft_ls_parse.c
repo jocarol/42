@@ -29,7 +29,6 @@ static int			ft_flag2struct(t_flag *flag, char **av, int i, int j)
 
 static int			ft_item2struct(t_item item, char **av, int i)
 {
-	if (!t_item)
 }
 
 t_flag				*ft_parse(int ac, char **av, int i, int j)
@@ -44,7 +43,10 @@ t_flag				*ft_parse(int ac, char **av, int i, int j)
 	while (++i < ac)
 	{
 		if (av[i][0] != '-')
-			ft_item2struct(item, av, 0)
+			{
+				if (!item)
+					ft_item2struct(item, av, 0);
+			}
 		j = 0;
 		sizeOfArg = ft_strlen(av[i]);
 		while (++j < sizeOfArg)
