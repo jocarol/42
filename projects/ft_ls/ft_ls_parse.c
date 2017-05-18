@@ -29,13 +29,14 @@ static int			ft_flag2struct(t_flag *flag, char **av, int i, int j)
 
 static int			ft_item2struct(t_item item, char **av, int i)
 {
+	
 }
 
 t_flag				*ft_parse(int ac, char **av, int i, int j)
 {
 	int				sizeOfArg;
 	t_flag			*flag;
-	t_element		*item;
+	t_item		*item;
 
 	i = 0;
 	if (!(flag = ft_memalloc(sizeof(*flag))))

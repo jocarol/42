@@ -6,16 +6,16 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/25 16:58:24 by jocarol           #+#    #+#             */
-/*   Updated: 2017/04/25 17:03:16 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/05/18 06:20:42 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		ft_ls(char *str)
+int								ft_ls(char *str)
 {
 	struct dirent		*dirStream;
-	DIR					*dir;
+	DIR							*dir;
 
 	if ((dir = opendir(str)) == NULL)
 		return (0);
@@ -27,7 +27,7 @@ int		ft_ls(char *str)
 	return (0);
 }
 
-int		main(int ac, char **av)
+int								main(int ac, char **av)
 {
 	ft_ls(av[1]);
 	return (0);
