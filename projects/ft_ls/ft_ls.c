@@ -2,6 +2,6 @@
 
 int		main(int ac, char **av)
 {
-	ft_parseflags(ac, av);
+	ft_parseArgs(ac, av);
 	return (0);
 }

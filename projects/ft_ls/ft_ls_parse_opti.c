@@ -14,7 +14,7 @@ static void			ft_usage()
 		return (NULL);
 }
 
-t_flag				*ft_parseflags(int ac, char **av)
+t_flag				*ft_parseArgs(int ac, char **av, int i, int j)
 {
 	char			**avPtr;
 	t_flag			*flag;
@@ -45,7 +45,7 @@ t_flag				*ft_parseflags(int ac, char **av)
 
 int					main(int ac, char **av)
 {
-	if(!(ft_parseflags(ac, av)))
+	if(!(ft_parseArgs(ac, av)))
 		return (1);
 	else
 		return (0);

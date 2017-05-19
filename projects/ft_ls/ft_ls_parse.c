@@ -6,7 +6,7 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 03:35:10 by jocarol           #+#    #+#             */
-/*   Updated: 2017/05/19 03:40:41 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/05/19 05:49:15 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,8 @@ static int			ft_flag2struct(t_flag *flag, char **av, int i, int j)
 	return (0);
 }
 
-t_flag				*ft_parseflags(int ac, char **av)
+t_flag				*ft_parseArgs(int ac, char **av, int i, int j)
 {
-	int				i;
-	int				j;
 	int				sizeOfArg;
 	t_flag		*flag;
 
@@ -59,10 +57,11 @@ t_flag				*ft_parseflags(int ac, char **av)
 			if (ft_flag2struct(flag, av, i, j))
 				return (NULL);
 	}
-	printf("Flag -a :%d\n",flag->all);
-	printf("Flag -l :%d\n",flag->list);
-	printf("Flag -R :%d\n",flag->rec);
-	printf("Flag -r :%d\n",flag->rev);
-	printf("Flag -t :%d\n",flag->time);
+  printf("Flag -a :%d\n",flag->all);
+ 	printf("Flag -l :%d\n",flag->list);
+ 	printf("Flag -R :%d\n",flag->rec);
+ 	printf("Flag -r :%d\n",flag->rev);
+ 	printf("Flag -t :%d\n",flag->time);
+
 	return (flag);
 }
