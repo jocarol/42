@@ -29,10 +29,10 @@ static int			ft_flag2struct(t_flag *flag, char **av, int i, int j)
 
 static int			ft_item2struct(t_item item, char **av, int i)
 {
-	
+
 }
 
-t_flag				*ft_parse(int ac, char **av, int i, int j)
+t_flag				*ft_parse2flag(int ac, char **av, int i, int j)
 {
 	int				sizeOfArg;
 	t_flag			*flag;

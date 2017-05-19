@@ -14,6 +14,6 @@
 
 int		main(int ac, char **av)
 {
-	ft_parse(ac, av, 0, 0);
+	ft_parse2flag(ac, av, 0, 0);
 	return (0);
 }
