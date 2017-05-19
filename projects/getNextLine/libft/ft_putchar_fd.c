@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/25 16:58:31 by jocarol           #+#    #+#             */
-/*   Updated: 2017/04/25 17:03:13 by jocarol          ###   ########.fr       */
+/*   Created: 2017/01/09 23:49:42 by jocarol           #+#    #+#             */
+/*   Updated: 2017/01/09 23:49:43 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "libft.h"
 
-int		main(int ac, char **av)
+void	ft_putchar_fd(char c, int fd)
 {
-	ft_parse2flag(ac, av, 0, 0);
-	return (0);
+	write(fd, &c, 1);
 }

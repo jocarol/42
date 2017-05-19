@@ -1,34 +1,7 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_ls.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/25 16:58:24 by jocarol           #+#    #+#             */
-/*   Updated: 2017/05/18 06:20:42 by jocarol          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_ls.h"
 
-int								ft_ls(char *str)
+int		main(int ac, char **av)
 {
-	struct dirent		*dirStream;
-	DIR							*dir;
-
-	if ((dir = opendir(str)) == NULL)
-		return (0);
-	while ((dirStream = readdir(dir)))
-	{
-		ft_putstr(dirStream-é>d_name);
-		ft_putstr("\n");
-	}
-	return (0);
-}
-
-int								main(int ac, char **av)
-{
-	ft_ls(av[1]);
+	ft_parseflags(ac, av);
 	return (0);
 }
