@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_ls_parse.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/19 03:35:10 by jocarol           #+#    #+#             */
+/*   Updated: 2017/05/19 03:40:41 by jocarol          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
+#include "stdio.h"
 
 static void			ft_usage()
 {
@@ -31,7 +44,7 @@ t_flag				*ft_parseflags(int ac, char **av)
 	int				i;
 	int				j;
 	int				sizeOfArg;
-	t_flag			*flag;
+	t_flag		*flag;
 
 	i = 0;
 	if (!(flag = ft_memalloc(sizeof(*flag))))
@@ -46,5 +59,10 @@ t_flag				*ft_parseflags(int ac, char **av)
 			if (ft_flag2struct(flag, av, i, j))
 				return (NULL);
 	}
+	printf("Flag -a :%d\n",flag->all);
+	printf("Flag -l :%d\n",flag->list);
+	printf("Flag -R :%d\n",flag->rec);
+	printf("Flag -r :%d\n",flag->rev);
+	printf("Flag -t :%d\n",flag->time);
 	return (flag);
 }
