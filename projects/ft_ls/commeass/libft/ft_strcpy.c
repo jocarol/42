@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/09 23:48:05 by jocarol           #+#    #+#             */
-/*   Updated: 2017/05/22 04:28:08 by jocarol          ###   ########.fr       */
+/*   Created: 2016/05/09 16:38:24 by ddu-toit          #+#    #+#             */
+/*   Updated: 2016/05/10 11:37:12 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_lstadd(t_list **alst, t_list *new)
+char	*ft_strcpy(char *dst, const char *src)
 {
-	if (*alst =! NULL)
-		new->next = *alst;
-	*alst = new;
+	int	i;
+
+	i = -1;
+	while (src[++i] != '\0')
+		dst[i] = src[i];
+	dst[i] = '\0';
+	return (dst);
 }

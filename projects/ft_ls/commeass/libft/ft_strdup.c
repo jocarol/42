@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/09 23:48:05 by jocarol           #+#    #+#             */
-/*   Updated: 2017/05/22 04:28:08 by jocarol          ###   ########.fr       */
+/*   Created: 2016/05/09 15:58:23 by ddu-toit          #+#    #+#             */
+/*   Updated: 2016/05/10 07:55:50 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd(t_list **alst, t_list *new)
+char	*ft_strdup(const char *s1)
 {
-	if (*alst =! NULL)
-		new->next = *alst;
-	*alst = new;
+	int		i;
+	int		j;
+	char	*ret;
+
+	i = 0;
+	while (s1[i] != '\0')
+		i++;
+	ret = (char*)malloc(sizeof(char) * i);
+	j = -1;
+	while (++j < i)
+		ret[j] = s1[j];
+	ret[j] = '\0';
+	return (ret);
 }

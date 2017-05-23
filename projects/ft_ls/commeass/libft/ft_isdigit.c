@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/09 23:48:05 by jocarol           #+#    #+#             */
-/*   Updated: 2017/05/22 04:28:08 by jocarol          ###   ########.fr       */
+/*   Created: 2016/05/10 12:36:03 by ddu-toit          #+#    #+#             */
+/*   Updated: 2016/05/13 07:59:30 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_lstadd(t_list **alst, t_list *new)
+int	ft_isdigit(int c)
 {
-	if (*alst =! NULL)
-		new->next = *alst;
-	*alst = new;
+	unsigned char	t;
+
+	t = (unsigned char)c;
+	if (t >= '0' && t <= '9')
+		return (1);
+	else
+		return (0);
 }

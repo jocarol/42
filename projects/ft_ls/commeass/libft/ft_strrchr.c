@@ -1,20 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/09 23:48:05 by jocarol           #+#    #+#             */
-/*   Updated: 2017/05/22 04:28:08 by jocarol          ###   ########.fr       */
+/*   Created: 2016/05/10 11:53:55 by ddu-toit          #+#    #+#             */
+/*   Updated: 2016/05/10 12:35:34 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd(t_list **alst, t_list *new)
+char	*ft_strrchr(const char *s, int c)
 {
-	if (*alst =! NULL)
-		new->next = *alst;
-	*alst = new;
+	char	*buf;
+	int		i;
+
+	i = ft_strlen(s);
+	buf = (char*)s + i;
+	while (i >= 0)
+	{
+		if (*buf == (unsigned char)c)
+			return (buf);
+		else
+		{
+			i--;
+			buf--;
+		}
+	}
+	return (NULL);
 }

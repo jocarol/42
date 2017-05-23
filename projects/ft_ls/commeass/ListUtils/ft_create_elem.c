@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   ft_create_elem.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/09 23:48:05 by jocarol           #+#    #+#             */
-/*   Updated: 2017/05/22 04:28:08 by jocarol          ###   ########.fr       */
+/*   Created: 2016/06/07 11:09:25 by oexall            #+#    #+#             */
+/*   Updated: 2016/06/07 11:11:57 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../ft_ls.h"
 
-void	ft_lstadd(t_list **alst, t_list *new)
+t_list	*ft_create_elem(void *data)
 {
-	if (*alst =! NULL)
-		new->next = *alst;
-	*alst = new;
+	t_list	*tmp;
+
+	if ((tmp = (t_list *)malloc(sizeof(t_list))))
+	{
+		tmp->data = data;
+		tmp->next = NULL;
+	}
+	return (tmp);
 }

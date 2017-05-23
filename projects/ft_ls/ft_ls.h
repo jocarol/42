@@ -15,6 +15,7 @@ typedef struct			s_flag
 	bool				rec;
 	bool				rev;
 	bool				time;
+	char				*path;
 }						t_flag;
 
 typedef struct			s_element
@@ -22,13 +23,12 @@ typedef struct			s_element
 	bool				isFile;
 	bool				isDir;
 	int					type;
-	char				*path;
 	char				*inode;
-	char				*Name;
+	char				*name;
 }						t_element;
 
-t_flag					*ft_parseArgs(int ac, char **av, int i, int j);
-static int				ft_flag2struct(t_flag *flag, char **av, int i, int j);
+t_flag						*ft_parseArgs(int ac, char **av, t_flag flag);
+static int				ft_flag2struct(t_flag *flagStruct, char *flag);
 static void				ft_usage();
 
 

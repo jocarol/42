@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   ft_clear_list.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/09 23:48:05 by jocarol           #+#    #+#             */
-/*   Updated: 2017/05/22 04:28:08 by jocarol          ###   ########.fr       */
+/*   Created: 2016/06/07 15:56:07 by oexall            #+#    #+#             */
+/*   Updated: 2016/06/07 15:58:28 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../ft_ls.h"
 
-void	ft_lstadd(t_list **alst, t_list *new)
+void	ft_clear_list(t_list **begin_list)
 {
-	if (*alst =! NULL)
-		new->next = *alst;
-	*alst = new;
+	t_list	*list;
+	t_list	*tmp;
+
+	list = *begin_list;
+	tmp = NULL;
+	while (list)
+	{
+		if (list->next)
+			tmp = list->next;
+		else
+			tmp = NULL;
+		free(list);
+		list = tmp;
+	}
 }

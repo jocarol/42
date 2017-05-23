@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/09 23:48:05 by jocarol           #+#    #+#             */
-/*   Updated: 2017/05/22 04:28:08 by jocarol          ###   ########.fr       */
+/*   Created: 2016/05/11 08:59:59 by ddu-toit          #+#    #+#             */
+/*   Updated: 2016/05/13 11:58:42 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd(t_list **alst, t_list *new)
+char	*ft_strnew(size_t size)
 {
-	if (*alst =! NULL)
-		new->next = *alst;
-	*alst = new;
+	char	*new_string;
+	size_t	i;
+
+	i = 0;
+	new_string = (char*)ft_memalloc(size + 1);
+	while (i <= size && new_string != NULL)
+	{
+		new_string[i] = '\0';
+		i++;
+	}
+	return (new_string);
 }
