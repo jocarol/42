@@ -3,6 +3,7 @@
 int		main(int ac, char **av)
 {
 	t_flag	*flag;
+	t_
 
 
 	if (!(flagStruct = ft_memalloc(sizeof(*flagStruct))))
