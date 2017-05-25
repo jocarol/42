@@ -6,7 +6,7 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 03:35:10 by jocarol           #+#    #+#             */
-/*   Updated: 2017/05/24 08:08:23 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/05/25 14:50:02 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,12 @@ static void				ft_flag2struct(t_flag *flagStruct, char *flag)
 	return (0);
 }
 
-static	void 			ft_path2struct(/* arguments */) {
-	/* code */
+static	void 			ft_path2struct(t_item *item, char *av)
+{
+ /*
+**
+
+*/
 }
 
 static void				ft_parseArgs(int ac, char **av, t_flag *flag, t_item *item)
@@ -67,11 +71,13 @@ static void				ft_parseArgs(int ac, char **av, t_flag *flag, t_item *item)
 	{
 		if (av[i][0] == "-" && stop == FALSE)
 			ft_flag2struct(flag, av[i]);
-		else if (av[i][0] != "-" || (av[0][0] == '-' && av[0][1] == '-'))
+		else if (av[i][0] != "-" || stop == TRUE)
 		{
 			ft_path2struct(item, av[i]);
 			stop = TRUE;
 		}
+		else if (av[i][0] == '-' && av[i][1] == '-')
+			stop = TRUE)
 		else
 			ft_usage();
 	}

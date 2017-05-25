@@ -1,5 +1,23 @@
-2017-05-23 14:25:06.360 ruby[12082:2034063] 14:25:06.359 WARNING:  140: This application, or a library it uses, is using the deprecated Carbon Component Manager for hosting Audio Units. Support for this will be removed in a future release. Also, this makes the host incompatible with version 3 audio units. Please transition to the API's in AudioComponent.h.
-D, [2017-05-23T14:25:22.621224 #12082] DEBUG -- : Player: play 297841957
-D, [2017-05-23T14:28:33.306591 #12082] DEBUG -- : Player: play 182094216
-D, [2017-05-23T14:33:47.532373 #12082] DEBUG -- : Player: play 262341841
-D, [2017-05-23T14:35:57.748106 #12082] DEBUG -- : Player: play 226249949
+2017-05-25 13:50:07.743 ruby[36342:544908] 13:50:07.743 WARNING:  140: This application, or a library it uses, is using the deprecated Carbon Component Manager for hosting Audio Units. Support for this will be removed in a future release. Also, this makes the host incompatible with version 3 audio units. Please transition to the API's in AudioComponent.h.
+/usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/models/player.rb:51:in `new': Error reading the stream. (code 18) (StandardError)
+	from /usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/models/player.rb:51:in `length_in_seconds'
+	from /usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/models/player.rb:58:in `load'
+	from /usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/models/player.rb:34:in `play'
+	from /usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/controllers/player_controller.rb:61:in `play'
+	from /usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/application.rb:38:in `block in initialize'
+	from /usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/events.rb:13:in `block in trigger'
+	from /usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/events.rb:12:in `each'
+	from /usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/events.rb:12:in `trigger'
+	from /usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/controllers/track_controller.rb:21:in `block in initialize'
+	from /usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/events.rb:13:in `block in trigger'
+	from /usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/events.rb:12:in `each'
+	from /usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/events.rb:12:in `trigger'
+	from /usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/application.rb:74:in `handle'
+	from /usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/application.rb:49:in `block in main'
+	from /usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/application.rb:47:in `loop'
+	from /usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/application.rb:47:in `main'
+	from /usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/application.rb:65:in `run'
+	from /usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000.rb:15:in `start'
+	from /usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/bin/soundcloud2000:5:in `<top (required)>'
+	from /usr/local/bin/soundcloud2000:22:in `load'
+	from /usr/local/bin/soundcloud2000:22:in `<main>'
