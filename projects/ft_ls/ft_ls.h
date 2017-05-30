@@ -17,15 +17,17 @@ typedef struct			s_flag
 	bool							time;
 }										t_flag;
 
-typedef struct			s_arg
+typedef struct			s_item
 {
 	bool							isFile;
 	bool							isDir;
 	int								type;
 	char							inode;
 	char							*name;
-	char							*path;
-}										t_arg;
+	const char				*path;
+	struct s_item			*nxt;
+
+}										t_item;
 
 t_flag						*ft_parseArgs(int ac, char **av, t_flag flag);
 static int				ft_flag2struct(t_flag *flagStruct, char *flag);

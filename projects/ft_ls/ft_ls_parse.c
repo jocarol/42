@@ -6,7 +6,7 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 03:35:10 by jocarol           #+#    #+#             */
-/*   Updated: 2017/05/26 23:44:18 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/05/30 06:51:25 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,18 @@ static void				ft_flag2struct(t_flag *flagStruct, char *flag)
 
 static	void 			ft_path2struct(t_item *item, char *av)
 {
+	if (item == NULL)
+			item = malloc(sizeof(t_item));
+	else
+	{
+			while (item->nxt)
+				item = item->nxt;
+			item->nxt = malloc(sizeof(t_item));
+			item = item->nxt;
+	}
+	item->path = av;
+	item->nxt = NULL;
+
  /*
 **
  je regarde mes argv,
