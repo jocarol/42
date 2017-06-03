@@ -6,7 +6,7 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 03:04:47 by jocarol           #+#    #+#             */
-/*   Updated: 2017/05/19 05:49:24 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/05/30 08:22:40 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int     main(int ac, char **av)
 {
-  ft_parseArgs(ac, av, 0, 0);
+  ft_parseArgs(ac, av, NULL, NULL);
   return (0);
 }
