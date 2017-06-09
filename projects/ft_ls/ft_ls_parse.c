@@ -6,7 +6,7 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 03:35:10 by jocarol           #+#    #+#             */
-/*   Updated: 2017/06/09 10:33:26 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/06/09 11:34:11 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,5 @@ void				ft_parse(int ac, char **av, t_flag *flag, t_item *item)
 		else
 			ft_usage();
     display(item);
-	}
-	printf("Parsing ok\n");
-}
+	  printf("Parsing ok\n");
+  }
