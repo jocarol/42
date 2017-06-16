@@ -6,7 +6,7 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 03:35:10 by jocarol           #+#    #+#             */
-/*   Updated: 2017/06/09 11:35:40 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/06/16 12:02:25 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void			ft_flag2struct(t_flag *flag, char *flagStr)
 			ft_usage();
 		}
 	}
-	printf("Flag parsed\n");
+	printf("Flag parsed : %s\n",flagStr);
 }
 
 static	void 		ft_path2struct(t_item *item, char *av)
@@ -49,52 +49,47 @@ static	void 		ft_path2struct(t_item *item, char *av)
 	t_item			*begin;
 
 	begin = item;
-	if (!begin)// == NULL)
+	if (!(begin->path))
 	{
-		if (!(begin = ft_memalloc(sizeof(t_item))))
-			return;
-		begin->path = av;
+		printf("\nEmpty linked list. Creating first link...\n");
+		printf("First link allocated & initialised at %p\n", (void *)&begin);
+		begin->path = ft_strdup(av);
 		begin->nxt = NULL;
-		printf("element allocated & initialised at %p\n", (void *)&begin);
-		// printf("1st element allocated at %p\n", (void *)&begin);
 	}
 	else
 	{
-		write(1, "LALALA\n", 7);
-		while (begin)
+		printf("Adding link to existing path struct...\n");
+		while (begin->nxt)
 			begin = begin->nxt;
-		if (!(begin = ft_memalloc(sizeof(t_item))))
-			return;
-		begin->path = av;
-		begin->nxt = NULL;
-		printf("element allocated & initialised at %p\n", (void *)&begin);
+		if (!(begin->nxt = ft_memalloc(sizeof(t_item))))
+			exit(0);
+		begin->nxt->path = ft_strdup(av);
+		begin->nxt->nxt = NULL;
+		printf("Link allocated & initialised at %p\n", (void *)&begin->nxt);
 	}
-  begin = item;
 	printf("Arg parsed : %s\n", av);
 }
 
 void        display(t_item *item)
 {
-  printf("slt");
-  while(item)
-  {
-    printf("[%s]\n", item->path);
-    item = item->nxt;
-  }
+	printf("Listing path parsed\n");
+	while(item)
+	{
+		printf("[%s]\n", item->path);
+		item = item->nxt;
+	}
 }
 
 void				ft_parse(int ac, char **av, t_flag *flag, t_item *item)
 {
 	int i;
 	int stopFlag;
-	printf("i & stopFlag declared\n");
-	
+
 	i = 0;
 	stopFlag = FALSE;
-	printf("variables initialised\n");
 	while (++i < ac)
 	{
-		printf("i = %d\n", i);
+		printf("Current Av : av[%d]\n", i);
 		if (*av[i] != '-' || (*av[i] == '-' && ft_strlen(av[i]) == 1))
 		{
 			stopFlag = TRUE;
@@ -108,7 +103,6 @@ void				ft_parse(int ac, char **av, t_flag *flag, t_item *item)
 			ft_path2struct(item, av[i]);
 		else
 			ft_usage();
-    display(item);
-	  printf("Parsing ok\n");
-  }
+		printf("Parsing ok\n");
+	}
 }
