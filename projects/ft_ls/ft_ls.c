@@ -6,14 +6,29 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 03:35:10 by jocarol           #+#    #+#             */
-/*   Updated: 2017/06/16 15:39:06 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/06/16 18:10:22 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 #include "stdio.h"
 
-int		main(int ac, char **av)
+static void			ft_ls(char *path)
+{
+	DIR				*directory;
+	struct	dirent	*dirStream;
+	
+	path = ".";
+	directory = opendir(path);
+	if (directory)
+	{
+		while ((dirStream = readdir(directory)))
+			ft_putstr(dirStream->d_name);
+		closedir(directory);
+	}
+}
+
+int					main(int ac, char **av)
 {
 	t_flag	flag;
 	t_item	*item;
@@ -31,6 +46,8 @@ int		main(int ac, char **av)
 	printf("R : %d\n", flag.rec);
 	printf("r : %d\n", flag.rev);
 	printf("t : %d\n", flag.time);
+	printf("\n\nListing directory : \n");
+	ft_ls(".");
 	printf("\n-------------- </DEBUG PARTY> ---------------\n");
 	return (0);
 }
