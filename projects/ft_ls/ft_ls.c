@@ -6,7 +6,7 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 03:35:10 by jocarol           #+#    #+#             */
-/*   Updated: 2017/06/21 17:06:30 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/06/21 22:51:46 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ void				display(char *item/*, t_flag flag*/)
 
 static void			ft_ls(char *path)
 {
-	DIR				*dirEntry;
+	DIR				*dir;
 	struct	dirent	*dirStream;
 
 	if (!path)
 		path = ".";
-	dirEntry = opendir(path);
-	if (dirEntry)
+	dir = opendir(path);
+	if (dir)
 	{
-		while ((dirStream = readdir(dirEntry)))
+		while ((dirStream = readdir(dir)))
 			display(dirStream->d_name);
-		closedir(dirEntry);
+		closedir(dir);
 	}
 }
 
@@ -53,6 +53,6 @@ int					main(int ac, char **av)
 	printf("t : %d\n", flag.time);
 	printf("\n\nListing directory : \n");
 	ft_ls((char *)item->path);
-	printf("\n\n-------------- </DEBUG PARTY> ---------------\n");
+	ft_putendl("\n-------------- </DEBUG PARTY> ---------------\n");
 	return (0);
 }
