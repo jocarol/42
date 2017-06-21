@@ -6,7 +6,7 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 03:35:10 by jocarol           #+#    #+#             */
-/*   Updated: 2017/06/15 19:53:20 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/06/21 10:31:21 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,7 @@ typedef struct		s_item
 	struct s_item	*nxt;
 }					t_item;
 
-void				display(t_item *item);
+void				display(t_item *item/*, t_flag flag*/);
 void				ft_parse(int ac, char **av, t_flag *flag, t_item *item);
-//static void		ft_flag2struct(t_flag *flag, char *flagStr);
-//static void		ft_path2struct(t_item *item, char *av);
-//static void		ft_usage();
 
 #endif

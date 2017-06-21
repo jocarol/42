@@ -6,18 +6,29 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 03:35:10 by jocarol           #+#    #+#             */
-/*   Updated: 2017/06/16 18:10:22 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/06/21 10:46:10 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 #include "stdio.h"
 
+void				display(t_item *item/*, t_flag flag*/)
+{
+	printf("Path parsed :\n");
+	while(item)
+	{
+		printf("[%s]\n", item->path);
+		item = item->nxt;
+	}
+	printf("\n");
+}
+
 static void			ft_ls(char *path)
 {
 	DIR				*directory;
 	struct	dirent	*dirStream;
-	
+
 	path = ".";
 	directory = opendir(path);
 	if (directory)
@@ -48,6 +59,6 @@ int					main(int ac, char **av)
 	printf("t : %d\n", flag.time);
 	printf("\n\nListing directory : \n");
 	ft_ls(".");
-	printf("\n-------------- </DEBUG PARTY> ---------------\n");
+	printf("\n\n-------------- </DEBUG PARTY> ---------------\n\n");
 	return (0);
 }

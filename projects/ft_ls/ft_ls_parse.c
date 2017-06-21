@@ -6,7 +6,7 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 03:35:10 by jocarol           #+#    #+#             */
-/*   Updated: 2017/06/16 15:39:37 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/06/21 15:13:54 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,48 +37,35 @@ static void			ft_flag2struct(t_flag *flag, char *flagStr)
 		else if (flagStr[i] == 't')
 			flag->time = TRUE;
 		else
-		{
 			ft_usage();
-		}
 	}
 	printf("✓ Flag parsed : [%s]\n\n",flagStr);
 }
 
 static	void 		ft_path2struct(t_item *item, char *av)
 {
-	t_item			*begin;
+	t_item			*tmp;
 
-	begin = item;
-	if (!(begin->path))
+	tmp = item;
+	if (!(tmp->path))
 	{
 		printf("↪ Empty linked list. Creating first link...\n");
-		printf("✓ First link allocated & initialised at [%p]\n", (void *)&begin);
-		begin->path = ft_strdup(av);
-		begin->nxt = NULL;
+		printf("✓ First link allocated & initialised at [%p]\n", (void *)&tmp);
+		tmp->path = ft_strdup(av);
+		tmp->nxt = NULL;
 	}
 	else
 	{
 		printf("↪ Adding link to existing path struct...\n");
-		while (begin->nxt)
-			begin = begin->nxt;
-		if (!(begin->nxt = ft_memalloc(sizeof(t_item))))
+		while (tmp->nxt)
+			tmp = tmp->nxt;
+		if (!(tmp->nxt = ft_memalloc(sizeof(t_item))))
 			exit(0);
-		begin->nxt->path = ft_strdup(av);
-		begin->nxt->nxt = NULL;
-		printf("✓ Link allocated & initialised at [%p]\n", (void *)&begin->nxt);
+		tmp->nxt->path = ft_strdup(av);
+		tmp->nxt->nxt = NULL;
+		printf("✓ Link allocated & initialised at [%p]\n", (void *)&tmp->nxt);
 	}
 	printf("✓ Path parsed :	[%s]\n\n", av);
-}
-
-void        display(t_item *item)
-{
-	printf("Path parsed :\n");
-	while(item)
-	{
-		printf("[%s]\n", item->path);
-		item = item->nxt;
-	}
-	printf("\n");
 }
 
 void				ft_parse(int ac, char **av, t_flag *flag, t_item *item)
@@ -86,11 +73,11 @@ void				ft_parse(int ac, char **av, t_flag *flag, t_item *item)
 	int i;
 	int stopFlag;
 
-	i = 0;
+	i = 0
 	stopFlag = FALSE;
 	while (++i < ac)
 	{
-		printf("  Current Av :	av[%d]\n", i);
+		printf(". Current Av :	av[%d]\n", i);
 		if (*av[i] != '-' || (*av[i] == '-' && ft_strlen(av[i]) == 1))
 		{
 			stopFlag = TRUE;
