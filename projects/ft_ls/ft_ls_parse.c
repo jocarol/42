@@ -6,7 +6,7 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 03:35:10 by jocarol           #+#    #+#             */
-/*   Updated: 2017/06/21 15:13:54 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/06/21 15:17:45 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void				ft_parse(int ac, char **av, t_flag *flag, t_item *item)
 	int i;
 	int stopFlag;
 
-	i = 0
+	i = 0;
 	stopFlag = FALSE;
 	while (++i < ac)
 	{

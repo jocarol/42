@@ -6,7 +6,7 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 03:35:10 by jocarol           #+#    #+#             */
-/*   Updated: 2017/06/21 10:46:10 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/06/21 15:17:37 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 void				display(t_item *item/*, t_flag flag*/)
 {
-	printf("Path parsed :\n");
 	while(item)
 	{
 		printf("[%s]\n", item->path);
