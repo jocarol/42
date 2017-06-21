@@ -6,35 +6,31 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 03:35:10 by jocarol           #+#    #+#             */
-/*   Updated: 2017/06/21 15:17:37 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/06/21 17:06:30 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 #include "stdio.h"
 
-void				display(t_item *item/*, t_flag flag*/)
+void				display(char *item/*, t_flag flag*/)
 {
-	while(item)
-	{
-		printf("[%s]\n", item->path);
-		item = item->nxt;
-	}
-	printf("\n");
+		ft_putendl(item);
 }
 
 static void			ft_ls(char *path)
 {
-	DIR				*directory;
+	DIR				*dirEntry;
 	struct	dirent	*dirStream;
 
-	path = ".";
-	directory = opendir(path);
-	if (directory)
+	if (!path)
+		path = ".";
+	dirEntry = opendir(path);
+	if (dirEntry)
 	{
-		while ((dirStream = readdir(directory)))
-			ft_putstr(dirStream->d_name);
-		closedir(directory);
+		while ((dirStream = readdir(dirEntry)))
+			display(dirStream->d_name);
+		closedir(dirEntry);
 	}
 }
 
@@ -49,7 +45,6 @@ int					main(int ac, char **av)
 	printf("\n↪ Parsing...\n\n");
 	ft_parse(ac, av, &flag, item);
 	printf("✓ Parsing ok\n\n");
-	display(item);
 	printf("Flag detected :\n");
 	printf("a : %d\n", flag.all);
 	printf("l : %d\n", flag.list);
@@ -57,7 +52,7 @@ int					main(int ac, char **av)
 	printf("r : %d\n", flag.rev);
 	printf("t : %d\n", flag.time);
 	printf("\n\nListing directory : \n");
-	ft_ls(".");
-	printf("\n\n-------------- </DEBUG PARTY> ---------------\n\n");
+	ft_ls((char *)item->path);
+	printf("\n\n-------------- </DEBUG PARTY> ---------------\n");
 	return (0);
 }
