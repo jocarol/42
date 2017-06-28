@@ -6,12 +6,25 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 03:35:10 by jocarol           #+#    #+#             */
-/*   Updated: 2017/06/21 16:25:31 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/06/28 14:26:56 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 #include "stdio.h"
+
+/*static void			getStats(const char *path, t_item *item)
+{
+	stat(path, item->st_stat);
+}*/
+
+void			display(const char *path, t_item *item/*, t_flag flag*/)
+{
+	if (path)
+		if (item)
+			;
+	//	flag.all = (TRUE) ? setAll(item);
+}
 
 static void			ft_usage()
 {
@@ -47,6 +60,8 @@ static	void 		ft_path2struct(t_item *item, char *av)
 	t_item			*tmp;
 
 	tmp = item;
+	if (stat(av, &tmp->st_stat) == -1)
+		ft_putendl("Not a file or directory");
 	if (!(tmp->path))
 	{
 		printf("↪ Empty linked list. Creating first link...\n");
