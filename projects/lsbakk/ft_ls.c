@@ -15,16 +15,13 @@
 
 static char      *get_entry_path(const char *path, struct dirent *st_dir)
 {
-  char *entry_path;
-
-  entry_path = ft_strjoin(path, "/");
-  return (ft_strjoin(entry_path, st_dir->d_name));
+  ft_strjoin(path, "/");
+  ft_strjoin(path, st_dir->d_name);
 }
 
 static void 			display(const char *path, struct dirent *st_dir/*, t_flag flag*/)
 {
   struct stat     *st_stat;
-  char            *entry_path;
   //flag.all = (TRUE) ? setAll(item);
   //ft_putnbr((int)item->st_ino);
   //printf("%ju\n", (uintmax_t)item->st_stat.st_ino);
@@ -32,11 +29,10 @@ static void 			display(const char *path, struct dirent *st_dir/*, t_flag flag*/)
   //ft_putchar('/');
   if (!(st_stat = ft_memalloc(sizeof(stat(path, st_stat)))))
     exit(0);
-  entry_path = get_entry_path(path, st_dir);
-  ft_putendl(entry_path);
-  stat(entry_path, st_stat);
-  ft_putchar('\n');
+  stat(get_entry_path(path, st_stat), st_dir);
   ft_putnbr(st_stat->st_ino);
+  ft_putendl(st_dir->d_name);
+
 }
 
 static void	  		ft_ls(const char *path/*, t_item *item, t_flag flag*/)
