@@ -50,15 +50,12 @@ static void 			display(const char *path, struct dirent *st_dir/*, t_flag flag*/)
   if (!(st_stat = ft_memalloc(sizeof(st_stat))))
     exit(0);
   entry_path = get_entry_path(path, st_dir);
-  //printf("%s ", entry_path);
+  printf("%s ", entry_path);
   stat(entry_path, st_stat);
   //ft_putstr(entry_path);
-  //ft_putchar(' ');
-  //printf("%ju\n", (uintmax_t)st_stat->st_ino);
+  ft_putchar(' ');
+  printf("%ju\n", (uintmax_t)st_stat->st_ino);
   //ft_putnbrendl(st_stat->st_ino);
-  entry_path = ft_strjoin(entry_path, " ");
-  entry_path = ft_strjoin(entry_path, (const char *)st_stat->st_ino);
-  ft_putstr(entry_path);
 }
 
 static void	  		ft_ls(const char *path/*, t_item *item, t_flag flag*/)
