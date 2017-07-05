@@ -13,6 +13,24 @@
 #include "ft_ls.h"
 #include "stdio.h"
 
+static void	      ft_putnbrendl(int i)
+{
+	if (i == -2147483648)
+		ft_putstr("-2147483648");
+	else
+	{
+		if (i < 0)
+		{
+			ft_putchar('-');
+			i = -i;
+		}
+		if (i >= 10)
+			ft_putnbr(i / 10);
+		ft_putchar(i % 10 + '0');
+	}
+  ft_putchar('\n');
+}
+
 static char      *get_entry_path(const char *path, struct dirent *st_dir)
 {
   char *entry_path;
@@ -27,16 +45,20 @@ static void 			display(const char *path, struct dirent *st_dir/*, t_flag flag*/)
   char            *entry_path;
   //flag.all = (TRUE) ? setAll(item);
   //ft_putnbr((int)item->st_ino);
-  //printf("%ju\n", (uintmax_t)item->st_stat.st_ino);
   //ft_putstr(path);
   //ft_putchar('/');
-  if (!(st_stat = ft_memalloc(sizeof(stat(path, st_stat)))))
+  if (!(st_stat = ft_memalloc(sizeof(st_stat))))
     exit(0);
   entry_path = get_entry_path(path, st_dir);
-  ft_putendl(entry_path);
+  //printf("%s ", entry_path);
   stat(entry_path, st_stat);
-  ft_putchar('\n');
-  ft_putnbr(st_stat->st_ino);
+  //ft_putstr(entry_path);
+  //ft_putchar(' ');
+  //printf("%ju\n", (uintmax_t)st_stat->st_ino);
+  //ft_putnbrendl(st_stat->st_ino);
+  entry_path = ft_strjoin(entry_path, " ");
+  entry_path = ft_strjoin(entry_path, (const char *)st_stat->st_ino);
+  ft_putstr(entry_path);
 }
 
 static void	  		ft_ls(const char *path/*, t_item *item, t_flag flag*/)
