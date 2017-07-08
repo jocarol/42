@@ -6,7 +6,7 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 03:35:10 by jocarol           #+#    #+#             */
-/*   Updated: 2017/07/06 02:47:30 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/06/28 14:30:41 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,20 @@ static char      *get_entry_path(const char *path, struct dirent *st_dir)
 
 static void 			display(const char *path, struct dirent *st_dir/*, t_flag flag*/)
 {
-  struct stat     st_stat;
+  struct stat     *st_stat;
   char            *entry_path;
   //flag.all = (TRUE) ? setAll(item);
   //ft_putnbr((int)item->st_ino);
   //ft_putstr(path);
   //ft_putchar('/');
-  //if (!(st_stat = ft_memalloc(sizeof(st_stat))))
-  //  exit(0);
+  if (!(st_stat = ft_memalloc(sizeof(st_stat))))
+    exit(0);
   entry_path = get_entry_path(path, st_dir);
-  stat(entry_path, &st_stat);
   printf("%s ", entry_path);
+  stat(entry_path, st_stat);
   //ft_putstr(entry_path);
   ft_putchar(' ');
-  printf("%ju\n", (uintmax_t)st_stat.st_ino);
+  printf("%ju\n", (uintmax_t)st_stat->st_ino);
   //ft_putnbrendl(st_stat->st_ino);
 }
 

@@ -18,14 +18,6 @@
 	stat(path, item->st_stat);
 }*/
 
-void			display(const char *path, t_item *item/*, t_flag flag*/)
-{
-	if (path)
-		if (item)
-			;
-	//	flag.all = (TRUE) ? setAll(item);
-}
-
 static void			usage()
 {
 	ft_putstr_fd("Usage : ./ft_ls [-alRrt] [file][1]\n", 2);
@@ -55,7 +47,7 @@ static void			flag2struct(t_flag *flag, char *flagStr)
 	printf("✓ Flag parsed : [%s]\n\n",flagStr);
 }
 
-static	void 		path2struct(t_item *item, char *av)
+/*static	void 		path2struct(t_item *item, char *av)
 {
 	t_item			*tmp;
 
@@ -79,22 +71,38 @@ static	void 		path2struct(t_item *item, char *av)
 		printf("✓ Link allocated & initialised at [%p]\n", (void *)&tmp->nxt);
 	}
 	printf("✓ Path parsed :	[%s]\n\n", av);
-}
+}*/
 
-void				parse(int ac, char **av, t_flag *flag, t_item *item)
+static char     *get_av_path(int current_ac, int ac, char **av)
+{
+  char          *path;
+  int           i;
+
+  i = 0;
+  path = ft_memalloc(sizeof(path) * (ac - current_ac) + 1);
+  while (current_ac <= ac)
+  {
+      ft_memmove(path, av[current_ac], ft_strlen(av[current_ac]));
+      current_ac++;
+      path++;
+  }
+  return (path);
+} 
+
+int				      *parse(int ac, char **av, t_flag *flag, t_item *item)
 {
 	int i;
 	int stop_flag;
 
 	i = 0;
 	stop_flag = FALSE;
-	while (++i < ac)
+	while (++i < ac && !stop_flag)
 	{
 		printf(". Current Av :	av[%d]\n", i);
 		if (*av[i] != '-' || (*av[i] == '-' && ft_strlen(av[i]) == 1))
 		{
 			stop_flag = TRUE;
-			path2struct(item, av[i]);
+			get_av_path(ac, i, av);
 		}
 		else if (*av[i] == '-' && av[i][1] == '-')
 			stop_flag = TRUE;
