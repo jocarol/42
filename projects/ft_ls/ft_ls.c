@@ -6,7 +6,7 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 03:35:10 by jocarol           #+#    #+#             */
-/*   Updated: 2017/06/28 14:30:41 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/07/09 02:52:58 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int					      main(int ac, char **av)
   t_flag	        flag;
   t_item	        *item;
 
-  ft_bzero((void *)&flag, sizeof(size_t));
+  ft_bzero((void *)&flag, sizeof(flag));
   item = ft_memalloc(sizeof(t_item));
   ft_putendl("\n-------------- <DEBUG PARTY> ---------------\n");
   ft_putendl("\n✓ Struct \'t_item\' malloced\n");
