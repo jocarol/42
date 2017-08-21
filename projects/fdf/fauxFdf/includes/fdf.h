@@ -7,6 +7,17 @@
 #include <time.h>
 #include <errno.h>
 
+typedef struct    s_settings
+{
+  double          x;
+  double          y;
+  double          pos_x;
+  double          pos_y;
+  double          alpha_x;
+  double          alpha_y;
+  double          zoom;
+}                 t_settings;
+
 typedef struct    s_env
 {
   void            *mlx_ptr;
@@ -36,17 +47,6 @@ typedef struct    s_coor
   int             y;
 }                 t_coor;
 
-typedef struct    s_settings
-{
-  double          x;
-  double          y;
-  double          pos_x;
-  double          pos_y;
-  double          alpha_x;
-  double          alpha_y;
-  double          zoom;
-}                 t_settings;
-
 typedef struct    s_brez
 {
   int             dx;
@@ -59,8 +59,8 @@ typedef struct    s_brez
 
 char          *map_check(const char *map_path, int *x, int *y);
 void          init_matrix(const int x, const int y, t_attr matrix);
-void          fill_matrix(const int x, const int y, const char *read_buff \
-              t_attr matrix)
+void          fill_matrix(const int x, const int y, const char *read_buff,\
+              t_attr matrix);
 
 # define WIN_NAME "42 FDF"
 # define DEFAULT_COLOR 0xff0074
