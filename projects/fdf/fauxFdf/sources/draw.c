@@ -3,17 +3,17 @@
 int       set_color(t_env *env, int n_x, int n_y)
 {
   int     color;
-  t_attr  (*matrix)[env->n_x][env->n_y];
+  t_attr  (*matrix)[env->matrix_x][env->matrix_y];
   
   matrix = env->matrix;
   color = DEFAULT_COLOR;
   if (COLOR != DEFAULT_COLOR)
     color = COLOR;
-  if (++n_x < env->n_x)
+  if (++n_x < env->matrix_x)
     if (COLOR != DEFAULT_COLOR)
       color = COLOR;
   n_x--;
-  if (++n_y < env->n_y)
+  if (++n_y < env->matrix_y)
     if (COLOR != DEFAULT_COLOR)
       color = COLOR;
   n_y -= 2;
@@ -32,7 +32,7 @@ void        put_pixel(t_env *env, int x, int y, int color)
 {
   int       i;
 
-  if (x >= IMG_WIDTH || y >= IMG_HEIGHT || x < 0 || y < 0)
+  if (x >= IMG_W || y >= IMG_H || x < 0 || y < 0)
   {
     return;
     errors(2, "Out of map");
@@ -55,7 +55,7 @@ void        put_line(t_env *env, t_coor a, t_coor b, int color)
   st_brez.e_sum = st_brez.e;
   while (1)
   {
-    put_pixel(mlx, a.x, a.y, color);
+    put_pixel(env, a.x, a.y, color);
     if (a.x == b.x && a.y == b.y)
       break;
     st_brez.e_sum = st_brez.e;

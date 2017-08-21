@@ -6,7 +6,7 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 13:41:29 by jocarol           #+#    #+#             */
-/*   Updated: 2017/07/26 14:01:44 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/08/21 17:14:29 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static void     fdf(const int x, const int y, const char *read_buff)
 {
   t_attr  matrix[x][y];
 
-  init_matrix(x, y, **matrix);
-  fill_matrix(x, y, read_buff);
+  init_matrix(**matrix, x, y);
+  fill_matrix(**matrix, read_buff, x, y);
   ft_memdel((void **)&read_buff);
   print_matrix(x, y, matrix);
 }
