@@ -9,58 +9,68 @@
 
 typedef struct		s_settings
 {
-	double			x;
-	double			y;
-	double			pos_x;
-	double			pos_y;
-	double			alpha_x;
-	double			alpha_y;
-	double			zoom;
-}					t_settings;
+  double			    x;
+  double			    y;
+  double			    pos_x;
+  double			    pos_y;
+  double			    alpha_x;
+  double			    alpha_y;
+  double			    zoom;
+}					        t_settings;
 
 typedef struct		s_env
 {
-	void			*mlx_ptr;
-	void			*win;
-	void			*img;
-	void			*data;
-	void			*matrix;
-	int				bpp;
-	int				matrix_x;
-	int				matrix_y;
-	int				line_size;
-	int				endian;
-	int				display_mode;
-	t_settings		*settings;
-}					t_env;
+  void			      *mlx_ptr;
+  void			      *win;
+  void			      *img;
+  char  		      *data;
+  void			      *matrix;
+  int				      bpp;
+  int				      matrix_x;
+  int				      matrix_y;
+  int				      line_size;
+  int				      endian;
+  int				      display_mode;
+  t_settings		  *settings;
+}					        t_env;
 
 typedef struct		s_attr
 {
-	int				alt;
-	int				color;
+  int				      alt;
+  int				      color;
 }
-					t_attr;
+                  t_attr;
 
 typedef struct		s_coor
 {
-	int				x;
-	int				y;
-}					t_coor;
+  int				      x;
+  int				      y;
+}					        t_coor;
 
 typedef struct		s_brez
 {
-	int				dx;
-	int				dy;
-	int				sx;
-	int				sy;
-	int				e;
-	int				e_sum;
-}					t_brez;
+  int				      dx;
+  int				      dy;
+  int				      sx;
+  int				      sy;
+  int				      e;
+  int				      e_sum;
+}					        t_brez;
 
-char				*map_check(const char *map_path, int *x, int *y);
-void				init_matrix(t_attr matrix, const int x, const int y);
-void				fill_matrix(t_attr matrix, const char *read_buff, \
-								const int x, const int y); 
+char				      *map_check(const char *map_path, int *x, int *y);
+void				      init_matrix(t_attr matrix, const int x, const int y);
+void				      fill_matrix(t_attr matrix, const char *read_buff, \
+                              const int x, const int y); 
+int               set_color(t_env *env, int n_x, int n_y);
+void              put_pixel(t_env *env, int x, int y, int color);
+void              put_line(t_env *env, t_coor a, t_coor b, int color);
+void              tracing(t_env *env);
+void              print_matrix(const int x, const int y, t_attr matrix[x][y]);
+int   					  mouse(int button, int x, int y, void *param);
+void		          zoom_in(t_env *env);
+void		          zoom_out(t_env *env);
+void              eraser(t_env *env);
+
 
 # define WIN_NAME "42 FDF"
 # define DEFAULT_COLOR 0xff0074

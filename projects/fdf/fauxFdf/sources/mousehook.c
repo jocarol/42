@@ -24,11 +24,11 @@ void		zoom_out(t_env *env)
 
 int			mouse(int button, int x, int y, void *param)
 {
-	cleaner(param);
+	eraser(param);
 	if (button == 4)
 		zoom_in(param);
 	else if (button == 5)
-		unzoom(param);
-	painter(param);
+		zoom_out(param);
+	tracing(param);
 	return (0);
 }

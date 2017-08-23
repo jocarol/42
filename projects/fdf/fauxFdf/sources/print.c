@@ -36,10 +36,10 @@ void            tracing(t_env *env)
       here = there(env, n_x, n_y);
       if(in_map(here))
       {
-        put_pixel(env, here.x, here.y, 0);
+        put_pixel(env, here.x, here.y, (*matrix)[n_x][n_y].color);
         if (n_x + 1 < env->matrix_x && \
             in_map(there(env, n_x + 1, n_y)))
-          put_line(env, here, there(env, n_x + 1, n_y));
+          put_line(env, here, there(env, n_x + 1, n_y), set_color(env, n_x, n_y));
         if (n_y + 1 < env->matrix_y && \
             in_map(there(env, n_x, n_y + 1)))
           put_line(env, here, there(env, n_x, n_y + 1),\
@@ -97,8 +97,8 @@ void          print_matrix(const int x, const int y, t_attr matrix[x][y])
   settings.alpha_y = -2;
   settings.pos_x = 100;
   settings.pos_y = 100;
-  mlx_hook(env.win, mouse, &env);
+  mlx_hook(env.win, 2, 3, mouse, &env);
   mlx_mouse_hook(env.win, mouse, &env);
-  painter(&env);
+  tracing(&env);
   mlx_loop(env.mlx_ptr);
 } 
