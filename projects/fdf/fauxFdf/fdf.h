@@ -1,6 +1,6 @@
 #ifndef FDF_H
 # define FDF_H
-#include "../libft/libft.h"
+#include "libft.h"
 #include "minilibx_macos/mlx.h"
 #include <math.h>
 #include <fcntl.h>

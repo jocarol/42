@@ -19,7 +19,7 @@ FRAMEWORKS = -framework OpenGL -framework AppKit
 SRCS = draw.c errors.c keyhook.c main.c matrix.c mousehook.c parser.c print.c
 #OBJS = $(addsuffix .o, $(basename $(SRCS)))
 OBJ = $(SRCS:.c=.o)
-INCLUDES = -I./ -I libft/includes/
+INCLUDES = -I./ -I./includes/
 LIBS = -L libft/ -L minilib_macos -lft -lmlx -framework OpenGL -framework AppKit
 FRAMEWORKS = -framework OpenGL -framework Appkit
 
