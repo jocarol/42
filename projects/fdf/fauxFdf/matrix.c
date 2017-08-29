@@ -23,12 +23,12 @@ void            init_matrix(t_attr **matrix, const int x, const int y)
       while (++n_x < x)
       {
         matrix[n_x][n_y].alt = 0;
-        matrix[n_x][n_y].color = DEFAUTL_COLOR;
+        matrix[n_x][n_y].color = DEFAULT_COLOR;
       }
   }
 }
 
-void            fill_matrix(t_attr matrix, const char *read_buff, const int x, \
+void            fill_matrix(t_attr **matrix, const char *read_buff, const int x, \
                 const int y)
 {
   int           n_x;
@@ -40,7 +40,7 @@ void            fill_matrix(t_attr matrix, const char *read_buff, const int x, \
     while (++n_x < x)
     {
       while ((*read_buff == ' ' || *read_buff == '\t') & read_buff != '\n')
-        read++;
+        read_buff++;
       matrix[n_x][n_y].alt = ft_atoi(read_buff);
       while ((ft_isdisgit(*read_buff) || *read_buff == '-') && \
             *read_buff != '\n')

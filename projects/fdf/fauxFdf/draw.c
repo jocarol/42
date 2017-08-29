@@ -38,9 +38,10 @@ void        put_pixel(t_env *env, int x, int y, int color)
     errors(2, "Out of map");
   }
   i = env->line_size * y + x * (env->bpp / 8);
-  env->data[i] = color & 0xff;
-  env->data[++i] = color >> 8 & 0xff;
-  env->data[++i] = color >> 16;
+  env->data[i] = color & 0xff;//b 0xFF00FF = FF
+  env->data[++i] = color >> 8 & 0xff;//g >> 8 0x00FF00 = 00
+  env->data[++i] = color >> 16;//r  >> 16 0x0000FF = FF
+                                 
 }
 
 void        put_line(t_env *env, t_coor a, t_coor b, int color)

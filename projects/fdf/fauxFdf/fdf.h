@@ -1,6 +1,6 @@
 #ifndef FDF_H
 # define FDF_H
-#include "libft.h"
+#include "libft/libft.h"
 #include "minilibx_macos/mlx.h"
 #include <math.h>
 #include <fcntl.h>
@@ -59,8 +59,8 @@ typedef struct		s_brez
 
 long              errors(const int err, const char *name);
 char				      *map_check(const char *map_path, int *x, int *y);
-void				      init_matrix(t_attr matrix, const int x, const int y);
-void				      fill_matrix(t_attr matrix, const char *read_buff, \
+void				      init_matrix(t_attr **matrix, const int x, const int y);
+void				      fill_matrix(t_attr **matrix, const char *read_buff, \
                               const int x, const int y); 
 int               set_color(t_env *env, int n_x, int n_y);
 void              put_pixel(t_env *env, int x, int y, int color);

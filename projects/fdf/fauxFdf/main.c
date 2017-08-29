@@ -16,7 +16,7 @@ static void     fdf(const int x, const int y, const char *read_buff)
 {
   t_attr  matrix[x][y];
 
-  init_matrix(***matrix, x, y);
+  init_matrix(matrix, x, y);
   fill_matrix(matrix, read_buff, x, y);
   ft_memdel((void **)&read_buff);
   print_matrix(x, y, matrix);
