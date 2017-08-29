@@ -58,8 +58,8 @@ char          *map_check(const char *map_path, int *x, int *y)
   line = NULL;
   read_buff = NULL;
   if (((fd = open(map_path, O_RDONLY)) || 1) && fd == -1)
-    error(0, map_path);
-  while ((state = ft_get_next_line(fd, &line)) && state == 1)
+    errors(0, map_path);
+  while ((state = get_next_line(fd, &line)) && state == 1)
   {
     coor_toll = x_count(0,line);
     if (!*y)
@@ -70,7 +70,7 @@ char          *map_check(const char *map_path, int *x, int *y)
     (*y)++;
   }
   if (state < 0)
-    error(0, 0);
+    errors(0, 0);
   close(fd);
   return(read_buff);
 }

@@ -22,7 +22,7 @@ void		zoom_out(t_env *env)
 	ZOOM -= 1;
 }
 
-int			mouse(int button, int x, int y, void *param)
+int			mouse(int button, void *param)
 {
 	eraser(param);
 	if (button == 4)

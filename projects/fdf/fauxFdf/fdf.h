@@ -1,6 +1,6 @@
 #ifndef FDF_H
 # define FDF_H
-#include "libft/libft.h"
+#include "./libft/libft.h"
 #include "minilibx_macos/mlx.h"
 #include <math.h>
 #include <fcntl.h>
@@ -59,15 +59,15 @@ typedef struct		s_brez
 
 long              errors(const int err, const char *name);
 char				      *map_check(const char *map_path, int *x, int *y);
-void				      init_matrix(t_attr **matrix, const int x, const int y);
-void				      fill_matrix(t_attr **matrix, const char *read_buff, \
-                              const int x, const int y); 
+void				      init_matrix(const int x, const int y, t_attr *matrix);
+void				      fill_matrix(const char *read_buff, \
+                              const int x, const int y, t_attr matrix[x][y]); 
 int               set_color(t_env *env, int n_x, int n_y);
 void              put_pixel(t_env *env, int x, int y, int color);
 void              put_line(t_env *env, t_coor a, t_coor b, int color);
 void              tracing(t_env *env);
-void              print_matrix(const int x, const int y, t_attr matrix[x][y]);
-int   					  mouse(int button, int x, int y, void *param);
+void              print_matrix(const int x, const int y, t_attr matrix[][]);
+int   					  mouse(int button, void *param);
 void		          zoom_in(t_env *env);
 void		          zoom_out(t_env *env);
 void              eraser(t_env *env);

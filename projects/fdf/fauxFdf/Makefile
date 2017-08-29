@@ -12,7 +12,7 @@
 
 NAME = fdf
 COMPILER = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 MLX = minilibx_macos/
 RM = /bin/rm -rf
 FRAMEWORKS = -framework OpenGL -framework AppKit
@@ -20,7 +20,7 @@ SRCS = draw.c errors.c keyhook.c main.c matrix.c mousehook.c parser.c print.c
 #OBJS = $(addsuffix .o, $(basename $(SRCS)))
 OBJ = $(SRCS:.c=.o)
 INCLUDES = -I./ -I libft/includes/
-LIBS = -L libft/ -L minilibx_macos -lft
+LIBS = -L libft/ -L minilibx_macos/ -lft -lmlx -framework OpenGL -framework AppKit
 FRAMEWORKS = -framework OpenGL -framework Appkit
 
 
@@ -32,8 +32,7 @@ $(NAME):
 					@make -C libft/
 					@make -C ${MLX}
 					@echo Compiling ${NAME}
-					#$(COMPILER) $(INCLUDES) $(SRCS) $(LIBS) $(FRAMEWORKS) 					
-					gcc -I ./minilibx_macos ./minilibx_macos/libmlx.a libft/libft.a $(SRCS) $(FRAMEWORKS)
+					$(COMPILER) $(CFLAGS) $(INCLUDES) $(SRCS) $(LIBS) $(FRAMEWORKS) 					
 					@echo "\033[32mfdf is ready!!\033[0m"
 
 # gcc -I./ -Ilibft/includes/ *.c -L libft -L minilibx_macos -lft -lmlx -framework Opengl -framework Appkit

@@ -75,7 +75,7 @@ void            eraser(t_env *env)
     }
 }
 
-void          print_matrix(const int x, const int y, t_attr matrix[x][y])
+void          print_matrix(const int x, const int y, t_attr **matrix)
 {
   t_env       env;
   t_settings  settings;

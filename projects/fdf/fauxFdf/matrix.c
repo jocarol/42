@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-void            init_matrix(t_attr **matrix, const int x, const int y)
+void            init_matrix(const int x, const int y, t_attr *matrix[])
 {
   int           n_x;
   int           n_y;
@@ -22,14 +22,14 @@ void            init_matrix(t_attr **matrix, const int x, const int y)
   {
       while (++n_x < x)
       {
-        matrix[n_x][n_y].alt = 0;
+        (matrix[n_x][n_y]).alt = 0;
         matrix[n_x][n_y].color = DEFAULT_COLOR;
       }
   }
 }
 
-void            fill_matrix(t_attr **matrix, const char *read_buff, const int x, \
-                const int y)
+void            fill_matrix(const char *read_buff, const int x, \
+                const int y, t_attr matrix[x][y])
 {
   int           n_x;
   int           n_y;
@@ -39,17 +39,17 @@ void            fill_matrix(t_attr **matrix, const char *read_buff, const int x,
   {
     while (++n_x < x)
     {
-      while ((*read_buff == ' ' || *read_buff == '\t') & read_buff != '\n')
+      while ((*read_buff == ' ' || *read_buff == '\t') && *read_buff != '\n')
         read_buff++;
       matrix[n_x][n_y].alt = ft_atoi(read_buff);
-      while ((ft_isdisgit(*read_buff) || *read_buff == '-') && \
+      while ((ft_isdigit(*read_buff) || *read_buff == '-') && \
             *read_buff != '\n')
         read_buff++;
       if (*read_buff == '-')
       {
         read_buff++;
         matrix[n_x][n_y].color = ft_atoi_base(read_buff, 16);
-        while (ft_strchr("xABCDEF1234567890", *read))
+        while (ft_strchr("xABCDEF1234567890", *read_buff))
           read_buff++;
       }
       read_buff++;
