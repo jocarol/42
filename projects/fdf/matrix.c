@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-void            init_matrix(const int x, const int y, t_attr *matrix[])
+void            init_matrix(const int x, const int y, t_attr **matrix)
 {
   int           n_x;
   int           n_y;
@@ -29,7 +29,7 @@ void            init_matrix(const int x, const int y, t_attr *matrix[])
 }
 
 void            fill_matrix(const char *read_buff, const int x, \
-                const int y, t_attr matrix[x][y])
+                const int y, t_attr **matrix)
 {
   int           n_x;
   int           n_y;

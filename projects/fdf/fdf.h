@@ -59,14 +59,14 @@ typedef struct		s_brez
 
 long              errors(const int err, const char *name);
 char				      *map_check(const char *map_path, int *x, int *y);
-void				      init_matrix(const int x, const int y, t_attr *matrix);
+void				      init_matrix(const int x, const int y, t_attr **matrix);
 void				      fill_matrix(const char *read_buff, \
-                              const int x, const int y, t_attr matrix[x][y]); 
+                              const int x, const int y, t_attr **matrix); 
 int               set_color(t_env *env, int n_x, int n_y);
 void              put_pixel(t_env *env, int x, int y, int color);
 void              put_line(t_env *env, t_coor a, t_coor b, int color);
 void              tracing(t_env *env);
-void              print_matrix(const int x, const int y, t_attr matrix[][]);
+void              print_matrix(const int x, const int y, t_attr **matrix);
 int   					  mouse(int button, void *param);
 void		          zoom_in(t_env *env);
 void		          zoom_out(t_env *env);
