@@ -11,35 +11,56 @@
 # **************************************************************************** #
 
 NAME = fdf
-COMPILER = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+
+SRC = fdf.c fdf_parser.c fdf_painter.c fdf_key.c fdf_mouse.c fdf_brush.c
+
+OBJDIR = objs
+
+CFLAGS = -Wall -Wextra -Werror
+
+CC = gcc
+
+OBJ = $(addprefix ${OBJDIR}/, $(SRC:.c=.o))
+
 MLX = minilibx_macos/
-RM = /bin/rm -rf
+
 FRAMEWORKS = -framework OpenGL -framework AppKit
-SRCS = draw.c errors.c keyhook.c main.c matrix.c mousehook.c parser.c print.c
-#OBJS = $(addsuffix .o, $(basename $(SRCS)))
-OBJ = $(SRCS:.c=.o)
-INCLUDES = -I./ -I libft/includes/
-LIBS = -L libft/ -L minilibx_macos/ -lft -lmlx -framework OpenGL -framework AppKit
-FRAMEWORKS = -framework OpenGL -framework Appkit
 
+all:${NAME}
 
-all : $(NAME)
+${NAME}: ${OBJ}
+	@make -C libft/
+	@make -C ${MLX}
+	@echo Compiling ${NAME}
+	@${CC} ${CFLAGS} -g -Ilibft/includes/ -I. -I${MLX} -Llibft/ -lft \
+		-L${MLX} -lmlx ${FRAMEWORKS} -o $@ ${OBJ}
+	@echo "\033[32mfdf is ready!\033[0m"
 
-$(NAME):
-			
-					@make -C libft/ fclean
-					@make -C libft/
-					@make -C ${MLX}
-					@echo Compiling ${NAME}
-					$(COMPILER) $(CFLAGS) $(INCLUDES) $(SRCS) $(LIBS) $(FRAMEWORKS) 					
-					@echo "\033[32mfdf is ready!!\033[0m"
+${OBJDIR}/%.o : ./srcs/%.c
+	@echo Compiling $@
+	@/bin/mkdir -p ${OBJDIR}
+	@${CC} ${CFLAGS} -g -Ilibft/includes/ -I. -I${MLX} -c -o $@ $<
 
-# gcc -I./ -Ilibft/includes/ *.c -L libft -L minilibx_macos -lft -lmlx -framework Opengl -framework Appkit
+clean:
+	@echo clean mlx...
+	@make -C ${MLX} clean
+	@echo clean libft...
+	@make -C libft/ clean
+	@echo clean objs...
+	@/bin/rm -Rf ${OBJDIR}
 
+fclean: clean
+	@echo fclean libft...
+	@make -C libft/ fclean
+	@echo clean ${NAME}...
+	@/bin/rm -f ${NAME} test
 
-#${OBJDIR}/%.o : ./srcs/%.c
-#	@echo Compiling $@
-#	@/bin/mkdir -p ${OBJDIR}
-#	@${CC} ${CFLAGS} -g -Ilibft/includes/ -I. -I${MLX} -c -o $@ $<
+test:
+	@${CC} -I./libft/includes/ -Llibft/ -lft -L${MLX} -lmlx -I. -I${MLX} \
+	${FRAMEWORKS} -fsanitize=address -g -o ${NAME} $(addprefix srcs/, ${SRC})
 
+re: fclean all
+
+build: ${OBJ}
+
+.PHONY: all clean fclean re test

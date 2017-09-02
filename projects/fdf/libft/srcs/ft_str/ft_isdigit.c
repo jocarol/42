@@ -1,34 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mousehook.c                                        :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agrumbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/21 15:47:23 by jocarol           #+#    #+#             */
-/*   Updated: 2017/08/21 16:03:43 by jocarol          ###   ########.fr       */
+/*   Created: 2016/11/05 21:14:38 by agrumbac          #+#    #+#             */
+/*   Updated: 2016/11/05 21:15:32 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-
-void		zoom_in(t_env *env)
+int		ft_isdigit(int c)
 {
-	ZOOM += 1;
-}
-
-void		zoom_out(t_env *env)
-{
-	ZOOM -= 1;
-}
-
-int			mouse(int button, void *param)
-{
-	eraser(param);
-	if (button == 4)
-		zoom_in(param);
-	else if (button == 5)
-		zoom_out(param);
-	tracing(param);
+	if (c >= '0' && c <= '9')
+		return (1);
 	return (0);
 }
