@@ -1,111 +1,99 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   fdf_painter.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/18 01:15:52 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/02/23 00:27:04 by agrumbac         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "fdf.h"
 
-static int			in_map(t_xy here)
+static int			in_map(t_coor here)
 {
 	if (here.x >= IMG_W || here.y >= IMG_H || here.x < 0 || here.y < 0)
 		return (0);
 	return (1);
 }
 
-static t_xy			there(t_mlx *mlx, int x_count, int y_count)
+static t_coor			there(t_env *mlx, int n_x, int n_y)
 {
-	t_xy		there;
-	t_point		(*web)[mlx->web_y][mlx->web_x];
+	t_coor		there;
+	t_attr		(*matrix)[mlx->matrix_y][mlx->matrix_x];
 
-	there = (t_xy){0, 0};
-	web = mlx->web;
+	there = (t_coor){0, 0};
+	matrix = mlx->matrix;
 	if (mlx->projection == 1)
-		there = (t_xy){XPUT + POS_X, YPUT + POS_Y};
+		there = (t_coor){X1 + POS_X, Y1 + POS_Y};
 	else if (mlx->projection == 2)
-		there = (t_xy){XISO + POS_X, YISO + POS_Y};
+		there = (t_coor){X1 + POS_X, Y1 + POS_Y};
 	return (there);
 }
 
-void				painter(t_mlx *mlx)
+void				painter(t_env *mlx)
 {
-	int			y_count;
-	int			x_count;
-	t_xy		here;
-	t_point		(*web)[mlx->web_y][mlx->web_x];
+	int			n_y;
+	int			n_x;
+	t_coor		here;
+	t_attr		(*matrix)[mlx->matrix_y][mlx->matrix_x];
 
-	web = mlx->web;
-	y_count = -1;
-	while (++y_count < mlx->web_y && (x_count = -1))
-		while (++x_count < mlx->web_x)
+	matrix = mlx->matrix;
+	n_y = -1;
+	while (++n_y < mlx->matrix_y && (n_x = -1))
+		while (++n_x < mlx->matrix_x)
 		{
-			here = there(mlx, x_count, y_count);
+			here = there(mlx, n_x, n_y);
 			if (in_map(here))
 			{
-				put_pixel(mlx, here.x, here.y, (*web)[y_count][x_count].color);
-				if (x_count + 1 < mlx->web_x && \
-					in_map(there(mlx, x_count + 1, y_count)))
-					put_line(mlx, here, there(mlx, x_count + 1, y_count), \
-					get_colorful(mlx, x_count + 1, y_count));
-				if (y_count + 1 < mlx->web_y && \
-					in_map(there(mlx, x_count, y_count + 1)))
-					put_line(mlx, here, there(mlx, x_count, y_count + 1), \
-					get_colorful(mlx, x_count, y_count + 1));
+				put_pixel(mlx, here.x, here.y, (*matrix)[n_y][n_x].color);
+				if (n_x + 1 < mlx->matrix_x && \
+					in_map(there(mlx, n_x + 1, n_y)))
+					put_line(mlx, here, there(mlx, n_x + 1, n_y), \
+					get_colorful(mlx, n_x + 1, n_y));
+				if (n_y + 1 < mlx->matrix_y && \
+					in_map(there(mlx, n_x, n_y + 1)))
+					put_line(mlx, here, there(mlx, n_x, n_y + 1), \
+					get_colorful(mlx, n_x, n_y + 1));
 			}
 		}
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win, mlx->img, -100, -100);
 }
 
-void				cleaner(t_mlx *mlx)
+void				cleaner(t_env *mlx)
 {
-	int			y_count;
-	int			x_count;
-	t_xy		here;
-	t_point		(*web)[mlx->web_y][mlx->web_x];
+	int			n_y;
+	int			n_x;
+	t_coor		here;
+	t_attr		(*matrix)[mlx->matrix_y][mlx->matrix_x];
 
-	web = mlx->web;
-	y_count = -1;
-	while (++y_count < mlx->web_y && (x_count = -1))
-		while (++x_count < mlx->web_x)
+	matrix = mlx->matrix;
+	n_y = -1;
+	while (++n_y < mlx->matrix_y && (n_x = -1))
+		while (++n_x < mlx->matrix_x)
 		{
-			here = there(mlx, x_count, y_count);
+			here = there(mlx, n_x, n_y);
 			if (in_map(here))
 			{
 				put_pixel(mlx, here.x, here.y, 0);
-				if (x_count + 1 < mlx->web_x && \
-					in_map(there(mlx, x_count + 1, y_count)))
-					put_line(mlx, here, there(mlx, x_count + 1, y_count), 0);
-				if (y_count + 1 < mlx->web_y && \
-					in_map(there(mlx, x_count, y_count + 1)))
-					put_line(mlx, here, there(mlx, x_count, y_count + 1), 0);
+				if (n_x + 1 < mlx->matrix_x && \
+					in_map(there(mlx, n_x + 1, n_y)))
+					put_line(mlx, here, there(mlx, n_x + 1, n_y), 0);
+				if (n_y + 1 < mlx->matrix_y && \
+					in_map(there(mlx, n_x, n_y + 1)))
+					put_line(mlx, here, there(mlx, n_x, n_y + 1), 0);
 			}
 		}
 }
 
-void				fdf_painter(const int y, const int x, t_point web[y][x])
+void				fdf_painter(const int y, const int x, t_attr matrix[y][x])
 {
-	t_mlx		mlx;
-	t_conv		conv;
+	t_env		mlx;
+	t_computed		computed;
 
-	ft_bzero(&conv, sizeof(t_conv));
-	ft_bzero(&mlx, sizeof(t_mlx));
-	mlx.conv = &conv;
+	ft_bzero(&computed, sizeof(t_computed));
+	ft_bzero(&mlx, sizeof(t_env));
+	mlx.computed = &computed;
 	mlx.projection = 1;
-	mlx.web_x = x;
-	mlx.web_y = y;
-	mlx.web = web;
+	mlx.matrix_x = x;
+	mlx.matrix_y = y;
+	mlx.matrix = matrix;
 	mlx.mlx_ptr = mlx_init();
-	conv.zoom = (WIN_W / x > WIN_H / y ? WIN_H / y : WIN_W / x);
-	conv.angle_x = -2;
-	conv.angle_y = -2;
-	conv.pos_x = 100;
-	conv.pos_y = 100;
+	computed.zoom = (WIN_W / x > WIN_H / y ? WIN_H / y : WIN_W / x);
+	computed.alpha_x = -2;
+	computed.alpha_y = -2;
+	computed.pos_x = 100;
+	computed.pos_y = 100;
 	mlx.win = mlx_new_window(mlx.mlx_ptr, WIN_W, WIN_H, WIN_NAME);
 	mlx.img = mlx_new_image(mlx.mlx_ptr, IMG_W, IMG_H);
 	mlx.data = mlx_get_data_addr(mlx.img, &(mlx.bpp), &(mlx.linesize), \

@@ -1,34 +1,34 @@
 #include "fdf.h"
 
-int					get_colorful(t_mlx *mlx, int x_count, int y_count)
+int					get_colorful(t_env *mlx, int n_x, int n_y)
 {
 	int				color;
 
-	t_point(*web)[mlx->web_y][mlx->web_x];
-	web = mlx->web;
+	t_attr(*matrix)[mlx->matrix_y][mlx->matrix_x];
+	matrix = mlx->matrix;
 	color = DEFAULT_COLOR;
 	if (COLOR != DEFAULT_COLOR)
 		color = COLOR;
-	if (++x_count < mlx->web_x)
+	if (++n_x < mlx->matrix_x)
 		if (COLOR != DEFAULT_COLOR)
 			color = COLOR;
-	x_count--;
-	if (++y_count < mlx->web_y)
+	n_x--;
+	if (++n_y < mlx->matrix_y)
 		if (COLOR != DEFAULT_COLOR)
 			color = COLOR;
-	y_count -= 2;
-	if (y_count > 0)
+	n_y -= 2;
+	if (n_y > 0)
 		if (COLOR != DEFAULT_COLOR)
 			color = COLOR;
-	y_count++;
-	x_count--;
-	if (x_count > 0)
+	n_y++;
+	n_x--;
+	if (n_x > 0)
 		if (COLOR != DEFAULT_COLOR)
 			color = COLOR;
 	return (color);
 }
 
-void				put_pixel(t_mlx *mlx, int x, int y, int color)
+void				put_pixel(t_env *mlx, int x, int y, int color)
 {
 	int				i;
 
@@ -43,9 +43,9 @@ void				put_pixel(t_mlx *mlx, int x, int y, int color)
 	mlx->data[++i] = color >> 16;
 }
 
-void				put_line(t_mlx *mlx, t_xy a, t_xy b, int color)
+void				put_line(t_env *mlx, t_coor a, t_coor b, int color)
 {
-	t_bresenham		badass;
+	t_brez		badass;
 
 	badass.dx = abs(b.x - a.x);
 	badass.sx = a.x < b.x ? 1 : -1;

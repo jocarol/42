@@ -1,21 +1,21 @@
 #include "fdf.h"
 
-static void		overmind(const char *read, const int y, const int x)
+static void		fdf(const char *read, const int y, const int x)
 {
-	t_point		web[y][x];
-	int			y_count;
-	int			x_count;
+	t_attr		matrix[y][x];
+	int			n_y;
+	int			n_x;
 
-	y_count = -1;
-	while (++y_count < y && (x_count = -1))
-		while (++x_count < x)
+	n_y = -1;
+	while (++n_y < y && (n_x = -1))
+		while (++n_x < x)
 		{
-			web[y_count][x_count].z = 0;
-			web[y_count][x_count].color = DEFAULT_COLOR;
+			matrix[n_y][n_x].alt = 0;
+			matrix[n_y][n_x].color = DEFAULT_COLOR;
 		}
-	fdf_parser(y, x, web, read);
+	fdf_parser(y, x, matrix, read);
 	ft_memdel((void**)&read);
-	fdf_painter(y, x, web);
+	fdf_painter(y, x, matrix);
 }
 
 int				main(int ac, char **av)
@@ -28,10 +28,10 @@ int				main(int ac, char **av)
 	y = 0;
 	if (ac > 1)
 	{
-		if (!(read = fdf_reader_checker(av[1], &y, &x)))
+		if (!(read = get_map_size(av[1], &y, &x)))
 			errors(3, av[1]);
 		else
-			overmind(read, y, x);
+			fdf(read, y, x);
 	}
 	else
 		errors(1, 0);

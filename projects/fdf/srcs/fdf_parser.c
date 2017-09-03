@@ -1,25 +1,25 @@
 #include "fdf.h"
 
-void			fdf_parser(const int y, const int x, t_point web[y][x], \
-					const char *read)
+void			fdf_parser(const int y, const int x, t_attr matrix[y][x], \
+											const char *read)
 {
-	int		y_count;
-	int		x_count;
+	int		n_y;
+	int		n_x;
 
-	y_count = -1;
-	while (++y_count < y && (x_count = -1))
+	n_y = -1;
+	while (++n_y < y && (n_x = -1))
 	{
-		while (++x_count < x)
+		while (++n_x < x)
 		{
 			while (*read != '\n' && (*read == ' ' || *read == '\t'))
 				read++;
-			web[y_count][x_count].z = ft_atoi(read);
+			matrix[n_y][n_x].alt = ft_atoi(read);
 			while (*read != '\n' && (ft_isdigit(*read) || *read == '-'))
 				read++;
 			if (*read == ',')
 			{
 				read++;
-				web[y_count][x_count].color = ft_atoi_base(read, 16);
+				matrix[n_y][n_x].color = ft_atoi_base(read, 16);
 				while (*read != '\n' && ft_strchr("xABCDEF1234567890", *read))
 					read++;
 			}
@@ -60,7 +60,7 @@ static char		*joiner(char *read, char *line)
 	char		*tmp_read;
 	char		*tmp_line;
 	char		*new;
-	size_t		len;
+	size_t	len;
 
 	tmp_read = read;
 	tmp_line = line;
@@ -74,7 +74,7 @@ static char		*joiner(char *read, char *line)
 	return (new);
 }
 
-char			*fdf_reader_checker(const char *file, int *y, int *x)
+char			*get_map_size(const char *file, int *y, int *x)
 {
 	char	*line;
 	char	*read;
