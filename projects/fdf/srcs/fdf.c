@@ -2,9 +2,9 @@
 
 static void		fdf(const char *read, const int y, const int x)
 {
-	t_attr		matrix[y][x];
-	int			n_y;
-	int			n_x;
+	t_attr			matrix[y][x];
+	int					n_y;
+	int					n_x;
 
 	n_y = -1;
 	while (++n_y < y && (n_x = -1))
@@ -13,16 +13,16 @@ static void		fdf(const char *read, const int y, const int x)
 			matrix[n_y][n_x].alt = 0;
 			matrix[n_y][n_x].color = DEFAULT_COLOR;
 		}
-	fdf_parser(y, x, matrix, read);
+	fill_matrix(y, x, matrix, read);
 	ft_memdel((void**)&read);
 	fdf_painter(y, x, matrix);
 }
 
-int				main(int ac, char **av)
+int						main(int ac, char **av)
 {
-	int			y;
-	int			x;
-	char		*read;
+	int					y;
+	int					x;
+	char				*read;
 
 	x = 0;
 	y = 0;
@@ -38,7 +38,7 @@ int				main(int ac, char **av)
 	return (0);
 }
 
-long			errors(const int err, const char *name)
+long					errors(const int err, const char *name)
 {
 	ft_putstr_fd("fdf: ", 2);
 	if (name)

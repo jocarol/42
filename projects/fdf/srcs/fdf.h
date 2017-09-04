@@ -7,9 +7,9 @@
 # include "mlx.h"
 # include <time.h>
 
-# define WIN_NAME "test"
-# define WIN_W 800
-# define WIN_H 800
+# define WIN_NAME "Fdf @42"
+# define WIN_W 1000
+# define WIN_H 1000
 # define IMG_W WIN_W + 200
 # define IMG_H WIN_H + 200
 # define DEFAULT_COLOR 0x00ff00
@@ -23,7 +23,7 @@
 # define X1 (n_x + ALT * ANGLE_X / 42) * ZOOM
 # define Y1 (n_y + ALT * ANGLE_Y / 42) * ZOOM
 # define X2 X1 - Y1
-# define YISO (X1 + Y1) / 2
+# define Y2 (X1 + Y1) / 2
 
 typedef	struct		s_attr
 {
@@ -73,7 +73,7 @@ typedef struct		s_coor
 }									t_coor;
 
 char							*get_map_size(const char *file, int *y, int *x);
-void							fdf_parser(const int y, const int x, t_attr matrix[y][x], \
+void							fill_matrix(const int y, const int x, t_attr matrix[y][x], \
 															const char *read);
 void							fdf_painter(const int y, const int x, t_attr matrix[y][x]);
 long							errors(const int err, const char *name);

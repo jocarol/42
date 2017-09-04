@@ -1,13 +1,13 @@
 #include "fdf.h"
 
-static int			in_map(t_coor here)
+static int					in_map(t_coor here)
 {
 	if (here.x >= IMG_W || here.y >= IMG_H || here.x < 0 || here.y < 0)
 		return (0);
 	return (1);
 }
 
-static t_coor			there(t_env *mlx, int n_x, int n_y)
+static t_coor				there(t_env *mlx, int n_x, int n_y)
 {
 	t_coor		there;
 	t_attr		(*matrix)[mlx->matrix_y][mlx->matrix_x];
@@ -17,15 +17,15 @@ static t_coor			there(t_env *mlx, int n_x, int n_y)
 	if (mlx->projection == 1)
 		there = (t_coor){X1 + POS_X, Y1 + POS_Y};
 	else if (mlx->projection == 2)
-		there = (t_coor){X1 + POS_X, Y1 + POS_Y};
+		there = (t_coor){X2 + POS_X, Y2 + POS_Y};
 	return (there);
 }
 
-void				painter(t_env *mlx)
+void								painter(t_env *mlx)
 {
-	int			n_y;
-	int			n_x;
-	t_coor		here;
+	int								n_y;
+	int								n_x;
+	t_coor						here;
 	t_attr		(*matrix)[mlx->matrix_y][mlx->matrix_x];
 
 	matrix = mlx->matrix;
@@ -50,12 +50,12 @@ void				painter(t_env *mlx)
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win, mlx->img, -100, -100);
 }
 
-void				cleaner(t_env *mlx)
+void						cleaner(t_env *mlx)
 {
-	int			n_y;
-	int			n_x;
-	t_coor		here;
-	t_attr		(*matrix)[mlx->matrix_y][mlx->matrix_x];
+	int						n_y;
+	int						n_x;
+	t_coor				here;
+	t_attr				(*matrix)[mlx->matrix_y][mlx->matrix_x];
 
 	matrix = mlx->matrix;
 	n_y = -1;
@@ -76,9 +76,9 @@ void				cleaner(t_env *mlx)
 		}
 }
 
-void				fdf_painter(const int y, const int x, t_attr matrix[y][x])
+void						fdf_painter(const int y, const int x, t_attr matrix[y][x])
 {
-	t_env		mlx;
+	t_env					mlx;
 	t_computed		computed;
 
 	ft_bzero(&computed, sizeof(t_computed));

@@ -1,10 +1,10 @@
 #include "fdf.h"
 
-void			fdf_parser(const int y, const int x, t_attr matrix[y][x], \
+void					fill_matrix(const int y, const int x, t_attr matrix[y][x], \
 											const char *read)
 {
-	int		n_y;
-	int		n_x;
+	int					n_y;
+	int					n_x;
 
 	n_y = -1;
 	while (++n_y < y && (n_x = -1))
@@ -28,7 +28,7 @@ void			fdf_parser(const int y, const int x, t_attr matrix[y][x], \
 	}
 }
 
-static int		count_numbers(char *line, int x)
+static int		get_values(char *line, int x)
 {
 	while (*line)
 	{
@@ -55,7 +55,7 @@ static int		count_numbers(char *line, int x)
 	return (x);
 }
 
-static char		*joiner(char *read, char *line)
+static char		*join(char *read, char *line)
 {
 	char		*tmp_read;
 	char		*tmp_line;
@@ -74,13 +74,13 @@ static char		*joiner(char *read, char *line)
 	return (new);
 }
 
-char			*get_map_size(const char *file, int *y, int *x)
+char					*get_map_size(const char *file, int *y, int *x		)
 {
 	char	*line;
 	char	*read;
 	int		fd;
 	int		status;
-	int		countx;
+	int		n_x;
 
 	read = NULL;
 	status = 1;
@@ -89,12 +89,12 @@ char			*get_map_size(const char *file, int *y, int *x)
 	line = NULL;
 	while ((status = get_next_line(fd, &line)) && status == 1)
 	{
-		countx = count_numbers(line, 0);
+		n_x = get_values(line, 0);
 		if (!*y)
-			*x = countx;
-		else if (*x != countx || countx == -1)
+			*x = n_x;
+		else if (*x != n_x || n_x == -1)
 			return (NULL);
-		read = joiner(read, line);
+		read = join(read, line);
 		(*y)++;
 	}
 	if (status == -1)
