@@ -15,11 +15,11 @@
 # define DEFAULT_COLOR 0x00ff00
 # define ALT ((*matrix)[n_y][n_x]).alt
 # define COLOR ((*matrix)[n_y][n_x]).color
-# define ZOOM ((t_computed*)(mlx->computed))->zoom
-# define POS_X ((t_computed*)(mlx->computed))->pos_x
-# define POS_Y ((t_computed*)(mlx->computed))->pos_y
-# define ANGLE_X ((t_computed*)(mlx->computed))->alpha_x
-# define ANGLE_Y ((t_computed*)(mlx->computed))->alpha_y
+# define ZOOM ((t_computed*)(env->computed))->zoom
+# define POS_X ((t_computed*)(env->computed))->pos_x
+# define POS_Y ((t_computed*)(env->computed))->pos_y
+# define ANGLE_X ((t_computed*)(env->computed))->alpha_x
+# define ANGLE_Y ((t_computed*)(env->computed))->alpha_y
 # define X1 (n_x + ALT * ANGLE_X / 42) * ZOOM
 # define Y1 (n_y + ALT * ANGLE_Y / 42) * ZOOM
 # define X2 X1 - Y1

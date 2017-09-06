@@ -1,19 +1,19 @@
 #include "fdf.h"
 
-int					get_colorful(t_env *mlx, int n_x, int n_y)
+int					get_colorful(t_env *env, int n_x, int n_y)
 {
 	int				color;
 
-	t_attr(*matrix)[mlx->matrix_y][mlx->matrix_x];
-	matrix = mlx->matrix;
+	t_attr(*matrix)[env->matrix_y][env->matrix_x];
+	matrix = env->matrix;
 	color = DEFAULT_COLOR;
 	if (COLOR != DEFAULT_COLOR)
 		color = COLOR;
-	if (++n_x < mlx->matrix_x)
+	if (++n_x < env->matrix_x)
 		if (COLOR != DEFAULT_COLOR)
 			color = COLOR;
 	n_x--;
-	if (++n_y < mlx->matrix_y)
+	if (++n_y < env->matrix_y)
 		if (COLOR != DEFAULT_COLOR)
 			color = COLOR;
 	n_y -= 2;
@@ -28,7 +28,7 @@ int					get_colorful(t_env *mlx, int n_x, int n_y)
 	return (color);
 }
 
-void				put_pixel(t_env *mlx, int x, int y, int color)
+void				put_pixel(t_env *env, int x, int y, int color)
 {
 	int				i;
 
@@ -37,13 +37,13 @@ void				put_pixel(t_env *mlx, int x, int y, int color)
 		return ;
 		errors(2, "Out of bounds");
 	}
-	i = mlx->linesize * y + x * (mlx->bpp / 8);
-	mlx->data[i] = color & 0xff;
-	mlx->data[++i] = color >> 8 & 0xff;
-	mlx->data[++i] = color >> 16;
+	i = env->linesize * y + x * (env->bpp / 8);
+	env->data[i] = color & 0xff;
+	env->data[++i] = color >> 8 & 0xff;
+	env->data[++i] = color >> 16;
 }
 
-void				put_line(t_env *mlx, t_coor a, t_coor b, int color)
+void				put_line(t_env *env, t_coor a, t_coor b, int color)
 {
 	t_brez		badass;
 
@@ -55,7 +55,7 @@ void				put_line(t_env *mlx, t_coor a, t_coor b, int color)
 	badass.e2 = badass.err;
 	while (1)
 	{
-		put_pixel(mlx, a.x, a.y, color);
+		put_pixel(env, a.x, a.y, color);
 		if (a.x == b.x && a.y == b.y)
 			break ;
 		badass.e2 = badass.err;

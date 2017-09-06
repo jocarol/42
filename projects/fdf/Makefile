@@ -1,6 +1,6 @@
 NAME = fdf
 
-SRC = fdf.c fdf_parser.c fdf_painter.c fdf_key.c fdf_mouse.c fdf_brush.c
+SRC = fdf.c fdf_parser.c fdf_painter.c fdf_key.c fdf_mouse.c fdf_brush.c errors.c
 
 OBJDIR = objs
 
@@ -22,7 +22,7 @@ ${NAME}: ${OBJ}
 	@echo Compiling ${NAME}
 	@${CC} ${CFLAGS} -g -Ilibft/includes/ -I. -I${MLX} -Llibft/ -lft \
 		-L${MLX} -lmlx ${FRAMEWORKS} -o $@ ${OBJ}
-	@echo "\033[32mfdf is ready!\033[0m"
+	@echo "\033[32mMake okay =)\033[0m"
 
 ${OBJDIR}/%.o : ./srcs/%.c
 	@echo Compiling $@
@@ -41,11 +41,7 @@ fclean: clean
 	@echo fclean libft...
 	@make -C libft/ fclean
 	@echo clean ${NAME}...
-	@/bin/rm -f ${NAME} test
-
-test:
-	@${CC} -I./libft/includes/ -Llibft/ -lft -L${MLX} -lmlx -I. -I${MLX} \
-	${FRAMEWORKS} -fsanitize=address -g -o ${NAME} $(addprefix srcs/, ${SRC})
+	@/bin/rm -f ${NAME}
 
 re: fclean all
 

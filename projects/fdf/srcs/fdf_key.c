@@ -1,37 +1,37 @@
 #include "fdf.h"
 
-static void		reset(t_env *mlx)
+static void		reset(t_env *env)
 {
 	int			n_y;
 	int			n_x;
 
-	t_attr(*matrix)[mlx->matrix_y][mlx->matrix_x];
-	matrix = mlx->matrix;
+	t_attr(*matrix)[env->matrix_y][env->matrix_x];
+	matrix = env->matrix;
 	n_y = -1;
-	while (++n_y < mlx->matrix_y && (n_x = -1))
-		while (++n_x < mlx->matrix_x)
+	while (++n_y < env->matrix_y && (n_x = -1))
+		while (++n_x < env->matrix_x)
 			COLOR = DEFAULT_COLOR;
-	ZOOM = (WIN_W / mlx->matrix_x > WIN_H / mlx->matrix_y ? WIN_H / mlx->matrix_y : \
-			WIN_W / mlx->matrix_x);
+	ZOOM = (WIN_W / env->matrix_x > WIN_H / env->matrix_y ? WIN_H / env->matrix_y : \
+			WIN_W / env->matrix_x);
 	POS_X = 100;
 	POS_Y = 100;
 	ANGLE_X = 0;
 	ANGLE_Y = 0;
 }
 
-static void		colorise(t_env *mlx, int keycode)
+static void		colorise(t_env *env, int keycode)
 {
 	int			n_y;
 	int			n_x;
 	int			col;
 
-	t_attr(*matrix)[mlx->matrix_y][mlx->matrix_x];
-	matrix = mlx->matrix;
+	t_attr(*matrix)[env->matrix_y][env->matrix_x];
+	matrix = env->matrix;
 	srand(time(NULL));
 	col = rand();
 	n_y = -1;
-	while (++n_y < mlx->matrix_y && (n_x = -1))
-		while (++n_x < mlx->matrix_x)
+	while (++n_y < env->matrix_y && (n_x = -1))
+		while (++n_x < env->matrix_x)
 		{
 			if (keycode == 49)
 				COLOR = (COLOR + col) % 0xffffff + ALT * 42;
@@ -40,7 +40,7 @@ static void		colorise(t_env *mlx, int keycode)
 		}
 }
 
-static void		position(t_env *mlx, int keycode)
+static void		position(t_env *env, int keycode)
 {
 	if (keycode == 126)
 		POS_Y -= 10;
@@ -52,7 +52,7 @@ static void		position(t_env *mlx, int keycode)
 		POS_X += 10;
 }
 
-static void		alpha(t_env *mlx, int keycode)
+static void		transpo(t_env *env, int keycode)
 {
 	if (keycode == 13)
 		ANGLE_Y -= 1;
@@ -63,9 +63,9 @@ static void		alpha(t_env *mlx, int keycode)
 	if (keycode == 2)
 		ANGLE_X += 1;
 	if (keycode == 18)
-		mlx->projection = 1;
+		env->projection = 1;
 	if (keycode == 19)
-		mlx->projection = 2;
+		env->projection = 2;
 }
 
 int				keys(int keycode, void *param)
@@ -81,7 +81,7 @@ int				keys(int keycode, void *param)
 		position(param, keycode);
 	else if (((keycode >= 0) && (keycode <= 2)) || keycode == 13 || \
 			keycode == 18 || keycode == 19)
-		alpha(param, keycode);
+		transpo(param, keycode);
 	else if (keycode == 78)
 		unzoom(param);
 	else if (keycode == 69)

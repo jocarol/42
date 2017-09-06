@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include "fdf.h"
 
-void		zoom(t_env *mlx)
+void		zoom(t_env *env)
 {
 	ZOOM += 1;
 }
 
-void		unzoom(t_env *mlx)
+void		unzoom(t_env *env)
 {
 	if (ZOOM > 1)
 		ZOOM -= 1;
