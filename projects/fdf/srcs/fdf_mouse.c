@@ -14,12 +14,12 @@ void		unzoom(t_env *env)
 
 int			mouse(int button, int x, int y, void *param)
 {
-	cleaner(param);
+	eraser(param);
 	printf("%d ,%d\n",x,y );
 	if (button == 4)
 		zoom(param);
 	else if (button == 5)
 		unzoom(param);
-	painter(param);
+	tracing(param);
 	return (0);
 }

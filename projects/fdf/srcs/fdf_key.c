@@ -21,11 +21,11 @@ static void		reset(t_env *env)
 
 static void		colorise(t_env *env, int keycode)
 {
-	int			n_y;
-	int			n_x;
-	int			col;
+	int					n_y;
+	int					n_x;
+	int					col;
+	t_attr			(*matrix)[env->matrix_y][env->matrix_x];
 
-	t_attr(*matrix)[env->matrix_y][env->matrix_x];
 	matrix = env->matrix;
 	srand(time(NULL));
 	col = rand();
@@ -70,7 +70,7 @@ static void		transpo(t_env *env, int keycode)
 
 int				keys(int keycode, void *param)
 {
-	cleaner(param);
+	eraser(param);
 	if (keycode == 53)
 	{
 		mlx_destroy_image(((t_env *)param)->mlx_ptr, ((t_env *)param)->img);
@@ -90,6 +90,6 @@ int				keys(int keycode, void *param)
 		colorise(param, keycode);
 	else if (keycode == 51)
 		reset(param);
-	painter(param);
+	tracing(param);
 	return (0);
 }

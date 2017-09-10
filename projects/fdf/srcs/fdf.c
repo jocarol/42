@@ -15,7 +15,7 @@ static void		fdf(const char *read, const int y, const int x)
 		}
 	fill_matrix(y, x, matrix, read);
 	ft_memdel((void**)&read);
-	fdf_painter(y, x, matrix);
+	display(y, x, matrix);
 }
 
 int						main(int ac, char **av)

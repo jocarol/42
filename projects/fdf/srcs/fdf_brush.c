@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-int					get_colorful(t_env *env, int n_x, int n_y)
+int					set_color(t_env *env, int n_x, int n_y)
 {
 	int				color;
 
@@ -18,7 +18,6 @@ int					get_colorful(t_env *env, int n_x, int n_y)
 			color = COLOR;
 	n_y -= 2;
 	if (n_y > 0)
-		if (COLOR != DEFAULT_COLOR)
 			color = COLOR;
 	n_y++;
 	n_x--;
@@ -45,29 +44,29 @@ void				put_pixel(t_env *env, int x, int y, int color)
 
 void				put_line(t_env *env, t_coor a, t_coor b, int color)
 {
-	t_brez		badass;
+	t_brez		line;
 
-	badass.dx = abs(b.x - a.x);
-	badass.sx = a.x < b.x ? 1 : -1;
-	badass.dy = abs(b.y - a.y);
-	badass.sy = a.y < b.y ? 1 : -1;
-	badass.err = (badass.dx > badass.dy ? badass.dx : -badass.dy) / 2;
-	badass.e2 = badass.err;
+	line.dx = abs(b.x - a.x);
+	line.sx = a.x < b.x ? 1 : -1;
+	line.dy = abs(b.y - a.y);
+	line.sy = a.y < b.y ? 1 : -1;
+	line.err = (line.dx > line.dy ? line.dx : -line.dy) / 2;
+	line.e2 = line.err;
 	while (1)
 	{
 		put_pixel(env, a.x, a.y, color);
 		if (a.x == b.x && a.y == b.y)
 			break ;
-		badass.e2 = badass.err;
-		if (badass.e2 > -badass.dx)
+		line.e2 = line.err;
+		if (line.e2 > -line.dx)
 		{
-			badass.err -= badass.dy;
-			a.x += badass.sx;
+			line.err -= line.dy;
+			a.x += line.sx;
 		}
-		if (badass.e2 < badass.dy)
+		if (line.e2 < line.dy)
 		{
-			badass.err += badass.dx;
-			a.y += badass.sy;
+			line.err += line.dx;
+			a.y += line.sy;
 		}
 	}
 }

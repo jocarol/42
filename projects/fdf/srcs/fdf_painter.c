@@ -21,7 +21,7 @@ static t_coor				there(t_env *env, int n_x, int n_y)
 	return (there);
 }
 
-void								painter(t_env *env)
+void								tracing(t_env *env)
 {
 	int								n_y;
 	int								n_x;
@@ -40,22 +40,22 @@ void								painter(t_env *env)
 				if (n_x + 1 < env->matrix_x && \
 					in_map(there(env, n_x + 1, n_y)))
 					put_line(env, here, there(env, n_x + 1, n_y), \
-					get_colorful(env, n_x + 1, n_y));
+					set_color(env, n_x + 1, n_y));
 				if (n_y + 1 < env->matrix_y && \
 					in_map(there(env, n_x, n_y + 1)))
 					put_line(env, here, there(env, n_x, n_y + 1), \
-					get_colorful(env, n_x, n_y + 1));
+					set_color(env, n_x, n_y + 1));
 			}
 		}
 	mlx_put_image_to_window(env->mlx_ptr, env->win, env->img, -100, -100);
 }
 
-void						cleaner(t_env *env)
+void								eraser(t_env *env)
 {
-	int						n_y;
-	int						n_x;
-	t_coor				here;
-	t_attr				(*matrix)[env->matrix_y][env->matrix_x];
+	int								n_y;
+	int								n_x;
+	t_coor						here;
+	t_attr						(*matrix)[env->matrix_y][env->matrix_x];
 
 	matrix = env->matrix;
 	n_y = -1;
@@ -76,10 +76,10 @@ void						cleaner(t_env *env)
 		}
 }
 
-void						fdf_painter(const int y, const int x, t_attr matrix[y][x])
+void								display(const int y, const int x, t_attr matrix[y][x])
 {
-	t_env					env;
-	t_computed		computed;
+	t_env							env;
+	t_computed				computed;
 
 	ft_bzero(&computed, sizeof(t_computed));
 	ft_bzero(&env, sizeof(t_env));
@@ -100,6 +100,6 @@ void						fdf_painter(const int y, const int x, t_attr matrix[y][x])
 			&(env.endian));
 	mlx_hook(env.win, 2, 3, keys, &env);
 	mlx_mouse_hook(env.win, mouse, &env);
-	painter(&env);
+	tracing(&env);
 	mlx_loop(env.mlx_ptr);
 }

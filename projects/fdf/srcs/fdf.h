@@ -75,16 +75,16 @@ typedef struct		s_coor
 char							*get_map_size(const char *file, int *y, int *x);
 void							fill_matrix(const int y, const int x, t_attr matrix[y][x], \
 															const char *read);
-void							fdf_painter(const int y, const int x, t_attr matrix[y][x]);
+void							display(const int y, const int x, t_attr matrix[y][x]);
 long							errors(const int err, const char *name);
-void							put_pixel(t_env *mlx, int x, int y, int color);
-void							put_line(t_env *mlx, t_coor a, t_coor b, int color);
-void							painter(t_env *mlx);
-void							cleaner(t_env *mlx);
+void							put_pixel(t_env *env, int x, int y, int color);
+void							put_line(t_env *env, t_coor a, t_coor b, int color);
+void							tracing(t_env *env);
+void							eraser(t_env *mlx);
 int								mouse(int button, int x, int y, void *param);
 int								keys(int keycode, void *param);
-void							zoom(t_env *mlx);
-void							unzoom(t_env *mlx);
-int								get_colorful(t_env *mlx, int n_x, int n_y);
+void							zoom(t_env *env);
+void							unzoom(t_env *env);
+int								set_color(t_env *env, int n_x, int n_y);
 
 #endif
