@@ -10,8 +10,8 @@ void 					mandle_init(t_env *z)
 	z->i = 0.0;
 	z->zoomx = IMG_SIZE / (z->x2 - z->x1);
 	z->zoomy = IMG_SIZE / (z->y2 - z->y1);
-	z->c_r = z->x / z->zoomx + z->x1;
-	z->c_i = z->y / z->zoomy + z->y1;
+	// z->c_r = z->x / z->zoomx + z->x1;
+	// z->c_i = z->y / z->zoomy + z->y1;
 	z->iteration = 200;
 	z->linesize = IMG_SIZE * 4;
 }

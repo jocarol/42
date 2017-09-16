@@ -36,12 +36,14 @@ void 					fractol(t_env *z)
   double      zr_tmp;
   int         iteration;
 
+	// z->r = 0.0;
+	// z->i = 0.0;
   iteration = 0;
-	if (z->test > 400 && z->test < 420)
+	if (z->test < 10)
 		printf("Fractol condition : %f\n", z->r * z->r + z->i * z->i);
   while ((z->r * z->r + z->i * z->i < 4) && iteration < z->iteration)
   {
-		printf("Iteration : %d\n", iteration);
+		// printf("Iteration : %d\n", iteration);
     zr_tmp = z->r;
     z->r = z->r * z->r - z->i * z->i + z->c_r;
 		if (!ft_strcmp(z->frac_type, "burningship"))
@@ -77,26 +79,29 @@ void					set_env(t_env *z, int ac, char **av)
 void 						draw(t_env *z)
 {
 	z->x = -1;
+
   while (++z->x < IMG_SIZE)
   {
     z->y = -1;
     while (++z->y < IMG_SIZE)
-    {
+		{
+			z->c_r = z->x / z->zoomx + z->x1;
+			z->c_i = z->y / z->zoomy + z->y1;
       fractol(z);
-    }
+		}
   }
 	mlx_put_image_to_window(z->mlx_ptr, z->win, z->img, 0, 0);
-	printf("Initialised frac_type :%s\n", z->frac_type);
-	printf("Initialised x1    : %f\n", z->x1);
-	printf("Initialised x2    : %f\n", z->x2);
-	printf("Initialised y1    : %f\n", z->y1);
-	printf("Initialised y2    : %f\n", z->y2);
-	printf("Initialised c_r   : %f\n", z->c_r);
-	printf("Initialised c_i   : %f\n", z->c_i);
-	printf("Initialised r     : %f\n", z->r);
-	printf("Initialised i     : %f\n", z->i);
-	printf("Initialised zoomx : %f\n", z->zoomx);
-	printf("Initialised zoomy : %f\n", z->zoomy);
+	printf("Initialised frac_type :	%s\n", z->frac_type);
+	printf("Initialised x1		:	%f\n", z->x1);
+	printf("Initialised x2		:	%f\n", z->x2);
+	printf("Initialised y1		:	%f\n", z->y1);
+	printf("Initialised y2		:	%f\n", z->y2);
+	printf("Initialised c_r		:	%f\n", z->c_r);
+	printf("Initialised c_i		:	%f\n", z->c_i);
+	printf("Initialised r		:	%f\n", z->r);
+	printf("Initialised i		:	%f\n", z->i);
+	printf("Initialised zoomx	:	%f\n", z->zoomx);
+	printf("Initialised zoomy	:	%f\n", z->zoomy);
 }
 
 
