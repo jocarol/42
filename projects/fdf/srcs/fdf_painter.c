@@ -92,8 +92,8 @@ void								display(const int y, const int x, t_attr matrix[y][x])
 	computed.zoom = (WIN_W / x > WIN_H / y ? WIN_H / y : WIN_W / x);
 	computed.alpha_x = -2;
 	computed.alpha_y = -2;
-	computed.pos_x = 100;
-	computed.pos_y = 100;
+	computed.c_r = 100;
+	computed.c_i = 100;
 	env.win = mlx_new_window(env.mlx_ptr, WIN_W, WIN_H, WIN_NAME);
 	env.img = mlx_new_image(env.mlx_ptr, IMG_W, IMG_H);
 	env.data = mlx_get_data_addr(env.img, &(env.bpp), &(env.linesize), \

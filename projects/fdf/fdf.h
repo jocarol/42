@@ -16,8 +16,8 @@
 # define ALT ((*matrix)[n_y][n_x]).alt
 # define COLOR ((*matrix)[n_y][n_x]).color
 # define ZOOM ((t_computed*)(mlx->computed))->zoom
-# define POS_X ((t_computed*)(mlx->computed))->pos_x
-# define POS_Y ((t_computed*)(mlx->computed))->pos_y
+# define POS_X ((t_computed*)(mlx->computed))->c_r
+# define POS_Y ((t_computed*)(mlx->computed))->c_i
 # define ANGLE_X ((t_computed*)(mlx->computed))->alpha_x
 # define ANGLE_Y ((t_computed*)(mlx->computed))->alpha_y
 # define X1 (n_x + ALT * ANGLE_X / 42) * ZOOM
@@ -33,8 +33,8 @@ typedef	struct		s_attr
 
 typedef struct		s_computed
 {
-	double					pos_x;
-	double					pos_y;
+	double					c_r;
+	double					c_i;
 	double					alpha_x;
 	double					alpha_y;
 	double					zoom;

@@ -6,7 +6,8 @@
 # include <math.h>
 
 # define WIN_NAME "Fractol"
-# define IMG_SIZE 1000
+//# define FRAC_NB	1
+# define IMG_SIZE 800
 
 typedef struct 					s_env
 {
@@ -14,12 +15,19 @@ typedef struct 					s_env
 	void 									*win;
 	void 									*img;
 	char 									*data;
+	char 									*frac_type;
 	int										linesize;
 	int										bpp;
 	int										endian;
-	int										max_iteration;
-	double								zoom;
+	int										iteration;
+	int										x;
+	int										y;
+	double								zoomx;
+	double								zoomy;
+	double								c_r;
+	double								c_i;
 	double								x1;
+	double								x2;
 	double								y1;
 	double								y2;
 	double								r;
