@@ -31,6 +31,7 @@ typedef struct 					s_env
 	double								y2;
 	double								r;
 	double								i;
+	int										test;
 }												t_env;
 
 void 										mandle_init(t_env *z);
