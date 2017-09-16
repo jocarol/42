@@ -43,7 +43,6 @@ void 					fractol(t_env *z)
 		printf("Fractol condition : %f\n", z->r * z->r + z->i * z->i);
   while ((z->r * z->r + z->i * z->i < 4) && iteration < z->iteration)
   {
-		// printf("Iteration : %d\n", iteration);
     zr_tmp = z->r;
     z->r = z->r * z->r - z->i * z->i + z->c_r;
 		if (!ft_strcmp(z->frac_type, "burningship"))
