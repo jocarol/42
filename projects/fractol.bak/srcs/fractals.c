@@ -41,7 +41,7 @@ void 					bs_init(t_env *z)
 	z->zoomx = IMG_SIZE / (z->x2 - z->x1);
 	z->zoomy = IMG_SIZE / (z->y2 - z->y1);
 	z->c_r = z->x / z->zoomx + z->x1;
-	z->c_i = z->x / z->zoomx + z->x1;
+	z->c_i = z->y / z->zoomx + z->y1;
 	z->r = 0;
 	z->i = 0;
 	z->iteration = 200;
