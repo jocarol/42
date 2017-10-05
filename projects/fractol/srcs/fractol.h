@@ -6,8 +6,10 @@
 # include <math.h>
 
 # define WIN_NAME "Fractol"
-//# define FRAC_NB	1
 # define IMG_SIZE 800
+# define MANDLEBROT 1
+# define JULIA 2
+# define BURNINGSHIP 3
 
 typedef struct 					s_env
 {
@@ -15,15 +17,15 @@ typedef struct 					s_env
 	void 									*win;
 	void 									*img;
 	char 									*data;
-	char 									*frac_type;
+	int 									frac_type;
+	int										col;
 	int										linesize;
 	int										bpp;
 	int										endian;
 	int										iteration;
 	int										x;
 	int										y;
-	double								zoomx;
-	double								zoomy;
+	double								zoom;
 	double								c_r;
 	double								c_i;
 	double								x1;
@@ -32,6 +34,11 @@ typedef struct 					s_env
 	double								y2;
 	double								r;
 	double								i;
+	int										test;
 }												t_env;
+
+void 										mandle_init(t_env *z);
+void 										julia_init(t_env *z);
+void 										bs_init(t_env *z);
 
 #endif

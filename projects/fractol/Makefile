@@ -1,5 +1,5 @@
 NAME = fractol
-SRC = main.c
+SRC = main.c fractals.c
 OBJDIR = objs
 CFLAGS = -g -Wall -Wextra -Werror
 CC = gcc
