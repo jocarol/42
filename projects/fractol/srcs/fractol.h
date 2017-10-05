@@ -25,6 +25,10 @@ typedef struct 					s_env
 	int										iteration;
 	int										x;
 	int										y;
+	int										lock;
+	int										display_info;
+	// int										x_param;
+	// int										y_param;
 	double								zoom;
 	double								c_r;
 	double								c_i;
@@ -34,11 +38,16 @@ typedef struct 					s_env
 	double								y2;
 	double								r;
 	double								i;
-	int										test;
 }												t_env;
 
 void 										mandle_init(t_env *z);
 void 										julia_init(t_env *z);
 void 										bs_init(t_env *z);
+void										set_env(t_env *z, char *av);
+void										draw(t_env *z);
+int											keys(int keycode, t_env *z);
+int											morph(int x, int y, t_env *z);
+// void 										display_info(t_env *z);
+void										usage();
 
 #endif

@@ -7,6 +7,7 @@ void 					mandle_init(t_env *z)
 	z->y1 = -1.2;
 	z->y2 = 1.2;
 	z->zoom = IMG_SIZE / (z->x2 - z->x1);
+	z->iteration = 50;
 }
 
 void 					julia_init(t_env *z)
@@ -15,7 +16,8 @@ void 					julia_init(t_env *z)
 	z->x2 = 2.0;
 	z->y1 = -2.0;
 	z->y2 = 2.0;
-	z->zoom = IMG_SIZE / (z->x2 - z->x1);;
+	z->zoom = IMG_SIZE / (z->x2 - z->x1);
+	z->iteration = 50;
 }
 
 void 					bs_init(t_env *z)
@@ -29,4 +31,5 @@ void 					bs_init(t_env *z)
 	z->c_i = z->y / z->zoom + z->y1;
 	z->r = 0;
 	z->i = 0;
+	z->iteration = 50;
 }
