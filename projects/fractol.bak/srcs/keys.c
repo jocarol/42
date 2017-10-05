@@ -35,27 +35,27 @@ static void					move(t_env *z, const int keycode)
 	}
 }
 
-static void					zoom(t_env *z, const int keycode)
-{
-	if (keycode == 36)
-	{
-		z->zoom *= 1.1;
-		z->x1 += 0.1 / (0.01 * z->zoom) * ((IMG_SIZE / 2) / 100);
-		z->x2 -= 0.1 / (0.01 * z->zoom) * ((IMG_SIZE / 2) / 100);
-		z->y1 += 0.1 / (0.01 * z->zoom) * ((IMG_SIZE / 2) / 100);
-		z->y2 -= 0.1 / (0.01 * z->zoom) * ((IMG_SIZE / 2) / 100);
-	}
-	else if (keycode == 51)
-	{
-		z->zoom /= 1.1;
-		z->x1 -= 0.1 / (0.01 * z->zoom) * ((IMG_SIZE / 2) / 100);
-		z->x2 += 0.1 / (0.01 * z->zoom) * ((IMG_SIZE / 2) / 100);
-		z->y1 -= 0.1 / (0.01 * z->zoom) * ((IMG_SIZE / 2) / 100);
-		z->y2 += 0.1 / (0.01 * z->zoom) * ((IMG_SIZE / 2) / 100);
-	}
-}
+// static void					zoom(t_env *z, const int keycode)
+// {
+// 	if (keycode == 36)
+// 	{
+// 		z->zoom *= 1.1;
+// 		z->x1 += 0.1 / (0.01 * z->zoom) * ((IMG_SIZE / 2) / 100);
+// 		z->x2 -= 0.1 / (0.01 * z->zoom) * ((IMG_SIZE / 2) / 100);
+// 		z->y1 += 0.1 / (0.01 * z->zoom) * ((IMG_SIZE / 2) / 100);
+// 		z->y2 -= 0.1 / (0.01 * z->zoom) * ((IMG_SIZE / 2) / 100);
+// 	}
+// 	else if (keycode == 51)
+// 	{
+// 		z->zoom /= 1.1;
+// 		z->x1 -= 0.1 / (0.01 * z->zoom) * ((IMG_SIZE / 2) / 100);
+// 		z->x2 += 0.1 / (0.01 * z->zoom) * ((IMG_SIZE / 2) / 100);
+// 		z->y1 -= 0.1 / (0.01 * z->zoom) * ((IMG_SIZE / 2) / 100);
+// 		z->y2 += 0.1 / (0.01 * z->zoom) * ((IMG_SIZE / 2) / 100);
+// 	}
+// }
 
-static void			zoom(int keycode, int x, int y, t_env *z)
+void	zoom(int keycode, int x, int y, t_img *m)
 {
 	double	c_r;
 	double	c_i;
@@ -77,9 +77,9 @@ static void			zoom(int keycode, int x, int y, t_env *z)
 static void					iter(t_env *z, const int keycode)
 {
 	if (keycode == 259)
-		z->iteration = z->iteration + 5;
+		z->iteration = z->iteration + 15;
 	else if (keycode == 261)
-		z->iteration = z->iteration - 5;
+		z->iteration = z->iteration - 15;
 }
 
 static void					swith_fract(t_env *z, int keycode)
@@ -134,7 +134,9 @@ int									keys(int keycode, t_env *z)
 		lock(z);
 	else if (keycode == 34)
 		switch_info(z);
-	else if (keycode == 36 || keycode == 51)
+	// else if (keycode == 36 || keycode == 51)
+	// 	zoom(z, keycode);
+	else if (keycode == 1 || keycode == 2)
 		zoom(z, keycode);
 	else if (keycode == 41 || keycode == 38 || keycode == 11)
 		swith_fract(z, keycode);
