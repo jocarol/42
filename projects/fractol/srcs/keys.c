@@ -55,24 +55,24 @@ static void					zoom(t_env *z, const int keycode)
 	}
 }
 
-static void			zoom(int keycode, int x, int y, t_env *z)
-{
-	double	c_r;
-	double	c_i;
-	double	frame;
-
-	frame = 0.0;
-	c_r = x / z->zoom + z->x1;
-	c_i = y / z->zoom + z->y1;
-	if (keycode == 1)
-		frame = (z->y2 - z->y1) * 0.5 / 2;
-	else if (keycode == 2)
-		frame = (z->y2 - z->y1) * 1.5 / 2;
-	z->x1 = c_r - frame;
-	z->y1 = c_i - frame;
-	z->y2 = c_i + frame;
-	z->zoom = IMG_SIZE/ (z->y2 - z->y1);
-}
+// static void			zoom(int keycode, int x, int y, t_env *z)
+// {
+// 	double	c_r;
+// 	double	c_i;
+// 	double	frame;
+//
+// 	frame = 0.0;
+// 	c_r = x / z->zoom + z->x1;
+// 	c_i = y / z->zoom + z->y1;
+// 	if (keycode == 1)
+// 		frame = (z->y2 - z->y1) * 0.5 / 2;
+// 	else if (keycode == 2)
+// 		frame = (z->y2 - z->y1) * 1.5 / 2;
+// 	z->x1 = c_r - frame;
+// 	z->y1 = c_i - frame;
+// 	z->y2 = c_i + frame;
+// 	z->zoom = IMG_SIZE/ (z->y2 - z->y1);
+// }
 
 static void					iter(t_env *z, const int keycode)
 {

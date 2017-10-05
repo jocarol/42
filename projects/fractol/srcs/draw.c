@@ -13,16 +13,16 @@ static void					put_pixel(t_env *z, int x, int y, int color)
   z->data[++i] = color >> 16;
 }
 
-static void 					fractol(t_env *z)
+static void 					fractol(t_env *z, int x, int y)
 {
   double      zr_tmp;
 	double			p_check;
   int         iteration;
 
-	p_check = sqrt((z->x - 0.25) * (z->x - 0.25) + z->y * z->y);
-	if (z->x < (p_check - 2 * (p_check * p_check) + 0.25))
+	p_check = sqrt((x - 0.25) * (x - 0.25) + y * y);
+	if (x < (p_check - 2 * (p_check * p_check) + 0.25))
 	{
-		put_pixel(z, z->x, z->y, 0x00FFFFFF);
+		put_pixel(z, x, y, 0x00FFFFFF);
 		return;
 	}
 	iteration = 0;
@@ -37,9 +37,9 @@ static void 					fractol(t_env *z)
     iteration++;
   }
 	if (iteration == z->iteration)
-		put_pixel(z, z->x, z->y, 0x00FFFFFF);
+		put_pixel(z, x, y, 0x00FFFFFF);
 	else
-		put_pixel(z, z->x, z->y, (0x00FFFFFF / 260 * (iteration + z->col)));
+		put_pixel(z, x, y, (0x00FFFFFF / 260 * (iteration + z->col)));
 }
 
 static void					display_info(t_env *z)
@@ -60,29 +60,42 @@ static void					display_info(t_env *z)
 	}
 }
 
-void 						draw(t_env *z)
+void            *th_bp(void *z)
 {
-	z->x = -1;
-  while (++z->x < IMG_SIZE)
+  t_env         *env_tmp;
+  int           x;
+  int           y;
+
+  // tmp_env = (t_env *)z;
+  env_tmp = (t_env *)malloc(sizeof(t_env *));
+
+  x = -1;
+  while (++x < IMG_SIZE)
   {
-    z->y = -1;
-    while (++z->y < IMG_SIZE)
-		{
-			if (z->frac_type == JULIA)
-			{
-				z->r = z->x / z->zoom + z->x1;
-				z->i = z->y / z->zoom + z->y1;
-			}
-			else
-			{
-				z->c_r = z->x / z->zoom + z->x1;
-				z->c_i = z->y / z->zoom + z->y1;
-				z->r = 0.0;
-				z->i = 0.0;
-			}
-			fractol(z);
-		}
+    y = -1;
+    while (++y < IMG_SIZE)
+    {
+      if (z->frac_type == JULIA)
+      {
+        env_tmp->r = x / env_tmp->zoom + env_tmp->x1;
+        env_tmp->i = y / env_tmp->zoom + env_tmp->y1;
+      }
+      else
+      {
+        env_tmp->c_r = env_tmp->x / env_tmp->zoom + env_tmp->x1;
+        env_tmp->c_i = env_tmp->y / env_tmp->zoom + env_tmp->y1;
+        env_tmp->r = 0.0;
+        env_tmp->i = 0.0;
+      }
+      fractol(z, x, y);
+    }
   }
+
+}
+
+
+void 						*draw(t_env *z)
+{
   mlx_put_image_to_window(z->mlx_ptr, z->win, z->img, 0, 0);
   display_info(z);
 }

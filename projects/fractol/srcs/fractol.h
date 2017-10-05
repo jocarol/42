@@ -27,8 +27,6 @@ typedef struct 					s_env
 	int										y;
 	int										lock;
 	int										display_info;
-	// int										x_param;
-	// int										y_param;
 	double								zoom;
 	double								c_r;
 	double								c_i;
