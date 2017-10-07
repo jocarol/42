@@ -6,7 +6,7 @@
 # include <math.h>
 # include <pthread.h>
 
-# define WIN_NAME "Fractol"
+# define WIN_NAME "jocarol@Fractol"
 # define IMG_SIZE 800
 # define MANDLEBROT 1
 # define JULIA 2
@@ -15,6 +15,7 @@
 
 typedef struct 					s_env
 {
+  int               key; //
 	void 									*mlx_ptr;
 	void 									*win;
 	void 									*img;
@@ -51,6 +52,7 @@ void 										julia_init(t_env *z);
 void 										bs_init(t_env *z);
 void										set_env(t_env *z, char *av);
 void										draw(t_env *z);
+int 										zoom(int key, int x, int y, t_env *z);
 int											keys(int keycode, t_env *z);
 int											morph(int x, int y, t_env *z);
 void										usage();

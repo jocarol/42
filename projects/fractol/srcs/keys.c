@@ -35,45 +35,64 @@ static void					move(t_env *z, const int keycode)
 	}
 }
 
-static void					zoom(t_env *z, const int keycode)
+int	    	  			zoom(int key, int x, int y, t_env *z)
 {
-	if (keycode == 36)
-	{
-		z->zoom *= 1.1;
-		z->x1 += 0.1 / (0.01 * z->zoom) * ((IMG_SIZE / 2) / 100);
-		z->x2 -= 0.1 / (0.01 * z->zoom) * ((IMG_SIZE / 2) / 100);
-		z->y1 += 0.1 / (0.01 * z->zoom) * ((IMG_SIZE / 2) / 100);
-		z->y2 -= 0.1 / (0.01 * z->zoom) * ((IMG_SIZE / 2) / 100);
-	}
-	else if (keycode == 51)
-	{
-		z->zoom /= 1.1;
-		z->x1 -= 0.1 / (0.01 * z->zoom) * ((IMG_SIZE / 2) / 100);
-		z->x2 += 0.1 / (0.01 * z->zoom) * ((IMG_SIZE / 2) / 100);
-		z->y1 -= 0.1 / (0.01 * z->zoom) * ((IMG_SIZE / 2) / 100);
-		z->y2 += 0.1 / (0.01 * z->zoom) * ((IMG_SIZE / 2) / 100);
-	}
+	double	c_r;
+	double	c_i;
+	double	frame;
+
+	frame = 0.0;
+	c_r = x / z->zoom + z->x1;
+	c_i = y / z->zoom + z->y1;
+	if (key == 1)
+		frame = (z->y2 - z->y1) * 0.5 / 2;
+	else if (key == 2)
+		frame = (z->y2 - z->y1) * 1.5 / 2;
+	z->x1 = c_r - frame;
+	z->y1 = c_i - frame;
+	z->y2 = c_i + frame;
+	z->zoom = IMG_SIZE/ (z->y2 - z->y1);
+  
+  if (z->key == 1)
+  {
+  	z->zoom *= 1.1;
+ 		z->x1 += 0.1 / (0.01 * z->zoom);
+ 		z->x2 -= 0.1 / (0.01 * z->zoom);
+ 		z->y1 += 0.1 / (0.01 * z->zoom);
+ 		z->y2 -= 0.1 / (0.01 * z->zoom);
+  }
+  else if (z->key == 2)
+  {
+  	z->zoom /= 1.1;
+ 		z->x1 -= 0.1 / (0.01 * z->zoom);
+ 		z->x2 += 0.1 / (0.01 * z->zoom);
+ 		z->y1 -= 0.1 / (0.01 * z->zoom);
+ 		z->y2 += 0.1 / (0.01 * z->zoom);
+  }
+  mlx_clear_window(z->mlx_ptr, z->win);
+  draw(z);
+  return (0);
 }
 
-// static void			zoom(int keycode, int x, int y, t_env *z)
-// {
-// 	printf("ok");
-// 	double	c_r;
-// 	double	c_i;
-// 	double	frame;
-//
-// 	frame = 0.0;
-// 	c_r = x / z->zoom + z->x1;
-// 	c_i = y / z->zoom + z->y1;
-// 	if (keycode == 1)
-// 		frame = (z->y2 - z->y1) * 0.5 / 2;
-// 	else if (keycode == 2)
-// 		frame = (z->y2 - z->y1) * 1.5 / 2;
-// 	z->x1 = c_r - frame;
-// 	z->y1 = c_i - frame;
-// 	z->y2 = c_i + frame;
-// 	z->zoom = IMG_SIZE/ (z->y2 - z->y1);
-// }
+/*int			zoom(int keycode, int x, int y, t_env *z)
+{
+	double	c_r;
+	double	c_i;
+	double	frame;
+
+	frame = 0.0;
+	c_r = x / z->zoom + z->x1;
+	c_i = y / z->zoom + z->y1;
+	if (keycode == 1)
+		frame = (z->y2 - z->y1) * 0.5 / 2;
+	else if (keycode == 2)
+		frame = (z->y2 - z->y1) * 1.5 / 2;
+	z->x1 = c_r - frame;
+	z->y1 = c_i - frame;
+	z->y2 = c_i + frame;
+	z->zoom = IMG_SIZE/ (z->y2 - z->y1);
+	return (0);
+}*/
 
 static void					iter(t_env *z, const int keycode)
 {
@@ -131,12 +150,15 @@ static void 				switch_info(t_env *z)
 int									keys(int keycode, t_env *z)
 {
 	printf("keycode press = %d\n", keycode);
+  z->key = keycode;
 	if (z->frac_type == JULIA && keycode == 37)
 		lock(z);
 	else if (keycode == 34)
 		switch_info(z);
 	// else if (keycode == 36 || keycode == 51)
 	// 	zoom(z, keycode);
+	//else if (keycode == 1 || keycode == 2 || keycode == 36 || keycode == 51)
+    //zoom(keycode, x, y, z);
 	else if (keycode == 41 || keycode == 38 || keycode == 11)
 		swith_fract(z, keycode);
 	else if (keycode == 8)

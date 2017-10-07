@@ -1,5 +1,15 @@
 #include "fractol.h"
 
+/*void 					mandle_init(t_env *z)
+{
+	z->x1 = 0.0;
+	z->x2 = 0.0;
+	z->y1 = 0.0;
+	z->y2 = 0.0;
+	z->zoom = 0.0;
+	z->iteration = 50;
+}*/
+
 void 					mandle_init(t_env *z)
 {
 	z->x1 = -2.1;
