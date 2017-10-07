@@ -54,48 +54,64 @@ static void					display_info(t_env *z)
 	 	else if (z->frac_type == 3)
 	   	mlx_string_put(z->mlx_ptr, z->win, 195, 725, 0x00000000, "Burning Ship");
 	 	mlx_string_put(z->mlx_ptr, z->win, 20, 745, 0x00000000, "Zoom          : ");
-	 	mlx_string_put(z->mlx_ptr, z->win, 195, 745, 0x00000000, ft_itoa(z->zoom));
+	 	mlx_string_put(z->mlx_ptr, z->win, 195, 745, 0x00000000, itoa_fractol(z->zoom));
 	 	mlx_string_put(z->mlx_ptr, z->win, 20, 765, 0x00000000, "Itération(s)   : ");
-	 	mlx_string_put(z->mlx_ptr, z->win, 195, 765, 0x00000000, ft_itoa(z->iteration));
+	 	mlx_string_put(z->mlx_ptr, z->win, 195, 765, 0x00000000, itoa_fractol(z->iteration));
 	}
 }
 
-void            *th_bp(void *z)
+void            *th_bp(void *mother_thread)
 {
-  t_env         *env_tmp;
-  int           x;
-  int           y;
+  t_mother_thread   *mother_thread_tmp;
+  t_env             *env_tmp;
+  int               x;
+  int               y;
 
-  // tmp_env = (t_env *)z;
-  env_tmp = (t_env *)malloc(sizeof(t_env *));
-
-  x = -1;
-  while (++x < IMG_SIZE)
+  mother_thread_tmp = (t_mother_thread *)mother_thread;
+  env_tmp = malloc(sizeof(t_env));
+  *env_tmp = *mother_thread_tmp->env_thread;
+  x = IMG_SIZE * mother_thread_tmp->thread_id / N_THREADS - 1;
+  while (++x < IMG_SIZE * (mother_thread_tmp->thread_id + 1) / N_THREADS)
   {
     y = -1;
     while (++y < IMG_SIZE)
     {
-      if (z->frac_type == JULIA)
+      if (env_tmp->frac_type == JULIA)
       {
         env_tmp->r = x / env_tmp->zoom + env_tmp->x1;
         env_tmp->i = y / env_tmp->zoom + env_tmp->y1;
       }
       else
       {
-        env_tmp->c_r = env_tmp->x / env_tmp->zoom + env_tmp->x1;
-        env_tmp->c_i = env_tmp->y / env_tmp->zoom + env_tmp->y1;
+        env_tmp->c_r = x / env_tmp->zoom + env_tmp->x1;
+        env_tmp->c_i = y / env_tmp->zoom + env_tmp->y1;
         env_tmp->r = 0.0;
         env_tmp->i = 0.0;
       }
-      fractol(z, x, y);
+      fractol(env_tmp, x, y);
     }
   }
-
+  free(env_tmp);
+  pthread_exit(0);
 }
 
 
-void 						*draw(t_env *z)
+void 						       draw(t_env *z)
 {
+  t_mother_thread      array[N_THREADS];
+  pthread_t            the_thread[N_THREADS];
+  int                  i;
+
+  i = -1;
+  while (++i < N_THREADS)
+  {
+    array[i].thread_id = i;
+    array[i].env_thread = z;
+    pthread_create (&the_thread[i], NULL, th_bp, &array[i]);
+  }
+  i = -1;
+  while (++i < N_THREADS)
+    pthread_join(the_thread[i], NULL);
   mlx_put_image_to_window(z->mlx_ptr, z->win, z->img, 0, 0);
   display_info(z);
 }

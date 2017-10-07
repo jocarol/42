@@ -20,7 +20,6 @@ static void					get_frac_type(char *av, t_env *z)
 
 void					set_env(t_env *z, char *av)
 {
-  ft_bzero(z, sizeof(z));
 	z->lock = 0;
 	z->display_info = 0;
   z->mlx_ptr = mlx_init();

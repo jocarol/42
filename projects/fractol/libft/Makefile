@@ -12,7 +12,7 @@
 
 NAME = libft.a
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -O3 -Wall -Wextra -Werror
 
 RM = /bin/rm -f
 
@@ -33,7 +33,7 @@ SRCS = ft_atoi.c ft_atoi_base.c ft_bzero.c ft_isalnum.c ft_isalpha.c \
 	ft_strlen.c ft_strlcat.c ft_strlen.c ft_strmap.c ft_strmapi.c ft_strncat.c \
 	ft_strncmp.c ft_strncpy.c ft_strnequ.c ft_strnew.c ft_strnjoin.c \
 	ft_strnstr.c ft_strrchr.c	ft_strsplit.c ft_strstr.c ft_strsub.c ft_strtrim.c \
-	ft_swap.c ft_tolower.c ft_toupper.c get_next_line.c \
+	ft_swap.c ft_tolower.c ft_toupper.c get_next_line.c itoa_fractol.c
 
 
 #SRCS=$(addprefix $(SRCS_PATH), $(SRCS_NAME))

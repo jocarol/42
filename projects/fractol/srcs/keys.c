@@ -57,6 +57,7 @@ static void					zoom(t_env *z, const int keycode)
 
 // static void			zoom(int keycode, int x, int y, t_env *z)
 // {
+// 	printf("ok");
 // 	double	c_r;
 // 	double	c_i;
 // 	double	frame;
@@ -134,8 +135,8 @@ int									keys(int keycode, t_env *z)
 		lock(z);
 	else if (keycode == 34)
 		switch_info(z);
-	else if (keycode == 36 || keycode == 51)
-		zoom(z, keycode);
+	// else if (keycode == 36 || keycode == 51)
+	// 	zoom(z, keycode);
 	else if (keycode == 41 || keycode == 38 || keycode == 11)
 		swith_fract(z, keycode);
 	else if (keycode == 8)

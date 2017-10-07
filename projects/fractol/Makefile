@@ -1,20 +1,20 @@
 NAME = fractol
 SRC = main.c fractals.c draw.c keys.c set_env.c
 OBJDIR = objs
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -O3 -Wall -Wextra -Werror
 CC = gcc
 OBJ = $(addprefix ${OBJDIR}/, $(SRC:.c=.o))
-MLX = minilibx_macos/
+	MLX = minilibx_macos/
 FRAMEWORKS = -framework OpenGL -framework AppKit
 
 all:${NAME}
 
 ${NAME}: ${OBJ}
-	@make -C libft/
-	@make -C ${MLX}
+	@make -j -C libft/
+	@make -j -C ${MLX}
 	@echo Compiling ${NAME}
 	@${CC} ${CFLAGS} -g -Ilibft/includes/ -I. -I${MLX} -Llibft/ -lft \
-		-L${MLX} -lmlx ${FRAMEWORKS} -o $@ ${OBJ}
+		-L${MLX} -lmlx ${FRAMEWORKS} -o $@ ${OBJ} -lpthread -D_REETRANT
 	@echo "\033[32m${NAME} okay !\033[0m"
 
 ${OBJDIR}/%.o : ./srcs/%.c
