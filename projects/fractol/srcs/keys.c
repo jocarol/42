@@ -52,7 +52,7 @@ int	    	  			zoom(int key, int x, int y, t_env *z)
 	z->y1 = c_i - frame;
 	z->y2 = c_i + frame;
 	z->zoom = IMG_SIZE/ (z->y2 - z->y1);
-  
+
   if (z->key == 1)
   {
   	z->zoom *= 1.1;
@@ -97,9 +97,9 @@ int	    	  			zoom(int key, int x, int y, t_env *z)
 static void					iter(t_env *z, const int keycode)
 {
 	if (keycode == 259)
-		z->iteration = z->iteration + 5;
+		z->iteration = z->iteration + 25;
 	else if (keycode == 261)
-		z->iteration = z->iteration - 5;
+		z->iteration = z->iteration - 25;
 }
 
 static void					swith_fract(t_env *z, int keycode)
