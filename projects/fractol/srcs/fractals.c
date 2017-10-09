@@ -6,13 +6,13 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 15:20:53 by jocarol           #+#    #+#             */
-/*   Updated: 2017/10/09 15:25:08 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/10/09 18:20:14 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void 					mandle_init(t_env *z)
+void					mandle_init(t_env *z)
 {
 	z->x1 = -2.1;
 	z->x2 = 0.6;
@@ -22,7 +22,7 @@ void 					mandle_init(t_env *z)
 	z->iteration = 50;
 }
 
-void 					julia_init(t_env *z)
+void					julia_init(t_env *z)
 {
 	z->x1 = -2.0;
 	z->x2 = 2.0;
@@ -32,7 +32,7 @@ void 					julia_init(t_env *z)
 	z->iteration = 50;
 }
 
-void 					bs_init(t_env *z)
+void					bs_init(t_env *z)
 {
 	z->x1 = -1.0;
 	z->x2 = 1;

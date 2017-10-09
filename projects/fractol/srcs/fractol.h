@@ -6,7 +6,7 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 15:26:13 by jocarol           #+#    #+#             */
-/*   Updated: 2017/10/09 15:26:16 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/10/09 18:21:16 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@
 
 typedef struct							s_env
 {
-	int									key; //
-	void 								*mlx_ptr;
-	void 								*win;
-	void 								*img;
-	char 								*data;
+	int									key;
+	void								*mlx_ptr;
+	void								*win;
+	void								*img;
+	char								*data;
 	double								zoom;
 	double								c_r;
 	double								c_i;
@@ -41,7 +41,7 @@ typedef struct							s_env
 	double								y2;
 	double								r;
 	double								i;
-	int 								frac_type;
+	int									frac_type;
 	int									iteration;
 	int									linesize;
 	int									endian;
@@ -53,7 +53,7 @@ typedef struct							s_env
 	int									lock;
 }										t_env;
 
-typedef struct							mother_thread
+typedef	struct							mother_thread
 {
 	int									thread_id;
 	t_env								*env_thread;
@@ -64,7 +64,7 @@ void 									julia_init(t_env *z);
 void 									bs_init(t_env *z);
 void									set_env(t_env *z, char *av);
 void									draw(t_env *z);
-int 									zoom(int key, int x, int y, t_env *z);
+int									zoom(int key, int x, int y, t_env *z);
 int										keys(int keycode, t_env *z);
 int										morph(int x, int y, t_env *z);
 void									usage();
