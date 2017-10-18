@@ -6,68 +6,58 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 15:28:01 by jocarol           #+#    #+#             */
-/*   Updated: 2017/10/18 17:41:17 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/10/18 17:36:05 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <stdio.h>
 
-static void						lock(t_env *z)
+static void						move(t_env *z, const int keycode)
 {
-	if (!z->lock)
-		z->lock = 1;
-	else
-		z->lock = 0;
-}
-
-static void						swith_fract(t_env *z, int keycode)
-{
-	if (keycode == 46)
+	if (keycode == 123)
 	{
-		mandle_init(z);
-		z->frac_type = MANDLEBROT;
+		z->x1 += 0.1 / (0.01 * z->zoom);
+		z->x2 -= 0.1 / (0.01 * z->zoom);
 	}
-	else if (keycode == 38)
+	if (keycode == 124)
 	{
-		julia_init(z);
-		z->frac_type = JULIA;
+		z->x1 -= 0.1 / (0.01 * z->zoom);
+		z->x2 += 0.1 / (0.01 * z->zoom);
 	}
-	else
+	if (keycode == 125)
 	{
-		bs_init(z);
-		z->frac_type = BURNINGSHIP;
+		z->y1 -= 0.1 / (0.01 * z->zoom);
+		z->y2 += 0.1 / (0.01 * z->zoom);
+	}
+	if (keycode == 126)
+	{
+		z->y1 += 0.1 / (0.01 * z->zoom);
+		z->y2 -= 0.1 / (0.01 * z->zoom);
 	}
 }
 
-static void						color(t_env *z)
+static void						iter(t_env *z, const int keycode)
 {
-	z->col += 10;
+	if (keycode == 259)
+		z->iteration = z->iteration + 25;
+	else if (keycode == 261)
+		z->iteration = z->iteration - 25;
 }
 
-static void						switch_info(t_env *z)
-{
-	if (z->display_info)
-		z->display_info = 0;
-	else
-		z->display_info = 1;
-}
-
-int								keys(int keycode, t_env *z)
+int								keys2(int keycode, t_env *z)
 {
 	printf("keycode press = %d\n", keycode);
 	z->key = keycode;
-	if (keycode == 259 || keycode == 261 || (keycode >= 123 && keycode <= 126)\
-		|| keycode == 53)
-		keys2(keycode, z);
-	if (z->frac_type == JULIA && keycode == 37)
-		lock(z);
-	else if (keycode == 34)
-		switch_info(z);
-	else if (keycode == 46 || keycode == 38 || keycode == 11)
-		swith_fract(z, keycode);
-	else if (keycode == 8)
-		color(z);
+	if (keycode == 259 || keycode == 261)
+		iter(z, keycode);
+	else if (keycode >= 123 && keycode <= 126)
+		move(z, keycode);
+	else if (keycode == 53)
+	{
+		mlx_destroy_window(z->mlx_ptr, z->win);
+		exit(1);
+	}
 	else
 		return (0);
 	mlx_clear_window(z->mlx_ptr, z->win);

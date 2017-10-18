@@ -1,5 +1,17 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2017/10/18 16:44:32 by jocarol           #+#    #+#              #
+#    Updated: 2017/10/18 16:44:48 by jocarol          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = fractol
-SRC = main.c fractals.c draw.c keys.c set_env.c
+SRC = main.c fractals.c draw.c keys.c keys2.c mouse.c set_env.c
 OBJDIR = objs
 CFLAGS = -O3 -Wall -Wextra -Werror
 CC = gcc
@@ -23,18 +35,23 @@ ${OBJDIR}/%.o : ./srcs/%.c
 	@${CC} ${CFLAGS} -g -Ilibft/includes/ -I. -I${MLX} -c -o $@ $<
 
 clean:
-	@echo clean mlx...
+	echo clean mlx...
 	@make -C ${MLX} clean
-	@echo clean libft...
+	echo zbreh\'!
+	echo clean libft...
 	@make -C libft/ clean
-	@echo clean objs...
+	echo zbreh\'!
+	echo clean objs...
 	@/bin/rm -Rf ${OBJDIR}
+	echo zbreh\'!
 
 fclean: clean
-	@echo fclean libft...
+	echo fclean libft...
 	@make -C libft/ fclean
-	@echo clean ${NAME}...
+	echo zbreh\'!
+	echo clean ${NAME}...
 	@/bin/rm -f ${NAME}
+	echo zbreh\'!
 
 re: fclean all
 

@@ -6,14 +6,14 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 14:53:16 by jocarol           #+#    #+#             */
-/*   Updated: 2017/10/09 15:20:46 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/10/18 15:19:45 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <stdio.h>
 
-static void					put_pixel(t_env *z, int x, int y, int color)
+static void						put_pixel(t_env *z, int x, int y, int color)
 {
 	int						i;
 
@@ -25,17 +25,17 @@ static void					put_pixel(t_env *z, int x, int y, int color)
 	z->data[++i] = color >> 16;
 }
 
-static void					fractol(t_env *z, int x, int y)
+static void						fractol(t_env *z, int x, int y)
 {
-	double					zr_tmp;
-	double					p_check;
-	int						iteration;
+	double						zr_tmp;
+	double						p_check;
+	int							iteration;
 
 	p_check = sqrt((x - 0.25) * (x - 0.25) + y * y);
 	if (x < (p_check - 2 * (p_check * p_check) + 0.25))
 	{
-		put_pixel(z, x, y, 0x00FFFFFF);
-		return;
+		put_pixel(z, x, y, WHITE);
+		return ;
 	}
 	iteration = 0;
 	while (z->r * z->r + z->i * z->i < 4 && iteration < z->iteration)
@@ -49,35 +49,35 @@ static void					fractol(t_env *z, int x, int y)
 		iteration++;
 	}
 	if (iteration == z->iteration)
-		put_pixel(z, x, y, 0x00FFFFFF);
+		put_pixel(z, x, y, WHITE);
 	else
-		put_pixel(z, x, y, (0x00FFFFFF / 260 * (iteration + z->col)));
+		put_pixel(z, x, y, (WHITE / 260 * (iteration + z->col)));
 }
 
-static void					display_info(t_env *z)
+static void						display_info(t_env *z)
 {
 	if (z->display_info)
 	{
-		mlx_string_put(z->mlx_ptr, z->win, 20, 725, 0x00000000, "Fractal       : ");
+		mlx_string_put(z->mlx_ptr, z->win, 20, 725, BLACK, "Fractal : ");
 		if (z->frac_type == 1)
-			mlx_string_put(z->mlx_ptr, z->win, 195, 725, 0x00000000, "Mandlebrot");
+			mlx_string_put(z->mlx_ptr, z->win, 195, 725, BLACK, "Mandlebrot");
 		else if (z->frac_type == 2)
-			mlx_string_put(z->mlx_ptr, z->win, 195, 725, 0x00000000, "Julia");
+			mlx_string_put(z->mlx_ptr, z->win, 195, 725, BLACK, "Julia");
 		else if (z->frac_type == 3)
-			mlx_string_put(z->mlx_ptr, z->win, 195, 725, 0x00000000, "Burning Ship");
-		mlx_string_put(z->mlx_ptr, z->win, 20, 745, 0x00000000, "Zoom          : ");
-		mlx_string_put(z->mlx_ptr, z->win, 195, 745, 0x00000000, itoa_fractol(z->zoom));
-		mlx_string_put(z->mlx_ptr, z->win, 20, 765, 0x00000000, "Itération(s)   : ");
-		mlx_string_put(z->mlx_ptr, z->win, 195, 765, 0x00000000, itoa_fractol(z->iteration));
+			mlx_string_put(z->mlx_ptr, z->win, 195, 725, BLACK, "BurningShip");
+		mlx_string_put(z->mlx_ptr, z->win, 20, 745, BLACK, "Zoom     : ");
+		mlx_string_put(z->mlx_ptr, z->win, 195, 745, BLACK, STR_ZOOM);
+		mlx_string_put(z->mlx_ptr, z->win, 20, 765, BLACK, "Itérations : ");
+		mlx_string_put(z->mlx_ptr, z->win, 195, 765, BLACK, STR_ITER);
 	}
 }
 
-void					*th_bp(void *mother_thread)
+void							*th_bp(void *mother_thread)
 {
-	t_mother_thread		*mother_thread_tmp;
-	t_env				*env_tmp;
-	int					x;
-	int					y;
+	t_mother_thread				*mother_thread_tmp;
+	t_env						*env_tmp;
+	int							x;
+	int							y;
 
 	mother_thread_tmp = (t_mother_thread *)mother_thread;
 	env_tmp = (t_env *)malloc(sizeof(t_env));
@@ -107,18 +107,18 @@ void					*th_bp(void *mother_thread)
 	pthread_exit(0);
 }
 
-void 					draw(t_env *z)
+void							draw(t_env *z)
 {
-	t_mother_thread		array[N_THREADS];
-	pthread_t			the_thread[N_THREADS];
-	int					i;
+	t_mother_thread				array[N_THREADS];
+	pthread_t					the_thread[N_THREADS];
+	int							i;
 
 	i = -1;
 	while (++i < N_THREADS)
 	{
 		array[i].thread_id = i;
 		array[i].env_thread = z;
-		pthread_create (&the_thread[i], NULL, th_bp, &array[i]);
+		pthread_create(&the_thread[i], NULL, th_bp, &array[i]);
 	}
 	i = -1;
 	while (++i < N_THREADS)

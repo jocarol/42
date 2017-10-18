@@ -6,7 +6,7 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 15:26:13 by jocarol           #+#    #+#             */
-/*   Updated: 2017/10/09 18:21:16 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/10/18 16:38:32 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@
 # define JULIA 2
 # define BURNINGSHIP 3
 # define N_THREADS 8
+# define BLACK 0x00000000
+# define WHITE 0x00FFFFFF
+# define STR_ZOOM itoa_fractol(z->zoom)
+# define STR_ITER itoa_fractol(z->iteration)
+# define AD mlx_get_data_addr(z->img, &(z->bpp), &(z->linesize), &(z->endian));
 
 typedef struct							s_env
 {
@@ -53,20 +58,21 @@ typedef struct							s_env
 	int									lock;
 }										t_env;
 
-typedef	struct							mother_thread
+typedef struct							s_mother_thread
 {
 	int									thread_id;
 	t_env								*env_thread;
 }										t_mother_thread;
 
-void 									mandle_init(t_env *z);
-void 									julia_init(t_env *z);
-void 									bs_init(t_env *z);
+void									usage(void);
+void									mandle_init(t_env *z);
+void									julia_init(t_env *z);
+void									bs_init(t_env *z);
 void									set_env(t_env *z, char *av);
 void									draw(t_env *z);
-int									zoom(int key, int x, int y, t_env *z);
 int										keys(int keycode, t_env *z);
+int										keys2(int keycode, t_env *z);
+int										zoom(int key, int x, int y, t_env *z);
 int										morph(int x, int y, t_env *z);
-void									usage();
 
 #endif
