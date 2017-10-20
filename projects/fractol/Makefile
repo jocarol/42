@@ -6,7 +6,7 @@
 #    By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/18 16:44:32 by jocarol           #+#    #+#              #
-#    Updated: 2017/10/18 16:44:48 by jocarol          ###   ########.fr        #
+#    Updated: 2017/10/18 23:12:47 by jocarol          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CFLAGS = -O3 -Wall -Wextra -Werror
 CC = gcc
 OBJ = $(addprefix ${OBJDIR}/, $(SRC:.c=.o))
 	MLX = minilibx_macos/
-FRAMEWORKS = -framework OpenGL -framework AppKit
+FRAMEWORKS =  
 
 all:${NAME}
 
