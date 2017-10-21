@@ -1,13 +1,10 @@
-#include "libft/libft.h"
-#include "minilibx_macos/mlx.h"
-#include "math.h"
+#include "Wolf3D.h"
+#include <stdio.h>
 
 #define WIN_NAME "Wolf3D"
 #define IMG_SIZE 1000
 #define MAP_W 24
 #define MAP_H 24
-
-#include <stdio.h>
 
 int worldMap[MAP_W][MAP_H] =
 {
@@ -39,35 +36,21 @@ int worldMap[MAP_W][MAP_H] =
 
 int                   main(void)
 {
-  double              posX;
-  double              posY;
-  double              dirX;
-  double              dirY;
-  double              planeX;
-  double              planeY;
-  void                *mlx_ptr;
-  void                *mlx_win;
-  void                *mlx_img;
-  char                *mlx_data;
-  int                 line_size;
-  int                 endian;
-  int                 bpp;
-  int                 draw_start;
-  int                 draw_end;
-  int                 x;
 
-  x = 0;
-  posX = 22;
-  posY = 12;
-  dirX = -1;
-  dirY = 0;
-  planeX = 0;
-  planeY = 0.66;
-  mlx_ptr = mlx_init();
-	mlx_win = mlx_new_window(mlx_ptr, IMG_SIZE, IMG_SIZE, WIN_NAME);
-	mlx_img = mlx_new_image(mlx_ptr, IMG_SIZE, IMG_SIZE);
-	mlx_data = mlx_get_data_addr(mlx_img, &(bpp), &(line_size), &(endian));
-	line_size = IMG_SIZE * 4;
+void                 init_env(t_mlx env)
+{
+  env->x = 0;
+  env->posX = 22;
+  env->posY = 12;
+  env->dirX = -1;
+  env->dirY = 0;
+  env->planeX = 0;
+  env->planeY = 0.66;
+  env->mlx_ptr = mlx_init();
+	env->mlx_win = mlx_new_window(mlx_ptr, IMG_SIZE, IMG_SIZE, WIN_NAME);
+	env->mlx_img = mlx_new_image(mlx_ptr, IMG_SIZE, IMG_SIZE);
+	env->mlx_data = mlx_get_data_addr(mlx_img, &(bpp), &(line_size), &(endian));
+}
   while (x < IMG_SIZE)
   {
     double            cameraX;
@@ -91,12 +74,12 @@ int                   main(void)
     cameraX = 2 * x / (double)IMG_SIZE - 1;
     rayPosX = posX;
     rayPosY = posY;
-    rayDirX = dirX + cameraX + planeX;
-    rayDirY = dirY + cameraX + planeY;
+    rayDirX = dirX + cameraX * planeX;
+    rayDirY = dirY + cameraX * planeY;
     mapX = (int)(rayPosX);
     mapY = (int)(rayPosY);
-    deltaDistX = sqrt(1 + (rayDirY * rayDirY) / (rayDirX + rayDirX));
-    deltaDistY = sqrt(1 + (rayDirX * rayDirX) / (rayDirY + rayDirY));
+    deltaDistX = sqrt(1 + (rayDirY * rayDirY) / (rayDirX * rayDirX));
+    deltaDistY = sqrt(1 + (rayDirX * rayDirX) / (rayDirY * rayDirY));
     hit = 0;
     if (rayDirX < 0)
     {
