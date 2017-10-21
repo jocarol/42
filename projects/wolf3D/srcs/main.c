@@ -1,11 +1,6 @@
 #include "Wolf3D.h"
 #include <stdio.h>
 
-#define WIN_NAME "Wolf3D"
-#define IMG_SIZE 1000
-#define MAP_W 24
-#define MAP_H 24
-
 int worldMap[MAP_W][MAP_H] =
 {
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
@@ -34,121 +29,106 @@ int worldMap[MAP_W][MAP_H] =
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
-int                   main(void)
-{
-
-void                 init_env(t_mlx env)
+void                  ignition(t_mlx *mlx, t_env *env)
 {
   env->x = 0;
-  env->posX = 22;
-  env->posY = 12;
-  env->dirX = -1;
-  env->dirY = 0;
-  env->planeX = 0;
-  env->planeY = 0.66;
-  env->mlx_ptr = mlx_init();
-	env->mlx_win = mlx_new_window(mlx_ptr, IMG_SIZE, IMG_SIZE, WIN_NAME);
-	env->mlx_img = mlx_new_image(mlx_ptr, IMG_SIZE, IMG_SIZE);
-	env->mlx_data = mlx_get_data_addr(mlx_img, &(bpp), &(line_size), &(endian));
+  env->pos_x = 22;
+  env->pos_y = 12;
+  env->dir_x = -1;
+  env->dir_y = 0;
+  env->plane_x = 0;
+  env->plane_y = 0.66;
+  mlx->mlx_ptr = mlx_init();
+	mlx->mlx_win = mlx_new_window(mlx->mlx_ptr, IMG_SIZE, IMG_SIZE, WIN_NAME);
+	mlx->mlx_img = mlx_new_image(mlx->mlx_ptr, IMG_SIZE, IMG_SIZE);
+	mlx->mlx_data = mlx_get_data_addr(mlx->mlx_img, &(mlx->bpp), &(mlx->line_size), &(mlx->endian));
 }
-  while (x < IMG_SIZE)
-  {
-    double            cameraX;
-    double            rayPosX;
-    double            rayPosY;
-    double            rayDirX;
-    double            rayDirY;
-    double            sideDistX;
-    double            sideDistY;
-    double            deltaDistX;
-    double            deltaDistY;
-    double            PerpWallDist;
-    int               stepX;
-    int               stepY;
-    int               mapX;
-    int               mapY;
-    int               line_height;
-    int               hit;
-    int               side;
 
-    cameraX = 2 * x / (double)IMG_SIZE - 1;
-    rayPosX = posX;
-    rayPosY = posY;
-    rayDirX = dirX + cameraX * planeX;
-    rayDirY = dirY + cameraX * planeY;
-    mapX = (int)(rayPosX);
-    mapY = (int)(rayPosY);
-    deltaDistX = sqrt(1 + (rayDirY * rayDirY) / (rayDirX * rayDirX));
-    deltaDistY = sqrt(1 + (rayDirX * rayDirX) / (rayDirY * rayDirY));
-    hit = 0;
-    if (rayDirX < 0)
+int                   main(void)
+{
+  t_mlx               mlx;
+  t_env               env;
+
+  ignition(&mlx, &env);
+  while (env.x < IMG_SIZE)
+  {
+    env.camera_x = 2 * env.x / (double)IMG_SIZE - 1;
+    env.ray_pos_x = env.pos_x;
+    env.ray_pos_y = env.pos_y;
+    env.ray_dir_x = env.dir_x + env.camera_x * env.plane_x;
+    env.ray_dir_y = env.dir_y + env.camera_x * env.plane_y;
+    env.map_x = (int)(env.ray_pos_x);
+    env.map_y = (int)(env.ray_pos_y);
+    env.delta_dist_x = sqrt(1 + (env.ray_dir_y * env.ray_dir_y) / (env.ray_dir_x * env.ray_dir_x));
+    env.delta_dist_y = sqrt(1 + (env.ray_dir_x * env.ray_dir_x) / (env.ray_dir_y * env.ray_dir_y));
+    env.hit = 0;
+    if (env.ray_dir_x < 0)
     {
-      stepX = -1;
-      sideDistX = (rayPosX - mapX) * deltaDistX;
+      env.step_x = -1;
+      env.side_dist_x = (env.ray_pos_x - env.map_x) * env.delta_dist_x;
     }
     else
     {
-      stepX = 1;
-      sideDistX = (mapX + 1.0 - rayPosX) * deltaDistX;
+      env.step_x = 1;
+      env.side_dist_x = (env.map_x + 1.0 - env.ray_pos_x) * env.delta_dist_x;
     }
-    if (rayDirY < 0)
+    if (env.ray_dir_y < 0)
     {
-      stepY = -1;
-      sideDistY = (rayPosY - mapY) * deltaDistY;
+      env.step_y = -1;
+      env.side_dist_y = (env.ray_pos_y - env.map_y) * env.delta_dist_y;
     }
     else
     {
-      stepY = 1;
-      sideDistY = (mapY + 1.0 - rayPosY) * deltaDistY;
+      env.step_y = 1;
+      env.side_dist_y = (env.map_y + 1.0 - env.ray_pos_y) * env.delta_dist_y;
     }
     //perform DDA
-    while (hit == 0)
+    while (!env.hit)
     {
       //jump to next map square, OR in x-direction, OR in y-direction
-      if (sideDistX < sideDistY)
+      if (env.side_dist_x < env.side_dist_y)
       {
-        sideDistX += deltaDistX;
-        mapX += stepX;
-        side = 0;
+        env.side_dist_x += env.delta_dist_x;
+        env.map_x += env.step_x;
+        env.side = 0;
       }
       else
       {
-        sideDistY += deltaDistY;
-        mapY += stepY;
-        side = 1;
+        env.side_dist_y += env.delta_dist_y;
+        env.map_y += env.step_y;
+        env.side = 1;
       }
       //Check if ray has hit a wall
-      if (worldMap[mapX][mapY] > 0)
-        hit = 1;
+      if (worldMap[env.map_x][env.map_y] > 0)
+        env.hit = 1;
     }
-    if (side == 0)
-      PerpWallDist = (mapX - rayPosX + (1 - stepX) / 2) / rayDirX;
+    if (!env.side)
+      env.perp_wall_dist = (env.map_x - env.ray_pos_x + (1 - env.step_x) / 2) / env.ray_dir_x;
     else
-      PerpWallDist = (mapY - rayPosY + (1 - stepY) / 2) / rayDirY;
+      env.perp_wall_dist = (env.map_y - env.ray_pos_y + (1 - env.step_y) / 2) / env.ray_dir_y;
     //Calculate height of line to draw on screen
-    line_height = (int)(IMG_SIZE / PerpWallDist);
-    printf("%d\n", line_height);
+    env.line_height = (int)(IMG_SIZE / env.perp_wall_dist);
     //calculate lowest and highest pixel to fill in current stripe
-    draw_start = -line_height / 2 + IMG_SIZE / 2;
-    if(draw_start < 0)
-      draw_start = 0;
-    draw_end = line_height / 2 + IMG_SIZE / 2;
-    if(draw_end >= IMG_SIZE)
-      draw_end = IMG_SIZE - 1;
-    while (draw_start < draw_end)
+    env.draw_start = -env.line_height / 2 + IMG_SIZE / 2;
+    if(env.draw_start < 0)
+      env.draw_start = 0;
+    env.draw_end = env.line_height / 2 + IMG_SIZE / 2;
+    if(env.draw_end >= IMG_SIZE)
+      env.draw_end = IMG_SIZE - 1;
+    while (env.draw_start < env.draw_end)
     {
       int i;
       int color;
 
       color = 0x0000FF00;
-      i = line_size * draw_start + x * bpp / 8;
-      mlx_data[i] = color & 0xff;
-    	mlx_data[++i] = color >> 8 & 0xff;
-    	mlx_data[++i] = color >> 16;
-      draw_start++;
+      i = mlx.line_size * env.draw_start + env.x * mlx.bpp / 8;
+      mlx.mlx_data[i] = color & 0xff;
+    	mlx.mlx_data[++i] = color >> 8 & 0xff;
+    	mlx.mlx_data[++i] = color >> 16;
+      env.draw_start++;
     }
-    x++;
+    env.x++;
   }
-  mlx_put_image_to_window(mlx_ptr, mlx_win, mlx_img, 0, 0);
-  mlx_loop(mlx_ptr);
+  mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_win, mlx.mlx_img, 0, 0);
+  mlx_loop(mlx.mlx_ptr);
 }
