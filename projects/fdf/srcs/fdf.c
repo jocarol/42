@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/23 12:01:45 by jocarol           #+#    #+#             */
+/*   Updated: 2017/10/23 12:01:47 by jocarol          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 static void		fdf(const char *read, const int y, const int x)
 {
-	t_attr			matrix[y][x];
-	int					n_y;
-	int					n_x;
+	t_attr		matrix[y][x];
+	int			n_y;
+	int			n_x;
 
 	n_y = -1;
 	while (++n_y < y && (n_x = -1))
@@ -18,11 +30,11 @@ static void		fdf(const char *read, const int y, const int x)
 	display(y, x, matrix);
 }
 
-int						main(int ac, char **av)
+int				main(int ac, char **av)
 {
-	int					y;
-	int					x;
-	char				*read;
+	int			y;
+	int			x;
+	char		*read;
 
 	x = 0;
 	y = 0;

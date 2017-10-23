@@ -6,7 +6,7 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 15:26:13 by jocarol           #+#    #+#             */
-/*   Updated: 2017/10/18 16:38:32 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/10/23 12:49:25 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void									set_env(t_env *z, char *av);
 void									draw(t_env *z);
 int										keys(int keycode, t_env *z);
 int										keys2(int keycode, t_env *z);
-int										zoom(int key, int x, int y, t_env *z);
+int										mouse(int key, int x, int y, t_env *z);
 int										morph(int x, int y, t_env *z);
 
 #endif

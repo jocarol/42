@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf_parser.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/23 12:06:26 by jocarol           #+#    #+#             */
+/*   Updated: 2017/10/23 12:08:46 by jocarol          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
-void					fill_matrix(const int y, const int x, t_attr matrix[y][x], \
-											const char *read)
+void			fill_matrix(const int y, const int x, t_attr matrix[y][x], \
+							const char *read)
 {
-	int					n_y;
-	int					n_x;
+	int			n_y;
+	int			n_x;
 
 	n_y = -1;
 	while (++n_y < y && (n_x = -1))
@@ -60,7 +72,7 @@ static char		*join(char *read, char *line)
 	char		*tmp_read;
 	char		*tmp_line;
 	char		*new;
-	size_t	len;
+	size_t		len;
 
 	tmp_read = read;
 	tmp_line = line;
@@ -74,7 +86,7 @@ static char		*join(char *read, char *line)
 	return (new);
 }
 
-char					*get_map_size(const char *file, int *y, int *x		)
+char			*get_map_size(const char *file, int *y, int *x)
 {
 	char	*line;
 	char	*read;

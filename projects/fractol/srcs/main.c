@@ -6,7 +6,7 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 15:27:02 by jocarol           #+#    #+#             */
-/*   Updated: 2017/10/18 17:29:48 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/10/23 12:47:40 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int						main(int ac, char **av)
 		set_env(&z, av[1]);
 		draw(&z);
 		mlx_hook(z.win, 2, 3, keys, &z);
-		mlx_hook(z.win, 4, 0, zoom, &z);
+		mlx_hook(z.win, 4, 0, mouse, &z);
 		mlx_hook(z.win, 6, 0, morph, &z);
 		mlx_loop(z.mlx_ptr);
 	}

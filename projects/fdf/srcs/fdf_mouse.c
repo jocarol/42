@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf_mouse.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/23 12:02:12 by jocarol           #+#    #+#             */
+/*   Updated: 2017/10/23 12:35:00 by jocarol          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include "fdf.h"
 
@@ -14,8 +26,9 @@ void		unzoom(t_env *env)
 
 int			mouse(int button, int x, int y, void *param)
 {
+	(void)x;
+	(void)y;
 	eraser(param);
-	printf("%d ,%d\n",x,y );
 	if (button == 4)
 		zoom(param);
 	else if (button == 5)

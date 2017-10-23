@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf_painter.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/23 12:09:03 by jocarol           #+#    #+#             */
+/*   Updated: 2017/10/23 12:11:13 by jocarol          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
-static int					in_map(t_coor here)
+static int			in_map(t_coor here)
 {
 	if (here.x >= IMG_W || here.y >= IMG_H || here.x < 0 || here.y < 0)
 		return (0);
 	return (1);
 }
 
-static t_coor				there(t_env *env, int n_x, int n_y)
+static t_coor		there(t_env *env, int n_x, int n_y)
 {
 	t_coor		there;
 	t_attr		(*matrix)[env->matrix_y][env->matrix_x];
@@ -21,12 +33,12 @@ static t_coor				there(t_env *env, int n_x, int n_y)
 	return (there);
 }
 
-void								tracing(t_env *env)
+void				tracing(t_env *env)
 {
-	int								n_y;
-	int								n_x;
-	t_coor						here;
-	t_attr		(*matrix)[env->matrix_y][env->matrix_x];
+	int				n_y;
+	int				n_x;
+	t_coor			here;
+	t_attr			(*matrix)[env->matrix_y][env->matrix_x];
 
 	matrix = env->matrix;
 	n_y = -1;
@@ -50,12 +62,12 @@ void								tracing(t_env *env)
 	mlx_put_image_to_window(env->mlx_ptr, env->win, env->img, -100, -100);
 }
 
-void								eraser(t_env *env)
+void				eraser(t_env *env)
 {
-	int								n_y;
-	int								n_x;
-	t_coor						here;
-	t_attr						(*matrix)[env->matrix_y][env->matrix_x];
+	int				n_y;
+	int				n_x;
+	t_coor			here;
+	t_attr			(*matrix)[env->matrix_y][env->matrix_x];
 
 	matrix = env->matrix;
 	n_y = -1;
@@ -76,10 +88,10 @@ void								eraser(t_env *env)
 		}
 }
 
-void								display(const int y, const int x, t_attr matrix[y][x])
+void				display(const int y, const int x, t_attr matrix[y][x])
 {
-	t_env							env;
-	t_computed				computed;
+	t_env			env;
+	t_computed		computed;
 
 	ft_bzero(&computed, sizeof(t_computed));
 	ft_bzero(&env, sizeof(t_env));

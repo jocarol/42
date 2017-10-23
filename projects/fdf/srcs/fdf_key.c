@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf_key.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/23 12:14:09 by jocarol           #+#    #+#             */
+/*   Updated: 2017/10/23 12:31:57 by jocarol          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 static void		reset(t_env *env)
@@ -11,8 +23,8 @@ static void		reset(t_env *env)
 	while (++n_y < env->matrix_y && (n_x = -1))
 		while (++n_x < env->matrix_x)
 			COLOR = DEFAULT_COLOR;
-	ZOOM = (WIN_W / env->matrix_x > WIN_H / env->matrix_y ? WIN_H / env->matrix_y : \
-			WIN_W / env->matrix_x);
+	ZOOM = (WIN_W / env->matrix_x > WIN_H / env->matrix_y ? \
+			WIN_H / env->matrix_y : WIN_W / env->matrix_x);
 	POS_X = 100;
 	POS_Y = 100;
 	ANGLE_X = 0;
@@ -21,11 +33,11 @@ static void		reset(t_env *env)
 
 static void		colorise(t_env *env, int keycode)
 {
-	int					n_y;
-	int					n_x;
-	int					col;
-	t_attr			(*matrix)[env->matrix_y][env->matrix_x];
+	int			n_y;
+	int			n_x;
+	int			col;
 
+	t_attr(*matrix)[env->matrix_y][env->matrix_x];
 	matrix = env->matrix;
 	srand(time(NULL));
 	col = rand();

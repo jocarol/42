@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf_brush.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/23 12:03:55 by jocarol           #+#    #+#             */
+/*   Updated: 2017/10/23 12:05:55 by jocarol          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 int					set_color(t_env *env, int n_x, int n_y)
@@ -18,7 +30,7 @@ int					set_color(t_env *env, int n_x, int n_y)
 			color = COLOR;
 	n_y -= 2;
 	if (n_y > 0)
-			color = COLOR;
+		color = COLOR;
 	n_y++;
 	n_x--;
 	if (n_x > 0)
