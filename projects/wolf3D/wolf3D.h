@@ -11,6 +11,12 @@
 #define IMG_SIZE 1000
 #define MAP_W 24
 #define MAP_H 24
+#define NICE_RED 0x00ff3333
+#define NICE_GREEN 0x0000FF00
+#define NICE_BLUE 0x0024245F
+#define NICE_YELLOW 0x00d6ff00
+#define NICE_PURPLE 0x00bd00ff
+// #define WHITE 0x00FFFFFF
 
 typedef struct        s_mlx
 {
@@ -43,6 +49,7 @@ typedef struct        s_env
   double              perp_wall_dist;
   int                 draw_start;
   int                 draw_end;
+  int                 color;
   int                 x;
   int                 step_x;
   int                 step_y;
@@ -53,4 +60,10 @@ typedef struct        s_env
   int                 side;
 }                     t_env;
 
+typedef struct        s_point
+{
+  int                 x;
+  int                 y;
+  int                 value;
+}                     t_point;
 #endif

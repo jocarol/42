@@ -84,10 +84,10 @@ char					*get_map_size(const char *file, int *y, int *x		)
 
 	read = NULL;
 	status = 1;
-	if (((fd = open(file, O_RDONLY)) || 1) && fd == -1)
+	if ((fd = open(file, O_RDONLY)) == -1)
 		errors(0, file);
 	line = NULL;
-	while ((status = get_next_line(fd, &line)) && status == 1)
+	while ((status = get_next_line(fd, &line)) == 1)
 	{
 		n_x = get_values(line, 0);
 		if (!*y)

@@ -1,20 +1,30 @@
-2017-10-19 19:24:34.958 ruby[59445:813986] 19:24:34.957 WARNING:  140: This application, or a library it uses, is using the deprecated Carbon Component Manager for hosting Audio Units. Support for this will be removed in a future release. Also, this makes the host incompatible with version 3 audio units. Please transition to the API's in AudioComponent.h.
+2017-10-23 01:33:58.958 ruby[22306:1632307] 01:33:58.957 WARNING:  140: This application, or a library it uses, is using the deprecated Carbon Component Manager for hosting Audio Units. Support for this will be removed in a future release. Also, this makes the host incompatible with version 3 audio units. Please transition to the API's in AudioComponent.h.
 Warning: Xing stream size off by more than 1%, fuzzy seeking may be even more fuzzy than by design!
 Warning: Xing stream size off by more than 1%, fuzzy seeking may be even more fuzzy than by design!
-Warning: Xing stream size off by more than 1%, fuzzy seeking may be even more fuzzy than by design!
-Warning: Xing stream size off by more than 1%, fuzzy seeking may be even more fuzzy than by design!
-
-Warning: Real sample count 374400 differs from given gapless sample count 15495552. Frankenstein stream?
-[src/libmpg123/frame.c:852] error: End sample count smaller than gapless end! (374400 < 15495109). Disabling gapless mode from now on.
-Warning: Xing stream size off by more than 1%, fuzzy seeking may be even more fuzzy than by design!
-[2017-10-19T19:40:53.937694 #59445] DEBUG -- : Player: play 179917538
-D, [2017-10-19T19:40:56.908153 #59445] DEBUG -- : Player: play 226604605
-D, [2017-10-19T19:40:56.908614 #59445] DEBUG -- : DownloadThread start
-D, [2017-10-19T19:40:58.420985 #59445] DEBUG -- : DownloadThread response: 200
-D, [2017-10-19T19:40:58.736892 #59445] DEBUG -- : Player: play 226604605
-D, [2017-10-19T19:40:59.979683 #59445] DEBUG -- : Player: play 222889501
-D, [2017-10-19T19:41:01.958395 #59445] DEBUG -- : Player: play 303168076
-D, [2017-10-19T19:41:04.759431 #59445] DEBUG -- : Player: play 308652183
-D, [2017-10-19T19:41:07.359732 #59445] DEBUG -- : Player: play 336068131
-D, [2017-10-19T19:41:15.353919 #59445] DEBUG -- : Player: play 261247420
-D, [2017-10-19T19:42:06.317833 #59445] DEBUG -- : Player: play 297841957
+Error reading the stream. (code 18)
+/usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/models/player.rb:51:in `new'
+/usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/models/player.rb:51:in `length_in_seconds'
+/usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/models/player.rb:58:in `load'
+/usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/models/player.rb:34:in `play'
+/usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/controllers/player_controller.rb:61:in `play'
+/usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/application.rb:38:in `block in initialize'
+/usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/events.rb:13:in `block in trigger'
+/usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/events.rb:12:in `each'
+/usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/events.rb:12:in `trigger'
+/usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/controllers/track_controller.rb:76:in `next_track'
+/usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/application.rb:42:in `block in initialize'
+/usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/events.rb:13:in `block in trigger'
+/usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/events.rb:12:in `each'
+/usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/events.rb:12:in `trigger'
+/usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/controllers/player_controller.rb:20:in `block in initialize'
+/usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/events.rb:13:in `block in trigger'
+/usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/events.rb:12:in `each'
+/usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/events.rb:12:in `trigger'
+/usr/local/lib/ruby/gems/2.4.0/gems/soundcloud2000-0.1.0/lib/soundcloud2000/models/player.rb:27:in `block in create_player'
+/usr/local/lib/ruby/gems/2.4.0/gems/audite-0.4.0/lib/audite.rb:18:in `block in trigger'
+/usr/local/lib/ruby/gems/2.4.0/gems/audite-0.4.0/lib/audite.rb:17:in `each'
+/usr/local/lib/ruby/gems/2.4.0/gems/audite-0.4.0/lib/audite.rb:17:in `trigger'
+/usr/local/lib/ruby/gems/2.4.0/gems/audite-0.4.0/lib/audite.rb:48:in `process'
+/usr/local/lib/ruby/gems/2.4.0/gems/audite-0.4.0/lib/audite.rb:35:in `block (2 levels) in start_thread'
+/usr/local/lib/ruby/gems/2.4.0/gems/audite-0.4.0/lib/audite.rb:34:in `loop'
+/usr/local/lib/ruby/gems/2.4.0/gems/audite-0.4.0/lib/audite.rb:34:in `block in start_thread'
