@@ -6,7 +6,7 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 00:55:41 by jocarol           #+#    #+#             */
-/*   Updated: 2017/10/25 18:05:07 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/01/12 17:23:47 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdlib.h>
 # include <string.h>
 # include <stdarg.h>
-# include "get_next_line.h"
 
 typedef struct		s_list
 {
@@ -27,7 +26,6 @@ typedef struct		s_list
 }					t_list;
 
 int					ft_atoi(const char *str);
-int					ft_atoi_base(const char *str, int base);
 void				ft_bzero(void *s, size_t n);
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);
@@ -37,7 +35,6 @@ int					ft_isprint(int c);
 int					ft_isupper(int c);
 int					ft_iswhitespace(char c);
 char				*ft_itoa(int n);
-char				*itoa_fractol(uintmax_t n);
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
@@ -91,6 +88,5 @@ char				*ft_strtrim(char const *s);
 void				ft_swap(char *a, char *b);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
-int					get_next_line(int const fd, char **line);
 
 #endif

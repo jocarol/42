@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnjoin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocarol  <jocarol@student.42.fr>           +#+  +:+       +#+        */
+/*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/14 19:13:44 by jocarol           #+#    #+#             */
-/*   Updated: 2017/02/14 19:50:01 by jocarol          ###   ########.fr       */
+/*   Created: 2017/10/25 17:12:24 by jocarol           #+#    #+#             */
+/*   Updated: 2017/10/25 17:14:06 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ static char		*len_calc(va_list *ap, int n)
 
 char			*ft_strnjoin(int n, ...)
 {
-	int			  i;
+	int			i;
+	char		*s;
+	char		*add_me;
 	va_list		ap;
-	char		  *s;
-	char		  *add_me;
 
 	if (!n)
 		return (NULL);

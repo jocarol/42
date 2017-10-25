@@ -23,23 +23,23 @@ ${OBJDIR}/%.o : ./srcs/%.c
 	@${CC} ${CFLAGS} -g -Ilibft/includes/ -I. -I${MLX} -c -o $@ $<
 
 clean:
-	echo clean mlx...
+	@echo clean mlx...
 	@make -C ${MLX} clean
-	echo zbreh\'!
-	echo clean libft...
+	@echo zbreh\'!
+	@echo clean libft...
 	@make -C libft/ clean
-	echo zbreh\'!
-	echo clean objs...
+	@echo zbreh\'!
+	@echo clean objs...
 	@/bin/rm -Rf ${OBJDIR}
-	echo zbreh\'!
+	@echo zbreh\'!
 
 fclean: clean
-	echo fclean libft...
+	@echo fclean libft...
 	@make -C libft/ fclean
-	echo zbreh\'!
-	echo clean ${NAME}...
+	@echo zbreh\'!
+	@echo clean ${NAME}...
 	@/bin/rm -f ${NAME}
-	echo zbreh\'!
+	@echo zbreh\'!
 
 re: fclean all
 

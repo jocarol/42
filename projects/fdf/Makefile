@@ -4,7 +4,7 @@ OBJDIR = objs
 CFLAGS = -Wall -Wextra -Werror
 CC = gcc
 OBJ = $(addprefix ${OBJDIR}/, $(SRC:.c=.o))
-MLX = minilibx_macos/
+MLX = minilibx_macos
 FRAMEWORKS = -framework OpenGL -framework AppKit
 
 all:${NAME}

@@ -6,13 +6,13 @@
 #    By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/18 16:44:32 by jocarol           #+#    #+#              #
-#    Updated: 2017/10/25 17:19:18 by jocarol          ###   ########.fr        #
+#    Updated: 2017/10/25 18:15:05 by jocarol          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
-SRC = main.c fractals.c draw.c keys.c keys2.c mouse.c set_env.c put_pixel.c 
-	  itoa_fractol.c
+SRC = main.c fractals.c draw.c keys.c keys2.c mouse.c set_env.c put_pixel.c \
+	itoa_fractol.c
 OBJDIR = objs
 CFLAGS = -O3 -Wall -Wextra -Werror
 CC = gcc
@@ -28,7 +28,7 @@ ${NAME}: ${OBJ}
 	@echo Compiling ${NAME}
 	@${CC} ${CFLAGS} -g -Ilibft/includes/ -I. -I${MLX} -Llibft/ -lft \
 		-L${MLX} -lmlx ${FRAMEWORKS} -o $@ ${OBJ} -lpthread -D_REETRANT
-	@echo "\033[32m${NAME} okay !\033[0m"
+	@echo "\033[32m${NAME} Ok! ZBREH'!! \033[0m"
 
 ${OBJDIR}/%.o : ./srcs/%.c
 	@echo Compiling $@
@@ -36,23 +36,23 @@ ${OBJDIR}/%.o : ./srcs/%.c
 	@${CC} ${CFLAGS} -g -Ilibft/includes/ -I. -I${MLX} -c -o $@ $<
 
 clean:
-	echo clean mlx...
+	@echo clean mlx...
 	@make -C ${MLX} clean
-	echo zbreh\'!
-	echo clean libft...
+	@echo zbreh\'!
+	@echo clean libft...
 	@make -C libft/ clean
-	echo zbreh\'!
-	echo clean objs...
+	@echo zbreh\'!
+	@echo clean objs...
 	@/bin/rm -Rf ${OBJDIR}
-	echo zbreh\'!
+	@echo zbreh\'!
 
 fclean: clean
-	echo fclean libft...
+	@echo fclean libft...
 	@make -C libft/ fclean
-	echo zbreh\'!
-	echo clean ${NAME}...
+	@echo zbreh\'!
+	@echo clean ${NAME}...
 	@/bin/rm -f ${NAME}
-	echo zbreh\'!
+	@echo zbreh\'!
 
 re: fclean all
 

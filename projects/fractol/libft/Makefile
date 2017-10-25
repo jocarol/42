@@ -6,7 +6,7 @@
 #    By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/13 18:59:53 by jocarol           #+#    #+#              #
-#    Updated: 2017/06/21 16:16:44 by jocarol          ###   ########.fr        #
+#    Updated: 2017/10/26 00:52:24 by jocarol          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ SRCS = ft_atoi.c ft_atoi_base.c ft_bzero.c ft_isalnum.c ft_isalpha.c \
 	ft_strlen.c ft_strlcat.c ft_strlen.c ft_strmap.c ft_strmapi.c ft_strncat.c \
 	ft_strncmp.c ft_strncpy.c ft_strnequ.c ft_strnew.c ft_strnjoin.c \
 	ft_strnstr.c ft_strrchr.c	ft_strsplit.c ft_strstr.c ft_strsub.c ft_strtrim.c \
-	ft_swap.c ft_tolower.c ft_toupper.c get_next_line.c itoa_fractol.c
+	ft_swap.c ft_tolower.c ft_toupper.c get_next_line.c
 
 
 #SRCS=$(addprefix $(SRCS_PATH), $(SRCS_NAME))
