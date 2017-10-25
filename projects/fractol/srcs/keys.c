@@ -6,12 +6,11 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 15:28:01 by jocarol           #+#    #+#             */
-/*   Updated: 2017/10/18 17:41:17 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/10/25 07:44:29 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
 
 static void						lock(t_env *z)
 {
@@ -55,7 +54,6 @@ static void						switch_info(t_env *z)
 
 int								keys(int keycode, t_env *z)
 {
-	printf("keycode press = %d\n", keycode);
 	z->key = keycode;
 	if (keycode == 259 || keycode == 261 || (keycode >= 123 && keycode <= 126)\
 		|| keycode == 53)

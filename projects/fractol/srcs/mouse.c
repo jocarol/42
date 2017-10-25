@@ -6,14 +6,14 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 15:28:01 by jocarol           #+#    #+#             */
-/*   Updated: 2017/10/23 14:00:35 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/10/25 07:48:20 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <stdio.h>
 
-int								zoom_in(int x, int y, t_env *z)
+static int							zoom_in(int x, int y, t_env *z)
 {
 	double	c_r;
 	double	c_i;
@@ -28,6 +28,7 @@ int								zoom_in(int x, int y, t_env *z)
 	z->y2 = c_i + frame;
 	z->zoom = IMG_SIZE / (z->y2 - z->y1);
 	z->zoom *= 1.1;
+	z->iteration += 25;
 	z->x1 += 0.1 / (0.01 * z->zoom);
 	z->x2 -= 0.1 / (0.01 * z->zoom);
 	z->y1 += 0.1 / (0.01 * z->zoom);
@@ -37,12 +38,14 @@ int								zoom_in(int x, int y, t_env *z)
 	return (0);
 }
 
-int								zoom_out(int x, int y, t_env *z)
+static int							zoom_out(int x, int y, t_env *z)
 {
 	double	c_r;
 	double	c_i;
 	double	frame;
 
+	if (z->zoom <= 200)
+		return (0);
 	frame = 0.0;
 	c_r = x / z->zoom + z->x1;
 	c_i = y / z->zoom + z->y1;
@@ -61,7 +64,7 @@ int								zoom_out(int x, int y, t_env *z)
 	return (0);
 }
 
-int								mouse(int keycode, int x, int y, t_env *z)
+int									mouse(int keycode, int x, int y, t_env *z)
 {
 	if (keycode == 1)
 		zoom_in(x, y, z);
@@ -70,7 +73,7 @@ int								mouse(int keycode, int x, int y, t_env *z)
 	return (0);
 }
 
-int								morph(int x, int y, t_env *z)
+int									morph(int x, int y, t_env *z)
 {
 	if (!z->lock && z->frac_type == JULIA)
 	{

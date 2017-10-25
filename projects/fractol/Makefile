@@ -6,12 +6,12 @@
 #    By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/18 16:44:32 by jocarol           #+#    #+#              #
-#    Updated: 2017/10/18 16:44:48 by jocarol          ###   ########.fr        #
+#    Updated: 2017/10/25 07:45:24 by jocarol          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
-SRC = main.c fractals.c draw.c keys.c keys2.c mouse.c set_env.c
+SRC = main.c fractals.c draw.c keys.c keys2.c mouse.c set_env.c put_pixel.c
 OBJDIR = objs
 CFLAGS = -O3 -Wall -Wextra -Werror
 CC = gcc
