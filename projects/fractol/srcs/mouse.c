@@ -6,7 +6,7 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 15:28:01 by jocarol           #+#    #+#             */
-/*   Updated: 2017/10/23 12:50:46 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/10/23 14:00:35 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int								zoom_in(int x, int y, t_env *z)
 	draw(z);
 	return (0);
 }
+
 int								zoom_out(int x, int y, t_env *z)
 {
 	double	c_r;

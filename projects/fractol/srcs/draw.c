@@ -6,7 +6,7 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 14:53:16 by jocarol           #+#    #+#             */
-/*   Updated: 2017/10/18 15:19:45 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/10/23 16:36:53 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,18 +72,9 @@ static void						display_info(t_env *z)
 	}
 }
 
-void							*th_bp(void *mother_thread)
+void				draw_loop(t_mother_thread *mt, t_env *env_tmp, int x, int y)
 {
-	t_mother_thread				*mother_thread_tmp;
-	t_env						*env_tmp;
-	int							x;
-	int							y;
-
-	mother_thread_tmp = (t_mother_thread *)mother_thread;
-	env_tmp = (t_env *)malloc(sizeof(t_env));
-	*env_tmp = *mother_thread_tmp->env_thread;
-	x = IMG_SIZE * mother_thread_tmp->thread_id / N_THREADS - 1;
-	while (++x < IMG_SIZE * (mother_thread_tmp->thread_id + 1) / N_THREADS)
+	while (++x < IMG_SIZE * (mt->thread_id + 1) / N_THREADS)
 	{
 		y = -1;
 		while (++y < IMG_SIZE)
@@ -103,6 +94,40 @@ void							*th_bp(void *mother_thread)
 			fractol(env_tmp, x, y);
 		}
 	}
+}
+
+void				*th_bp(void *mother_thread)
+{
+	t_mother_thread				*mt;
+	t_env						*env_tmp;
+	int							x;
+	int							y;
+
+	mt = (t_mother_thread *)mother_thread;
+	env_tmp = (t_env *)malloc(sizeof(t_env));
+	*env_tmp = *mother_thread->env_thread;
+	x = IMG_SIZE * mt->thread_id / N_THREADS - 1;
+	draw_loop(mt, env_tmp, x, y);
+/*	while (++x < IMG_SIZE * (mother_thread_tmp->thread_id + 1) / N_THREADS)
+	{
+		y = -1;
+		while (++y < IMG_SIZE)
+		{
+			if (env_tmp->frac_type == JULIA)
+			{
+				env_tmp->r = x / env_tmp->zoom + env_tmp->x1;
+				env_tmp->i = y / env_tmp->zoom + env_tmp->y1;
+			}
+			else
+			{
+				env_tmp->c_r = x / env_tmp->zoom + env_tmp->x1;
+				env_tmp->c_i = y / env_tmp->zoom + env_tmp->y1;
+				env_tmp->r = 0.0;
+				env_tmp->i = 0.0;
+			}
+			fractol(env_tmp, x, y);
+		}
+	}*/
 	free(env_tmp);
 	pthread_exit(0);
 }
