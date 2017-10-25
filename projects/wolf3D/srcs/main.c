@@ -1,4 +1,4 @@
-#include "Wolf3D.h"
+#include "wolf3D.h"
 #include <stdio.h>
 
 t_point **get_map()

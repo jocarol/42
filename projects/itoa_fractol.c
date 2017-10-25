@@ -6,17 +6,17 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 23:47:59 by jocarol           #+#    #+#             */
-/*   Updated: 2017/10/25 18:03:42 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/10/25 17:20:56 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char			*itoa_fractol(uintmax_t n)
+char		  *itoa_fractol(uintmax_t n)
 {
-	static char	str[11];
-	char		*pt;
-	int			i;
+	static char	  str[11];
+	char          *pt;
+	int           i;
 
 	i = 10;
 	str[10] = '\0';
