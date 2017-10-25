@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/25 07:56:21 by jocarol           #+#    #+#             */
+/*   Updated: 2017/10/25 07:57:41 by jocarol          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FDF_H
 # define FDF_H
 # include "libft/libft.h"
@@ -27,64 +39,64 @@
 
 typedef	struct		s_attr
 {
-	int							alt;
-	int							color;
-}									t_attr;
+	int				alt;
+	int				color;
+}					t_attr;
 
 typedef struct		s_computed
 {
-	double					c_r;
-	double					c_i;
-	double					alpha_x;
-	double					alpha_y;
-	double					zoom;
-}									t_computed;
+	double			c_r;
+	double			c_i;
+	double			alpha_x;
+	double			alpha_y;
+	double			zoom;
+}					t_computed;
 
 typedef struct		s_env
 {
-	t_computed			*computed;
-	void						*matrix;
-	void						*mlx_ptr;
-	void						*win;
-	void						*img;
-	char						*data;
-	int							matrix_x;
-	int							matrix_y;
-	int							bpp;
-	int							linesize;
-	int							endian;
-	int							projection;
-}									t_env;
+	t_computed		*computed;
+	void			*matrix;
+	void			*mlx_ptr;
+	void			*win;
+	void			*img;
+	char			*data;
+	int				matrix_x;
+	int				matrix_y;
+	int				bpp;
+	int				linesize;
+	int				endian;
+	int				projection;
+}					t_env;
 
 typedef struct		s_brez
 {
-	int							dx;
-	int							dy;
-	int							sx;
-	int							sy;
-	int							err;
-	int							e2;
-}									t_brez;
+	int				dx;
+	int				dy;
+	int				sx;
+	int				sy;
+	int				err;
+	int				e2;
+}					t_brez;
 
 typedef struct		s_coor
 {
-	int							x;
-	int							y;
-}									t_coor;
+	int				x;
+	int				y;
+}					t_coor;
 
-char							*get_map_size(const char *file, int *y, int *x);
-void							fill_matrix(const int y, const int x, t_attr matrix[y][x], \
-															const char *read);
-void							fdf_painter(const int y, const int x, t_attr matrix[y][x]);
-long							errors(const int err, const char *name);
-void							put_pixel(t_env *mlx, int x, int y, int color);
-void							put_line(t_env *mlx, t_coor a, t_coor b, int color);
-void							painter(t_env *mlx);
-void							cleaner(t_env *mlx);
-int								mouse(int button, int x, int y, void *param);
-int								keys(int keycode, void *param);
-void							zoom(t_env *mlx);
-void							unzoom(t_env *mlx);
-int								get_colorful(t_env *mlx, int n_x, int n_y);
+char				*get_map_size(const char *file, int *y, int *x);
+void				fill_matrix(const int y, const int x, t_attr matrix[y][x], \
+								const char *read);
+void				fdf_painter(const int y, const int x, t_attr matrix[y][x]);
+long				errors(const int err, const char *name);
+void				put_pixel(t_env *mlx, int x, int y, int color);
+void				put_line(t_env *mlx, t_coor a, t_coor b, int color);
+void				painter(t_env *mlx);
+void				cleaner(t_env *mlx);
+int					mouse(int button, int x, int y, void *param);
+int					keys(int keycode, void *param);
+void				zoom(t_env *mlx);
+void				unzoom(t_env *mlx);
+int					get_colorful(t_env *mlx, int n_x, int n_y);
 
 #endif
