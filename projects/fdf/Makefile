@@ -1,5 +1,17 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2017/10/26 04:51:04 by jocarol           #+#    #+#              #
+#    Updated: 2017/10/26 04:59:26 by jocarol          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = fdf
-SRC = fdf.c fdf_parser.c fdf_painter.c fdf_key.c fdf_mouse.c fdf_brush.c errors.c
+SRC = fdf.c check_map.c display.c keys.c mouse.c put_line.c errors.c
 OBJDIR = objs
 CFLAGS = -g -Wall -Wextra -Werror
 CC = gcc
