@@ -6,7 +6,7 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 15:26:13 by jocarol           #+#    #+#             */
-/*   Updated: 2017/10/25 07:44:45 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/10/26 09:47:04 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void						draw(t_env *z);
 int							keys(int keycode, t_env *z);
 int							keys2(int keycode, t_env *z);
 int							mouse(int key, int x, int y, t_env *z);
+char						*itoa_fractol(uintmax_t n);
 int							morph(int x, int y, t_env *z);
 void						put_pixel(t_env *z, int x, int y, int color);
 
