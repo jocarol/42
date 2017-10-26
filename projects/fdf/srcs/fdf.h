@@ -6,7 +6,7 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 11:57:13 by jocarol           #+#    #+#             */
-/*   Updated: 2017/10/23 12:00:34 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/10/26 04:25:53 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef struct		s_coor
 	int				y;
 }					t_coor;
 
-char				*get_map_size(const char *file, int *y, int *x);
+char				*get_map_size(const char *file, char *read, int *y, int *x);
 void				fill_matrix(const int y, const int x, t_attr matrix[y][x], \
 								const char *read);
 void				display(const int y, const int x, t_attr matrix[y][x]);

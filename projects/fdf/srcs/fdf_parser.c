@@ -6,7 +6,7 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 12:06:26 by jocarol           #+#    #+#             */
-/*   Updated: 2017/10/26 01:59:31 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/10/26 04:32:31 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,17 +86,15 @@ static char		*join(char *read, char *line)
 	return (new);
 }
 
-char			*get_map_size(const char *file, int *y, int *x)
+char			*get_map_size(const char *file, char *read, int *y, int *x)
 {
 	char	*line;
-	char	*read;
 	int		fd;
 	int		status;
 	int		n_x;
 	int		i;
 
 	i = 0;
-	read = NULL;
 	status = 1;
 	if ((fd = open(file, O_RDONLY)) == -1)
 		errors(0, file);
@@ -112,8 +110,6 @@ char			*get_map_size(const char *file, int *y, int *x)
 		read = join(read, line);
 		(*y)++;
 	}
-	if (status == -1 || i == 1)
-		errors(3, 0);
-	close(fd);
+	((status == -1 || i == 1) ? errors(3, 0) : close(fd));
 	return (read);
 }

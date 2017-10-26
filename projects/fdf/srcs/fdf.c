@@ -6,7 +6,7 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 12:01:45 by jocarol           #+#    #+#             */
-/*   Updated: 2017/10/25 14:27:30 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/10/26 04:25:58 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int				main(int ac, char **av)
 	y = 0;
 	if (ac == 2)
 	{
-		if (!(read = get_map_size(av[1], &y, &x)))
+		if (!(read = get_map_size(av[1], NULL, &y, &x)))
 			errors(3, av[1]);
 		else
 			fdf(read, y, x);
