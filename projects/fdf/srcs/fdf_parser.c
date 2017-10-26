@@ -6,7 +6,7 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 12:06:26 by jocarol           #+#    #+#             */
-/*   Updated: 2017/10/23 12:08:46 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/10/26 01:59:31 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,17 @@ static int		get_values(char *line, int x)
 			line++;
 		if (*line)
 		{
-			if (ft_isdigit(*line))
+			if (ft_isalnum(*line))
 				x++;
 			else
 				return (-1);
 		}
-		while (*line && ft_isdigit(*line))
+		while (*line && ft_isalnum(*line))
 			line++;
 		if (*line == ',')
 		{
 			line++;
-			while (*line && (ft_isdigit(*line) || ft_strchr("xABCDEF", *line)))
+			while (*line && (ft_isalnum(*line) || ft_strchr("xABCDEF", *line)))
 				line++;
 		}
 	}
@@ -93,7 +93,9 @@ char			*get_map_size(const char *file, int *y, int *x)
 	int		fd;
 	int		status;
 	int		n_x;
+	int		i;
 
+	i = 0;
 	read = NULL;
 	status = 1;
 	if ((fd = open(file, O_RDONLY)) == -1)
@@ -101,6 +103,7 @@ char			*get_map_size(const char *file, int *y, int *x)
 	line = NULL;
 	while ((status = get_next_line(fd, &line)) == 1)
 	{
+		i++;
 		n_x = get_values(line, 0);
 		if (!*y)
 			*x = n_x;
@@ -109,8 +112,8 @@ char			*get_map_size(const char *file, int *y, int *x)
 		read = join(read, line);
 		(*y)++;
 	}
-	if (status == -1)
-		errors(0, 0);
+	if (status == -1 || i == 1)
+		errors(3, 0);
 	close(fd);
 	return (read);
 }

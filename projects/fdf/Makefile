@@ -1,7 +1,7 @@
 NAME = fdf
 SRC = fdf.c fdf_parser.c fdf_painter.c fdf_key.c fdf_mouse.c fdf_brush.c errors.c
 OBJDIR = objs
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 CC = gcc
 OBJ = $(addprefix ${OBJDIR}/, $(SRC:.c=.o))
 MLX = minilibx_macos
