@@ -6,7 +6,7 @@
 /*   By: jocarol <jocarol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 00:55:41 by jocarol           #+#    #+#             */
-/*   Updated: 2017/10/26 04:52:29 by jocarol          ###   ########.fr       */
+/*   Updated: 2017/10/25 18:05:07 by jocarol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int					ft_isprint(int c);
 int					ft_isupper(int c);
 int					ft_iswhitespace(char c);
 char				*ft_itoa(int n);
+char				*itoa_fractol(uintmax_t n);
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
