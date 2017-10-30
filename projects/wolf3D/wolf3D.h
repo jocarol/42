@@ -60,10 +60,11 @@ typedef struct        s_env
   int                 side;
 }                     t_env;
 
-typedef struct        s_point
+typedef struct        s_map
 {
-  int                 x;
-  int                 y;
-  int                 value;
-}                     t_point;
+  int                 start;
+  int                 height;
+  int                 width;
+}                     t_map;
+
 #endif

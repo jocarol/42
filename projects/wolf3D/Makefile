@@ -1,5 +1,5 @@
 NAME = Wolf3D
-SRC = main.c
+SRC = main.c parser.c
 OBJDIR = objs
 CFLAGS = -O3 -Wall -Wextra -Werror
 CC = gcc

@@ -38,7 +38,7 @@ void						set_env(t_env *z, char *av)
 	z->win = mlx_new_window(z->mlx_ptr, IMG_SIZE, IMG_SIZE, WIN_NAME);
 	z->img = mlx_new_image(z->mlx_ptr, IMG_SIZE, IMG_SIZE);
 	z->data = AD;
-	z->linesize = IMG_SIZE * 4;
+//	z->linesize = IMG_SIZE * 4;
 	z->col = 240;
 	get_frac_type(av, z);
 	if (z->frac_type == MANDLEBROT)

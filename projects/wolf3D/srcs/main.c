@@ -1,50 +1,6 @@
 #include "wolf3D.h"
 #include <stdio.h>
 
-t_point **get_map()
-{
-  t_point **ret;
-
-  int tmp[24][24] =
-  {
-          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-          {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-          {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-          {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-          {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-          {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-          {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-          {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-          {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-          {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-          {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-          {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-          {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-          {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-          {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-          {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-          {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-          {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-          {1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-          {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-          {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-          {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-          {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-  };
-  ret = (t_point**)malloc(sizeof(t_point*)*24);
-  for(int i=0; i < 24; i++)
-    ret[i] = (t_point*)malloc(sizeof(t_point)*24);
-  for(int i=0; i<24; i++){
-    for(int j=0; j<24;j++){
-      ret[i][j].x=j;
-      ret[i][j].y=i;
-      ret[i][j].value = tmp[i][j];
-      printf("x= %d y= %d z= %d\n", ret[i][j].x, ret[i][j].y, ret[i][j].value);
-    }
-  }
-  return(ret);
-}
 
 void                  ignition(t_mlx *mlx, t_env *env)
 {
@@ -99,7 +55,7 @@ void                  init_dda(t_env *env)
   }
 }
 
-void                  dda(t_env *env)
+void                  dda(t_env *env, t_map *map)
 {
   while (!env->hit)
   {
@@ -107,17 +63,17 @@ void                  dda(t_env *env)
     if (env->side_dist_x < env->side_dist_y)
     {
       env->side_dist_x += env->delta_dist_x;
-      env->map_x += env->step_x;
+      map->width += env->step_x;
       env->side = 0;
     }
     else
     {
       env->side_dist_y += env->delta_dist_y;
-      env->map_y += env->step_y;
+      map->height += env->step_y;
       env->side = 1;
     }
     //Check if ray has hit a wall
-    if (world_map[env->map_x][env->map_y] > 0)
+    if (map[map->width][env->height] > 0)
       env->hit = 1;
   }
 }
@@ -130,25 +86,25 @@ void                  get_perpdist(t_env *env)
     env->perp_wall_dist = (env->map_y - env->ray_pos_y + (1 - env->step_y) / 2) / env->ray_dir_y;
 }
 
-void                  set_color(t_env env, int world_map)
+void                  set_color(t_env env, t_map map)
 {
-  if (world_map == 1)
+  if (map == 1)
     env.color = NICE_PURPLE;
-  else if (world_map == 2)
+  else if (map == 2)
     env.color = NICE_BLUE;
-  else if (world_map == 3)
+  else if (map == 3)
     env.color = NICE_RED;
-  else if (world_map == 4)
+  else if (map == 4)
     env.color = NICE_GREEN;
-  else if (world_map == 5)
+  else if (map == 5)
     env.color = NICE_YELLOW;
   if (env.side)
     env.color = env.color / 2;
 }
 
-void                  put_vline(t_env env, t_mlx mlx, int world_map)
+void                  put_vline(t_env env, t_mlx mlx, t_map map)
 {
-  set_color(env, world_map);
+  set_color(env, map);
   while (env.draw_start < env.draw_end)
   {
     int i;
@@ -161,7 +117,7 @@ void                  put_vline(t_env env, t_mlx mlx, int world_map)
   }
 }
 
-void                  draw_wall(t_env env, t_mlx mlx, int world_map)
+void                  draw_wall(t_env env, t_mlx mlx, int map)
 {
   // env.color = set_color(env, world_map[env.map_x][env.map_y])
   //Calculate height of line to draw on screen
@@ -174,7 +130,7 @@ void                  draw_wall(t_env env, t_mlx mlx, int world_map)
   if(env.draw_end >= IMG_SIZE)
     env.draw_end = IMG_SIZE - 1;
   // set_color(env);
-  put_vline(env, mlx, world_map);
+  put_vline(env, mlx, map);
 }
 
 void                  raycasting(t_mlx *mlx, t_env *env, int world_map)
@@ -201,8 +157,13 @@ void                  wolf3d(int world_map)
   mlx_loop(mlx.mlx_ptr);
 }
 
-int                   main(void)
+int                   main(int ac, char **av)
 {
-  wolf3d(world_map);
+  t_map               map;
+  
+  if (ac != 2)
+    error();
+  parse(av[1], map);
+  wolf3d(map);
   return(0);
 }
