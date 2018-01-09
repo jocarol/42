@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mendeleiev's Elements Table</title>
+    <link href="https://fonts.googleapis.com/css?family=Nova+Mono" rel="stylesheet">
+    <style>
+        body
+        {
+            font-family: 'Nova Mono', monospace;
+            width: 100%;
+            background-color: black;
+        }
+        table
+        {
+            width: 100%;
+            height: 100%;
+        }
+        caption
+        {
+            font-size: 3em;
+            color: white;
+        }
+        td
+        {
+            text-align: center;
+            margin: 0px;
+            max-width: 1em;
+            max-height: 1em;
+        }
+        .sample_pic
+        {
+            max-height: 135px;
+            float: left;
+            filter: invert(100%);
+        }
+        .atomic_number
+        {
+            margin: 5px;
+            text-align: left;
+            font-size: 0.6em;
+        }
+        .atomic_mass
+        {
+            text-align: right;
+            margin: 5px;
+            font-size: 0.6em;
+        }
+        .symbol
+        {
+            margin: 0px;
+            font-size: 1em;
+        }
+        .radioactiv
+        {
+            max-width: 25px;
+            text-align: right;
+            <!-- https://i.imgur.com/q79rWzw.png -->
+        }
+        .nonmetal
+        {
+            background: linear-gradient(45deg, rgba(42,0,255,1) 0%, rgba(230,0,255,1) 100%);
+        }
+        .alkali
+        {
+            background: linear-gradient(45deg, rgb(255,0,166) 0%, rgb(255,0,166) 61%, rgb(255,0,64) 100%);
+        }
+        .alkaline
+        {
+            background: linear-gradient(45deg, rgb(255,0,81) 0%, rgb(255,0,81) 61%, rgb(255,21,0) 100%);
+        }
+        .transition
+        {
+            background: linear-gradient(45deg, rgb(255,47,0) 0%, rgb(255,47,0) 61%, rgb(255,149,0) 100%);
+        }
+        .lanthanoid
+        {
+            background: linear-gradient(45deg, rgb(255,132,0) 0%, rgb(255,132,0) 61%, rgb(255,234,0) 100%);
+        }
+        .actinoid
+        {
+            background: linear-gradient(45deg, rgb(255,217,0) 0%, rgb(255,217,0) 61%, rgb(191,255,0) 100%);
+        }
+        .post-transition
+        {
+            background: linear-gradient(45deg, rgb(208,255,0) 0%, rgb(208,255,0) 61%, rgb(106,255,0) 100%);
+        }
+        .mettaloid
+        {
+            background: linear-gradient(45deg, rgb(123,255,0) 0%, rgb(123,255,0) 61%, rgb(21,255,0) 100%);
+        }
+
+        .halogen
+        {
+            background: linear-gradient(45deg, rgb(0,255,47) 0%, rgb(0,255,47) 61%, rgb(0,255,149) 100%);
+        }
+        .noble-gas
+        {
+            background: linear-gradient(45deg, rgb(0,255,132) 0%, rgb(0,255,132) 61%, rgb(0,255,234) 100%);
+        }
+        .unknown
+        {
+            background: linear-gradient(45deg, rgb(0,255,217) 0%, rgb(0,255,217) 61%, rgb(0,191,255) 100%);
+        }
+    </style>
+</head>
+<body>
+<div>
+    <img class="sample_pic" src="https://i.imgur.com/Pv44FYZ.gif" alt="">
+</div>
+<div>
+    <table contenteditable="true">
+        <caption contenteditable="false">Mendeleiv's Periodic Table</caption>
+        <tr>
+            <td class="nonmetal"><p class="atomic_number">1</p><p class="symbol">H</p><p class="atomic_mass">1.0078</p></td>
+            <td colspan="16"></td>
+            <td class="noble-gas"><p class="atomic_number">2</p><p class="symbol">He</p><p class="atomic_mass">4.0026</p></td>
+        </tr>
+        <tr>
+            <td class="alkali"><p class="atomic_number">3</p><p class="symbol">Li</p><p class="atomic_mass">16.938</p></td>
+            <td class="alkaline"><p class="atomic_number">4</p><p class="symbol">Be</p><p class="atomic_mass">9.0122</p></td>
+            <td colspan="10"></td>
+            <td class="mettaloid"><p class="atomic_number">5</p><p class="symbol">B</p><p class="atomic_mass">10.806</p></td>
+            <td class="nonmetal"><p class="atomic_number">6</p><p class="symbol">C</p><p class="atomic_mass">12.209</p></td>
+            <td class="nonmetal"><p class="atomic_number">7</p><p class="symbol">N</p><p class="atomic_mass">14.006</p></td>
+            <td class="nonmetal"><p class="atomic_number">8</p><p class="symbol">O</p><p class="atomic_mass">15.999</p></td>
+            <td class="halogen"><p class="atomic_number">9</p><p class="symbol">F</p><p class="atomic_mass">18.998</p></td>
+            <td class="noble-gas"><p class="atomic_number">10</p><p class="symbol">NE</p><p class="atomic_mass">20.180</p></td>
+        </tr>
+        <tr>
+            <td class="alkali"><p class="atomic_number">11</p><p class="symbol">NA</p><p class="atomic_mass">22.990</p></td>
+            <td class="alkaline"><p class="atomic_number">12</p><p class="symbol">Mg</p><p class="atomic_mass">24.305</p></td>
+            <td colspan="10"></td>
+            <td class="post-transition"><p class="atomic_number">13</p><p class="symbol">Al</p><p class="atomic_mass">26.982</p></td>
+            <td class="mettaloid"><p class="atomic_number">14</p><p class="symbol">Si</p><p class="atomic_mass">28.084</p></td>
+            <td class="nonmetal"><p class="atomic_number">15</p><p class="symbol">P</p><p class="atomic_mass">30.974</p></td>
+            <td class="nonmetal"><p class="atomic_number">16</p><p class="symbol">S</p><p class="atomic_mass">32.059</p></td>
+            <td class="halogen"><p class="atomic_number">17</p><p class="symbol">Cl</p><p class="atomic_mass">35.446</p></td>
+            <td class="noble-gas"><p class="atomic_number">18</p><p class="symbol">Ar</p><p class="atomic_mass">39.948</p></td>
+        </tr>
+        <tr>
+            <td class="alkali"><p class="atomic_number">19</p><p class="symbol">K</p><p class="atomic_mass">39.098</p></td>
+            <td class="alkaline"><p class="atomic_number">20</p><p class="symbol">Ca</p><p class="atomic_mass">40.078</p></td>
+            <td class="transition"><p class="atomic_number">21</p><p class="symbol">Sc</p><p class="atomic_mass">44.956</p></td>
+            <td class="transition"><p class="atomic_number">22</p><p class="symbol">Ti</p><p class="atomic_mass">47.867</p></td>
+            <td class="transition"><p class="atomic_number">23</p><p class="symbol">V</p><p class="atomic_mass">50.9415</p></td>
+            <td class="transition"><p class="atomic_number">24</p><p class="symbol">Cr</p><p class="atomic_mass">51.9962</p></td>
+            <td class="transition"><p class="atomic_number">25</p><p class="symbol">Mn</p><p class="atomic_mass">54.93804</p></td>
+            <td class="transition"><p class="atomic_number">26</p><p class="symbol">Fe</p><p class="atomic_mass">55.845</p></td>
+            <td class="transition"><p class="atomic_number">27</p><p class="symbol">Co</p><p class="atomic_mass">58.93319</p></td>
+            <td class="transition"><p class="atomic_number">28</p><p class="symbol">Ni</p><p class="atomic_mass">58.6934</p></td>
+            <td class="transition"><p class="atomic_number">29</p><p class="symbol">Cu</p><p class="atomic_mass">63.546</p></td>
+            <td class="transition"><p class="atomic_number">30</p><p class="symbol">Zn</p><p class="atomic_mass">65.38</p></td>
+            <td class="post-transition"><p class="atomic_number">31</p><p class="symbol">Ga</p><p class="atomic_mass">69.723</p></td>
+            <td class="mettaloid"><p class="atomic_number">32</p><p class="symbol">Ge</p><p class="atomic_mass">72.64</p></td>
+            <td class="mettaloid"><p class="atomic_number">33</p><p class="symbol">As</p><p class="atomic_mass">74.92160</p></td>
+            <td class="nonmetal"><p class="atomic_number">34</p><p class="symbol">Se</p><p class="atomic_mass">78.96</p></td>
+            <td class="halogen"><p class="atomic_number">35</p><p class="symbol">Br</p><p class="atomic_mass">79.904</p></td>
+            <td class="noble-gas"><p class="atomic_number">36</p><p class="symbol">Kr</p><p class="atomic_mass">83.798</p></td>
+        </tr>
+        <tr>
+            <td class="alkali"><p class="atomic_number">37</p><p class="symbol">Rb</p><p class="atomic_mass">85.4678</p></td>
+            <td class="alkaline"><p class="atomic_number">38</p><p class="symbol">Sr</p><p class="atomic_mass">87.62</p></td>
+            <td class="transition"><p class="atomic_number">39</p><p class="symbol">Y</p><p class="atomic_mass">88.90585</p></td>
+            <td class="transition"><p class="atomic_number">40</p><p class="symbol">Zr</p><p class="atomic_mass">91.224</p></td>
+            <td class="transition"><p class="atomic_number">41</p><p class="symbol">Nb</p><p class="atomic_mass">92.90638</p></td>
+            <td class="transition"><p class="atomic_number">42</p><p class="symbol">Mo</p><p class="atomic_mass">95.96</p></td>
+            <td class="transition"><p class="atomic_number">43</p><p class="symbol">Tc</p><p class="atomic_mass">98</p></td>
+            <td class="transition"><p class="atomic_number">44</p><p class="symbol">Ru</p><p class="atomic_mass">101.07</p></td>
+            <td class="transition"><p class="atomic_number">45</p><p class="symbol">Ru</p><p class="atomic_mass">102.9055</p></td>
+            <td class="transition"><p class="atomic_number">46</p><p class="symbol">Pd</p><p class="atomic_mass">106.42</p></td>
+            <td class="transition"><p class="atomic_number">47</p><p class="symbol">Ag</p><p class="atomic_mass">107.8682</p></td>
+            <td class="transition"><p class="atomic_number">48</p><p class="symbol">Cd</p><p class="atomic_mass">112.441</p></td>
+            <td class="post-transition"><p class="atomic_number">49</p><p class="symbol">In</p><p class="atomic_mass">114.818</p></td>
+            <td class="post-transition"><p class="atomic_number">50</p><p class="symbol">Sn</p><p class="atomic_mass">118.710</p></td>
+            <td class="mettaloid"><p class="atomic_number">51</p><p class="symbol">Sb</p><p class="atomic_mass">121.760</p></td>
+            <td class="mettaloid"><p class="atomic_number">52</p><p class="symbol">Te</p><p class="atomic_mass">127.60</p></td>
+            <td class="halogen"><p class="atomic_number">53</p><p class="symbol">I</p><p class="atomic_mass">126.9044</p></td>
+            <td class="noble-gas"><p class="atomic_number">54</p><p class="symbol">Xe</p><p class="atomic_mass">131.293</p></td>
+        </tr>
+        <tr>
+            <td class="alkali"><p class="atomic_number">55</p><p class="symbol">Cs</p><p class="atomic_mass">1</p></td>
+            <td class="alkaline"><p class="atomic_number">56</p><p class="symbol">Ba</p><p class="atomic_mass">1</p></td>
+            <td class="lanthanoid"><p class="symbol">*</p></td>
+            <td class="transition"><p class="atomic_number">72</p><p class="symbol">Hf</p><p class="atomic_mass">1</p></td>
+            <td class="transition"><p class="atomic_number">73</p><p class="symbol">Ta</p><p class="atomic_mass">1</p></td>
+            <td class="transition"><p class="atomic_number">74</p><p class="symbol">W</p><p class="atomic_mass">1</p></td>
+            <td class="transition"><p class="atomic_number">75</p><p class="symbol">Re</p><p class="atomic_mass">1</p></td>
+            <td class="transition"><p class="atomic_number">76</p><p class="symbol">Os</p><p class="atomic_mass">1</p></td>
+            <td class="transition"><p class="atomic_number">77</p><p class="symbol">Ir</p><p class="atomic_mass">1</p></td>
+            <td class="transition"><p class="atomic_number">78</p><p class="symbol">Pt</p><p class="atomic_mass">1</p></td>
+            <td class="transition"><p class="atomic_number">79</p><p class="symbol">Au</p><p class="atomic_mass">1</p></td>
+            <td class="transition"><p class="atomic_number">80</p><p class="symbol">Hg</p><p class="atomic_mass">1</p></td>
+            <td class="post-transition"><p class="atomic_number">81</p><p class="symbol">Tl</p><p class="atomic_mass">1</p></td>
+            <td class="post-transition"><p class="atomic_number">82</p><p class="symbol">Pb</p><p class="atomic_mass">1</p></td>
+            <td class="post-transition"><p class="atomic_number">83</p><p class="symbol">Bi</p><p class="atomic_mass">1</p></td>
+            <td class="post-transition"><p class="atomic_number">84</p><p class="symbol">Po</p><p class="atomic_mass">1</p></td>
+            <td class="halogen"><p class="atomic_number">85</p><p class="symbol">At</p><p class="atomic_mass">1</p></td>
+            <td class="noble-gas"><p class="atomic_number">86</p><p class="symbol">Rn</p><p class="atomic_mass">1</p></td>
+        </tr>
+        <tr>
+            <td class="alkali"><p class="atomic_number">87</p><p class="symbol">Fr</p><p class="atomic_mass">1</p></td>
+            <td class="alkaline"><p class="atomic_number">88</p><p class="symbol">Ra</p><p class="atomic_mass">1</p></td>
+            <td class="actinoid"><p class="symbol">**</p></td>
+            <td class="transition"><p class="atomic_number">104</p><p class="symbol">Rf</p><p class="atomic_mass">1</p></td>
+            <td class="transition"><p class="atomic_number">105</p><p class="symbol">Db</p><p class="atomic_mass">1</p></td>
+            <td class="transition"><p class="atomic_number">106</p><p class="symbol">Sg</p><p class="atomic_mass">1</p></td>
+            <td class="transition"><p class="atomic_number">107</p><p class="symbol">Bh</p><p class="atomic_mass">1</p></td>
+            <td class="transition"><p class="atomic_number">108</p><p class="symbol">Hs</p><p class="atomic_mass">1</p></td>
+            <td class="transition"><p class="atomic_number">109</p><p class="symbol">Mt</p><p class="atomic_mass">1</p></td>
+            <td class="transition"><p class="atomic_number">110</p><p class="symbol">Ds</p><p class="atomic_mass">1</p></td>
+            <td class="transition"><p class="atomic_number">111</p><p class="symbol">Rg</p><p class="atomic_mass">1</p></td>
+            <td class="transition"><p class="atomic_number">112</p><p class="symbol">Cn</p><p class="atomic_mass">1</p></td>
+            <td class="unknown"><p class="atomic_number">113</p><p class="symbol">Uut</p><p class="atomic_mass">1</p></td>
+            <td class="unknown"><p class="atomic_number">114</p><p class="symbol">Fl</p><p class="atomic_mass">1</p></td>
+            <td class="unknown"><p class="atomic_number">115</p><p class="symbol">Uup</p><p class="atomic_mass">1</p></td>
+            <td class="unknown"><p class="atomic_number">116</p><p class="symbol">Lv</p><p class="atomic_mass">1</p></td>
+            <td class="unknown"><p class="atomic_number">117</p><p class="symbol">Uus</p><p class="atomic_mass">1</p></td>
+            <td class="unknown"><p class="atomic_number">118</p><p class="symbol">Uuo</p><p class="atomic_mass">1</p></td>
+        </tr>
+        <tr>
+            <td rowspan="1"></td>
+        </tr>
+        <tr>
+            <td colspan="1"></td>
+            <td><p style="color: white; font-size: 25px; margin: 0px;">*</p></td>
+            <td class="lanthanoid"><p class="atomic_number">57</p><p class="symbol">La</p><p class="atomic_mass">1</p></td>
+            <td class="lanthanoid"><p class="atomic_number">58</p><p class="symbol">Ce</p><p class="atomic_mass">1</p></td>
+            <td class="lanthanoid"><p class="atomic_number">59</p><p class="symbol">Pr</p><p class="atomic_mass">1</p></td>
+            <td class="lanthanoid"><p class="atomic_number">60</p><p class="symbol">Nd</p><p class="atomic_mass">1</p></td>
+            <td class="lanthanoid"><p class="atomic_number">61</p><p class="symbol">Pm</p><p class="atomic_mass">1</p></td>
+            <td class="lanthanoid"><p class="atomic_number">62</p><p class="symbol">Sm</p><p class="atomic_mass">1</p></td>
+            <td class="lanthanoid"><p class="atomic_number">63</p><p class="symbol">Eu</p><p class="atomic_mass">1</p></td>
+            <td class="lanthanoid"><p class="atomic_number">64</p><p class="symbol">Gd</p><p class="atomic_mass">1</p></td>
+            <td class="lanthanoid"><p class="atomic_number">65</p><p class="symbol">Tb</p><p class="atomic_mass">1</p></td>
+            <td class="lanthanoid"><p class="atomic_number">66</p><p class="symbol">Dy</p><p class="atomic_mass">1</p></td>
+            <td class="lanthanoid"><p class="atomic_number">67</p><p class="symbol">Ho</p><p class="atomic_mass">1</p></td>
+            <td class="lanthanoid"><p class="atomic_number">68</p><p class="symbol">Er</p><p class="atomic_mass">1</p></td>
+            <td class="lanthanoid"><p class="atomic_number">69</p><p class="symbol">Tm</p><p class="atomic_mass">1</p></td>
+            <td class="lanthanoid"><p class="atomic_number">70</p><p class="symbol">Yb</p><p class="atomic_mass">1</p></td>
+            <td class="lanthanoid"><p class="atomic_number">71</p><p class="symbol">Lu</p><p class="atomic_mass">1</p></td>
+        </tr>
+        <tr>
+            <td colspan="1"></td>
+            <td><p style="color: white; font-size: 25px; margin: 0px;">**</p></td>
+            <td class="actinoid"><p class="atomic_number">89</p><p class="symbol">Ac</p><p class="atomic_mass">1</p></td>
+            <td class="actinoid"><p class="atomic_number">90</p><p class="symbol">Th</p><p class="atomic_mass">1</p></td>
+            <td class="actinoid"><p class="atomic_number">91</p><p class="symbol">Pa</p><p class="atomic_mass">1</p></td>
+            <td class="actinoid"><p class="atomic_number">92</p><p class="symbol">U</p><p class="atomic_mass">1</p></td>
+            <td class="actinoid"><p class="atomic_number">93</p><p class="symbol">Np</p><p class="atomic_mass">1</p></td>
+            <td class="actinoid"><p class="atomic_number">94</p><p class="symbol">Pu</p><p class="atomic_mass">1</p></td>
+            <td class="actinoid"><p class="atomic_number">95</p><p class="symbol">Am</p><p class="atomic_mass">1</p></td>
+            <td class="actinoid"><p class="atomic_number">96</p><p class="symbol">Cm</p><p class="atomic_mass">1</p></td>
+            <td class="actinoid"><p class="atomic_number">97</p><p class="symbol">Bk</p><p class="atomic_mass">1</p></td>
+            <td class="actinoid"><p class="atomic_number">98</p><p class="symbol">Cf</p><p class="atomic_mass">1</p></td>
+            <td class="actinoid"><p class="atomic_number">99</p><p class="symbol">Es</p><p class="atomic_mass">1</p></td>
+            <td class="actinoid"><p class="atomic_number">100</p><p class="symbol">Fm</p><p class="atomic_mass">1</p></td>
+            <td class="actinoid"><p class="atomic_number">101</p><p class="symbol">Md</p><p class="atomic_mass">1</p></td>
+            <td class="actinoid"><p class="atomic_number">102</p><p class="symbol">No</p><p class="atomic_mass">1</p></td>
+            <td class="actinoid"><p class="atomic_number">103</p><p class="symbol">Lr</p><p class="atomic_mass">1</p></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
