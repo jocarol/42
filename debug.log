@@ -1,0 +1,3 @@
+2018-01-16 20:33:44.054 ruby[20850:14924659] 20:33:44.053 WARNING:  140: This application, or a library it uses, is using the deprecated Carbon Component Manager for hosting Audio Units. Support for this will be removed in a future release. Also, this makes the host incompatible with version 3 audio units. Please transition to the API's in AudioComponent.h.
+D, [2018-01-16T20:33:56.164747 #20850] DEBUG -- : Player: play 15844833
+D, [2018-01-16T20:44:50.209409 #20850] DEBUG -- : Player: play 45812794
